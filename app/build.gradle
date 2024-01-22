@@ -1,0 +1,40 @@
+apply plugin: 'com.android.application'
+
+android {
+    compileSdkVersion 30
+    buildToolsVersion "29.0.2"
+
+    defaultConfig {
+        applicationId "com.cloudpos.apidemoforunionpaycloudpossdk"
+        minSdkVersion 19
+        targetSdkVersion 29
+        versionCode 124
+        versionName "1.2.4_V1.5.3.081"
+    }
+
+    repositories {
+        flatDir {
+            dirs 'libs'
+        }
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.txt'
+        }
+    }
+
+    lintOptions {
+        checkReleaseBuilds false
+        abortOnError false
+    }
+}
+
+dependencies {
+    implementation files('libs/allutils.jar')
+    implementation(name: 'cloudpossdkV1.6.1.1_Standard', ext: 'aar')
+    implementation files('libs/bcprov-jdk15-138.jar')
+    //create QR code
+    implementation files('libs/zxing.jar')
+}
