@@ -1,9 +1,0 @@
-<component name="libraryTable">
-  <library name="Gradle: E./projectes/SDK/cloudpos_SDK_java/aar/samples/APIDemoForAar/app/libs/allutils.jar">
-    <CLASSES>
-      <root url="jar://$PROJECT_DIR$/app/libs/allutils.jar!/" />
-    </CLASSES>
-    <JAVADOC />
-    <SOURCES />
-  </library>
-</component>

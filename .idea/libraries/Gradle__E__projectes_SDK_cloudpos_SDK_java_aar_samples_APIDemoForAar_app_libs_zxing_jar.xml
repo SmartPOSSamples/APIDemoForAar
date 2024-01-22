@@ -1,9 +1,0 @@
-<component name="libraryTable">
-  <library name="Gradle: E./projectes/SDK/cloudpos_SDK_java/aar/samples/APIDemoForAar/app/libs/zxing.jar">
-    <CLASSES>
-      <root url="jar://$PROJECT_DIR$/app/libs/zxing.jar!/" />
-    </CLASSES>
-    <JAVADOC />
-    <SOURCES />
-  </library>
-</component>
