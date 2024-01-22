@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    
+    <color name="btn_press">#FF0859DA</color> <!--  -->
+    <color name="btn_default">#FF1CACE2</color> <!--  -->
+    <color name="transparent">#00000000</color> <!--  -->
+    <color name="lv_row_bg_gray_default">#D1D1D1</color> <!--  -->
+    <color name="RED">#FF0000</color>
+    <color name="GREEN">#00FF00</color>
+    <color name="BLUE">#0000FF</color>
+    <color name="WHITE">#FFFFFF</color>
+    <color name="GRAY">#8A8A8A</color>
+    <color name="BLACK">#000000</color>
+    <color name="ORANGE">#FFA500</color>
+    <color name="weibo_listtab_off">#8d8d8d</color>
+    <color name="bg_head">#e9e9e9</color> <!-- head的背景颜色 -->
+    <color name="bg_main">#f8f8f8</color> <!-- 主页面的背景颜色 -->
+    <color name="bg_icon">#41FFFFFF</color>
+    <color name="bg_head_2">#e9e9e9</color>
+    <color name="txt_color">#333333</color>
+    <color name="txt_color_head">#292929</color>
+    <color name="txt_color_2">#737373</color>
+    <color name="txt_color_3">#333333</color>
+    <color name="txt_color_4">#bdbdbd</color>
+    <color name="txt_optional">#333333</color>
+    <color name="txt_required">#00aeef</color>
+    <color name="txt_required_silence">#ef5851</color>
+    <color name="txt_detail_tag">#00aeef</color>
+    <color name="item_pressed">#effbff</color>
+    <color name="btn_unable">#9b9b9b</color>
+    <color name="btn_back">#00aeef</color>
+    <color name="btn_install">#a0ea00</color>
+    <color name="btn_uninstall">#f39000</color>
+    <color name="btn_back_failed">#88FF0000</color>
+    <color name="btn_back_install">#ee00FF00</color>
+    
+    <color name="background">#F3F3F3</color>
+    <color name="txt_1">#575757</color>
+    <color name="txt_success">#0b9573</color>
+    <color name="txt_failed"> #f1443c</color>
+    <color name="stroke_1">#b1b1b1</color>
+    <color name="stroke_2">#ff8800</color>
+    <color name="white">#ffffff</color>
+    <color name="bg_sub_head">#00aeef</color>
+    
+    
+</resources>

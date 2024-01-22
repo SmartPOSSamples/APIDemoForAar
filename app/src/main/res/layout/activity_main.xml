@@ -1,0 +1,61 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/background"
+    android:orientation="horizontal"
+    android:padding="10dp" >
+
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_gravity="center"
+        android:layout_marginRight="10dp"
+        android:layout_weight="1.0"
+        android:orientation="vertical" >
+
+        <TextView
+            android:id="@+id/txt_introduction"
+            android:layout_width="match_parent"
+            android:layout_height="80dp"
+            android:layout_gravity="center"
+            android:layout_marginBottom="10dp"
+            android:background="@drawable/bg_shape"
+            android:gravity="center"
+            android:text="@string/welcome_to"
+            android:textSize="20sp"
+            android:visibility="gone" />
+
+        <ListView
+            android:id="@+id/lvw_test_items"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_gravity="center"
+            android:layout_weight="1.0"
+            android:background="@drawable/bg_shape"
+            android:divider="#FFFFFF"
+            android:dividerHeight="8dp"
+            android:fadeScrollbars="false"
+            android:gravity="center"
+            android:paddingBottom="10dp"
+            android:paddingLeft="20dp"
+            android:paddingRight="20dp"
+            android:paddingTop="10dp"
+            android:scrollbarFadeDuration="0" >
+        </ListView>
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/txt_log"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="1.618"
+        android:background="@drawable/bg_shape"
+        android:fadeScrollbars="true"
+        android:maxLines="100"
+        android:padding="5dp"
+        android:scrollbars="vertical"
+        android:singleLine="false"
+        android:textColor="@color/txt_1"
+        android:textSize="20sp" />
+
+</LinearLayout>

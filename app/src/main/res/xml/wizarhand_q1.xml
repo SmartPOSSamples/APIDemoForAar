@@ -1,0 +1,1253 @@
+<?xml version="1.0" encoding="utf-8"?>
+<DriverTest>
+
+    <!--<MainItem-->
+        <!--command="IDCardReaderAction"-->
+        <!--name_CN="身份证"-->
+        <!--name_EN="IDCard">-->
+        <!--<SubItem-->
+            <!--command="open"-->
+            <!--name_CN="Open"-->
+            <!--name_EN="Open"-->
+            <!--needTest="true" />-->
+        <!--<SubItem-->
+            <!--command="listenForCardPresent"-->
+            <!--name_CN="ListenForCardPresent"-->
+            <!--name_EN="ListenForCardPresent"-->
+            <!--needTest="true" />-->
+        <!--<SubItem-->
+            <!--command="waitForCardPresent"-->
+            <!--name_CN="WaitForCardPresent"-->
+            <!--name_EN="WaitForCardPresent"-->
+            <!--needTest="true" />-->
+        <!--<SubItem-->
+            <!--command="cancelRequest"-->
+            <!--name_CN="cancelRequest"-->
+            <!--name_EN="cancelRequest"-->
+            <!--needTest="true" />-->
+        <!--<SubItem-->
+            <!--command="close"-->
+            <!--name_CN="Close"-->
+            <!--name_EN="Close"-->
+            <!--needTest="true" />-->
+    <!--</MainItem>-->
+    <MainItem
+        command="RFCardAction"
+        name_CN="非接卡(CPU)"
+        name_EN="RFCard(CPU)">
+        <SubItem
+            command="open"
+            name_CN="Open"
+            name_EN="Open"
+            needTest="true" />
+        <SubItem
+            command="listenForCardPresent"
+            name_CN="ListenForCardPresent"
+            name_EN="ListenForCardPresent"
+            needTest="true" />
+        <SubItem
+            command="waitForCardPresent"
+            name_CN="WaitForCardPresent"
+            name_EN="WaitForCardPresent"
+            needTest="true" />
+        <SubItem
+            command="listenForCardAbsent"
+            name_CN="ListenForCardAbsent"
+            name_EN="ListenForCardAbsent"
+            needTest="true" />
+        <SubItem
+            command="waitForCardAbsent"
+            name_CN="WaitForCardAbsent"
+            name_EN="WaitForCardAbsent"
+            needTest="true" />
+        <SubItem
+            command="cancelRequest"
+            name_CN="cancelRequest"
+            name_EN="cancelRequest"
+            needTest="true" />
+        <SubItem
+            command="getMode"
+            name_CN="GetMode"
+            name_EN="GetMode"
+            needTest="true" />
+        <SubItem
+            command="setSpeed"
+            name_CN="setSpeed"
+            name_EN="setSpeed"
+            needTest="true" />
+        <SubItem
+            command="getSpeed"
+            name_CN="getSpeed"
+            name_EN="getSpeed"
+            needTest="true" />
+        <SubItem
+            command="getID"
+            name_CN="getID"
+            name_EN="getID"
+            needTest="true" />
+        <SubItem
+            command="getProtocol"
+            name_CN="getProtocol"
+            name_EN="getProtocol"
+            needTest="true" />
+        <SubItem
+            command="getCardStatus"
+            name_CN="getCardStatus"
+            name_EN="getCardStatus"
+            needTest="true" />
+        <SubItem
+            command="transmit_level3"
+            name_CN="transmit_level3"
+            name_EN="transmit_level3"
+            needTest="true" />
+        <SubItem
+            command="sendControlCommand"
+            name_CN="sendControlCommand"
+            name_EN="sendControlCommand"
+            needTest="true" />
+        <SubItem
+            command="connect"
+            name_CN="connect"
+            name_EN="connect"
+            needTest="true" />
+        <SubItem
+            command="transmit"
+            name_CN="transmit"
+            name_EN="transmit"
+            needTest="true" />
+        <SubItem
+            command="disconnect"
+            name_CN="disconnect"
+            name_EN="disconnect"
+            needTest="true" />
+        <SubItem
+            command="close"
+            name_CN="Close"
+            name_EN="Close"
+            needTest="true" />
+    </MainItem>
+    <MainItem
+        command="RFCardAction"
+        name_CN="非接卡(Mifare)"
+        name_EN="RFCard(Mifare)">
+        <SubItem
+            command="open"
+            name_CN="Open"
+            name_EN="Open"
+            needTest="true" />
+        <SubItem
+            command="listenForCardPresent"
+            name_CN="ListenForCardPresent"
+            name_EN="ListenForCardPresent"
+            needTest="true" />
+        <SubItem
+            command="waitForCardPresent"
+            name_CN="WaitForCardPresent"
+            name_EN="WaitForCardPresent"
+            needTest="true" />
+        <SubItem
+            command="listenForCardAbsent"
+            name_CN="ListenForCardAbsent"
+            name_EN="ListenForCardAbsent"
+            needTest="true" />
+        <SubItem
+            command="waitForCardAbsent"
+            name_CN="WaitForCardAbsent"
+            name_EN="WaitForCardAbsent"
+            needTest="true" />
+        <SubItem
+            command="cancelRequest"
+            name_CN="cancelRequest"
+            name_EN="cancelRequest"
+            needTest="true" />
+        <SubItem
+            command="getMode"
+            name_CN="GetMode"
+            name_EN="GetMode"
+            needTest="true" />
+        <SubItem
+            command="setSpeed"
+            name_CN="setSpeed"
+            name_EN="setSpeed"
+            needTest="true" />
+        <SubItem
+            command="getSpeed"
+            name_CN="getSpeed"
+            name_EN="getSpeed"
+            needTest="true" />
+        <SubItem
+            command="getID"
+            name_CN="getID"
+            name_EN="getID"
+            needTest="true" />
+        <SubItem
+            command="getProtocol"
+            name_CN="getProtocol"
+            name_EN="getProtocol"
+            needTest="true" />
+        <SubItem
+            command="getCardStatus"
+            name_CN="getCardStatus"
+            name_EN="getCardStatus"
+            needTest="true" />
+        <SubItem
+            command="transmit_level3"
+            name_CN="transmit_level3"
+            name_EN="transmit_level3"
+            needTest="true" />
+        <SubItem
+            command="sendControlCommand"
+            name_CN="sendControlCommand"
+            name_EN="sendControlCommand"
+            needTest="true" />
+        <SubItem
+            command="verifyKeyA"
+            name_CN="verifyKeyA"
+            name_EN="verifyKeyA"
+            needTest="true" />
+        <SubItem
+            command="verifyKeyB"
+            name_CN="verifyKeyB"
+            name_EN="verifyKeyB"
+            needTest="true" />
+        <SubItem
+            command="readBlock"
+            name_CN="readBlock"
+            name_EN="readBlock"
+            needTest="true" />
+        <SubItem
+            command="writeBlock"
+            name_CN="writeBlock"
+            name_EN="writeBlock"
+            needTest="true" />
+        <SubItem
+            command="readValue"
+            name_CN="readValue"
+            name_EN="readValue"
+            needTest="true" />
+        <SubItem
+            command="writeValue"
+            name_CN="writeValue"
+            name_EN="writeValue"
+            needTest="true" />
+        <SubItem
+            command="incrementValue"
+            name_CN="incrementValue"
+            name_EN="incrementValue"
+            needTest="true" />
+        <SubItem
+            command="decrementValue"
+            name_CN="decrementValue"
+            name_EN="decrementValue"
+            needTest="true" />
+        <SubItem
+            command="close"
+            name_CN="Close"
+            name_EN="Close"
+            needTest="true" />
+    </MainItem>
+    <MainItem
+        command="RFCardAction"
+        name_CN="非接卡(MifareUltra)"
+        name_EN="RFCard(MifareUltra)">
+        <SubItem
+            command="open"
+            name_CN="Open"
+            name_EN="Open"
+            needTest="true" />
+        <SubItem
+            command="listenForCardPresent"
+            name_CN="ListenForCardPresent"
+            name_EN="ListenForCardPresent"
+            needTest="true" />
+        <SubItem
+            command="waitForCardPresent"
+            name_CN="WaitForCardPresent"
+            name_EN="WaitForCardPresent"
+            needTest="true" />
+        <SubItem
+            command="listenForCardAbsent"
+            name_CN="ListenForCardAbsent"
+            name_EN="ListenForCardAbsent"
+            needTest="true" />
+        <SubItem
+            command="waitForCardAbsent"
+            name_CN="WaitForCardAbsent"
+            name_EN="WaitForCardAbsent"
+            needTest="true" />
+        <SubItem
+            command="cancelRequest"
+            name_CN="cancelRequest"
+            name_EN="cancelRequest"
+            needTest="true" />
+        <SubItem
+            command="getMode"
+            name_CN="GetMode"
+            name_EN="GetMode"
+            needTest="true" />
+        <SubItem
+            command="setSpeed"
+            name_CN="setSpeed"
+            name_EN="setSpeed"
+            needTest="true" />
+        <SubItem
+            command="getSpeed"
+            name_CN="getSpeed"
+            name_EN="getSpeed"
+            needTest="true" />
+        <SubItem
+            command="getID"
+            name_CN="getID"
+            name_EN="getID"
+            needTest="true" />
+        <SubItem
+            command="getProtocol"
+            name_CN="getProtocol"
+            name_EN="getProtocol"
+            needTest="true" />
+        <SubItem
+            command="getCardStatus"
+            name_CN="getCardStatus"
+            name_EN="getCardStatus"
+            needTest="true" />
+        <SubItem
+            command="verify_level3"
+            name_CN="verify_level3"
+            name_EN="verify_level3"
+            needTest="true" />
+        <SubItem
+            command="transmit_level3"
+            name_CN="transmit_level3"
+            name_EN="transmit_level3"
+            needTest="true" />
+        <SubItem
+            command="sendControlCommand"
+            name_CN="sendControlCommand"
+            name_EN="sendControlCommand"
+            needTest="true" />
+        <SubItem
+            command="read"
+            name_CN="read"
+            name_EN="read"
+            needTest="true" />
+        <SubItem
+            command="write"
+            name_CN="write"
+            name_EN="write"
+            needTest="true" />
+        <SubItem
+            command="close"
+            name_CN="Close"
+            name_EN="Close"
+            needTest="true" />
+    </MainItem>
+    <MainItem
+        command="SmartCardAction1"
+        isActivity="false"
+        name_CN="IC卡"
+        name_EN="SmartCard">
+        <SubItem
+            command="open"
+            name_CN="Open"
+            name_EN="Open"
+            needTest="true" />
+        <SubItem
+            command="listenForCardPresent"
+            name_CN="ListenForCardPresent"
+            name_EN="ListenForCardPresent"
+            needTest="true" />
+        <SubItem
+            command="waitForCardPresent"
+            name_CN="WaitForCardPresent"
+            name_EN="WaitForCardPresent"
+            needTest="true" />
+        <SubItem
+            command="listenForCardAbsent"
+            name_CN="ListenForCardAbsent"
+            name_EN="ListenForCardAbsent"
+            needTest="true" />
+        <SubItem
+            command="waitForCardAbsent"
+            name_CN="WaitForCardAbsent"
+            name_EN="WaitForCardAbsent"
+            needTest="true" />
+        <SubItem
+            command="cancelRequest"
+            name_CN="cancelRequest"
+            name_EN="cancelRequest"
+            needTest="true" />
+        <SubItem
+            command="getID"
+            name_CN="getID"
+            name_EN="getID"
+            needTest="true" />
+        <SubItem
+            command="getProtocol"
+            name_CN="getProtocol"
+            name_EN="getProtocol"
+            needTest="true" />
+        <SubItem
+            command="getCardStatus"
+            name_CN="getCardStatus"
+            name_EN="getCardStatus"
+            needTest="true" />
+        <SubItem
+            command="connect"
+            name_CN="connect"
+            name_EN="connect"
+            needTest="true" />
+        <SubItem
+            command="transmit"
+            name_CN="transmit"
+            name_EN="transmit"
+            needTest="true" />
+        <SubItem
+            command="disconnect"
+            name_CN="disconnect"
+            name_EN="disconnect"
+            needTest="true" />
+        <SubItem
+            command="close"
+            name_CN="Close"
+            name_EN="Close"
+            needTest="true" />
+    </MainItem>
+    <MainItem
+        command="SmartCardAction2"
+        isActivity="false"
+        name_CN="PSAM卡"
+        name_EN="PSAMCard">
+        <SubItem
+            command="open"
+            name_CN="Open"
+            name_EN="Open"
+            needTest="true" />
+        <SubItem
+            command="listenForCardPresent"
+            name_CN="ListenForCardPresent"
+            name_EN="ListenForCardPresent"
+            needTest="true" />
+        <SubItem
+            command="waitForCardPresent"
+            name_CN="WaitForCardPresent"
+            name_EN="WaitForCardPresent"
+            needTest="true" />
+        <SubItem
+            command="cancelRequest"
+            name_CN="cancelRequest"
+            name_EN="cancelRequest"
+            needTest="true" />
+        <SubItem
+            command="getID"
+            name_CN="getID"
+            name_EN="getID"
+            needTest="true" />
+        <SubItem
+            command="getProtocol"
+            name_CN="getProtocol"
+            name_EN="getProtocol"
+            needTest="true" />
+        <SubItem
+            command="getCardStatus"
+            name_CN="getCardStatus"
+            name_EN="getCardStatus"
+            needTest="true" />
+        <SubItem
+            command="connect"
+            name_CN="connect"
+            name_EN="connect"
+            needTest="true" />
+        <SubItem
+            command="transmit"
+            name_CN="transmit"
+            name_EN="transmit"
+            needTest="true" />
+        <SubItem
+            command="disconnect"
+            name_CN="disconnect"
+            name_EN="disconnect"
+            needTest="true" />
+        <SubItem
+            command="close"
+            name_CN="Close"
+            name_EN="Close"
+            needTest="true" />
+    </MainItem>
+    <MainItem
+        command="MSRAction"
+        isActivity="false"
+        name_CN="磁条卡"
+        name_EN="MSR">
+        <SubItem
+            command="open"
+            name_CN="Open"
+            name_EN="Open"
+            needTest="true" />
+        <SubItem
+            command="listenForSwipe"
+            name_CN="listenForSwipe"
+            name_EN="listenForSwipe"
+            needTest="true" />
+        <SubItem
+            command="waitForSwipe"
+            name_CN="waitForSwipe"
+            name_EN="waitForSwipe"
+            needTest="true" />
+        <SubItem
+            command="cancelRequest"
+            name_CN="cancelRequest"
+            name_EN="cancelRequest"
+            needTest="true" />
+        <SubItem
+            command="close"
+            name_CN="Close"
+            name_EN="Close"
+            needTest="true" />
+    </MainItem>
+    <MainItem
+        command="PINPadAction"
+        isActivity="false"
+        name_CN="密码键盘"
+        name_EN="PINPad">
+        <SubItem
+            command="open"
+            name_CN="Open"
+            name_EN="Open"
+            needTest="true" />
+        <SubItem
+            command="showText"
+            name_CN="showText"
+            name_EN="showText"
+            needTest="true" />
+        <SubItem
+            command="clearText"
+            name_CN="clearText"
+            name_EN="clearText"
+            needTest="true" />
+        <SubItem
+            command="setPINLength"
+            name_CN="setPINLength"
+            name_EN="setPINLength"
+            needTest="true" />
+        <SubItem
+            command="getSN"
+            name_CN="getSN"
+            name_EN="getSN"
+            needTest="true" />
+        <SubItem
+            command="getRandom"
+            name_CN="getRandom"
+            name_EN="getRandom"
+            needTest="true" />
+        <SubItem
+            command="updateUserKey1"
+            name_CN="updateUserKey1"
+            name_EN="updateUserKey1"
+            needTest="true" />
+        <SubItem
+            command="updateUserKey2"
+            name_CN="updateUserKey2"
+            name_EN="updateUserKey2"
+            needTest="true" />
+        <SubItem
+            command="updateUserKey3"
+            name_CN="updateUserKey3"
+            name_EN="updateUserKey3"
+            needTest="true" />
+        <SubItem
+            command="updateMasterKeyCheckMK"
+            name_CN="updateMasterKeyCheckMK"
+            name_EN="updateMasterKeyCheckMK"
+            needTest="true" />
+        <SubItem
+            command="getMasterKeyCheckValue"
+            name_CN="getMasterKeyCheckValue"
+            name_EN="getMasterKeyCheckValue"
+            needTest="true" />
+        <SubItem
+            command="getSessionKeyCheckValue"
+            name_CN="getSessionKeyCheckValue"
+            name_EN="getSessionKeyCheckValue"
+            needTest="true" />
+        <SubItem
+            command="getHighestKeyCheckValue"
+            name_CN="getHighestKeyCheckValue"
+            name_EN="getHighestKeyCheckValue"
+            needTest="true" />
+        <SubItem
+            command="encryptData"
+            name_CN="encryptData"
+            name_EN="encryptData"
+            needTest="true" />
+        <SubItem
+            command="calculateMAC"
+            name_CN="calculateMAC"
+            name_EN="calculateMAC"
+            needTest="true" />
+        <SubItem
+            command="calculateDukptMAC"
+            name_CN="calculateDukptMAC"
+            name_EN="calculateDukptMAC"
+            needTest="true" />
+        <SubItem
+            command="verifyResponseMAC"
+            name_CN="verifyResponseMAC"
+            name_EN="verifyResponseMAC"
+            needTest="true" />
+        <SubItem
+            command="setGUIConfiguration"
+            name_CN="setGUIConfiguration"
+            name_EN="setGUIConfiguration"
+            needTest="true" />
+        <SubItem
+            command="setGUISound"
+            name_CN="setGUISound"
+            name_EN="setGUISound"
+            needTest="true" />
+        <SubItem
+            command="setGUIStyle"
+            name_CN="setGUIStyle"
+            name_EN="setGUIStyle"
+            needTest="true" />
+<!--        <SubItem-->
+<!--            command="setGUIBackGround"-->
+<!--            name_CN="setGUIBackGround"-->
+<!--            name_EN="setGUIBackGround"-->
+<!--            needTest="true" />-->
+        <SubItem
+            command="getMkStatus"
+            name_CN="getMkStatus"
+            name_EN="getMkStatus"
+            needTest="true" />
+        <SubItem
+            command="getSkStatus"
+            name_CN="getSkStatus"
+            name_EN="getSkStatus"
+            needTest="true" />
+        <SubItem
+            command="getDukptStatus"
+            name_CN="getDukptStatus"
+            name_EN="getDukptStatus"
+            needTest="true" />
+        <SubItem
+            command="listenForPinBlock"
+            name_CN="listenForPinBlock"
+            name_EN="listenForPinBlock"
+            needTest="true" />
+        <SubItem
+            command="waitForPinBlock"
+            name_CN="waitForPinBlock"
+            name_EN="waitForPinBlock"
+            needTest="true" />
+        <SubItem
+            command="getLastPINLength"
+            name_CN="getLastPINLength"
+            name_EN="getLastPINLength"
+            needTest="true" />
+        <SubItem
+            command="changePin"
+            name_CN="changePin"
+            name_EN="changePin"
+            needTest="true" />
+        <SubItem
+            command="createPin"
+            name_CN="createPin"
+            name_EN="createPin"
+            needTest="true" />
+        <SubItem
+            command="selectPinblockFormat"
+            name_CN="selectPinblockFormat"
+            name_EN="selectPinblockFormat"
+            needTest="true" />
+        <SubItem
+            command="cancelRequest"
+            name_CN="cancelRequest"
+            name_EN="cancelRequest"
+            needTest="true" />
+        <SubItem
+            command="close"
+            name_CN="Close"
+            name_EN="Close"
+            needTest="true" />
+    </MainItem>
+    <MainItem
+        command="LEDAction1"
+        isActivity="false"
+        name_CN="LED1"
+        name_EN="LED1">
+        <SubItem
+            command="open"
+            name_CN="Open"
+            name_EN="Open"
+            needTest="true" />
+        <SubItem
+            command="getLogicalID"
+            name_CN="getLogicalID"
+            name_EN="getLogicalID"
+            needTest="true" />
+        <SubItem
+            command="startBlink"
+            name_CN="startBlink"
+            name_EN="startBlink"
+            needTest="true" />
+        <SubItem
+            command="cancelRequest"
+            name_CN="cancelRequest"
+            name_EN="cancelRequest"
+            needTest="true" />
+        <SubItem
+            command="cancelBlink"
+            name_CN="cancelBlink"
+            name_EN="cancelBlink"
+            needTest="true" />
+        <SubItem
+            command="blink"
+            name_CN="blink"
+            name_EN="blink"
+            needTest="true" />
+        <SubItem
+            command="getStatus"
+            name_CN="getStatus"
+            name_EN="getStatus"
+            needTest="true" />
+        <SubItem
+            command="turnOn"
+            name_CN="turnOn"
+            name_EN="turnOn"
+            needTest="true" />
+        <SubItem
+            command="turnOff"
+            name_CN="turnOff"
+            name_EN="turnOff"
+            needTest="true" />
+        <SubItem
+            command="close"
+            name_CN="Close"
+            name_EN="Close"
+            needTest="true" />
+    </MainItem>
+    <MainItem
+        command="LEDAction2"
+        isActivity="false"
+        name_CN="LED2"
+        name_EN="LED2">
+        <SubItem
+            command="open"
+            name_CN="Open"
+            name_EN="Open"
+            needTest="true" />
+        <SubItem
+            command="getLogicalID"
+            name_CN="getLogicalID"
+            name_EN="getLogicalID"
+            needTest="true" />
+        <SubItem
+            command="startBlink"
+            name_CN="startBlink"
+            name_EN="startBlink"
+            needTest="true" />
+        <SubItem
+            command="cancelRequest"
+            name_CN="cancelRequest"
+            name_EN="cancelRequest"
+            needTest="true" />
+        <SubItem
+            command="cancelBlink"
+            name_CN="cancelBlink"
+            name_EN="cancelBlink"
+            needTest="true" />
+        <SubItem
+            command="blink"
+            name_CN="blink"
+            name_EN="blink"
+            needTest="true" />
+        <SubItem
+            command="getStatus"
+            name_CN="getStatus"
+            name_EN="getStatus"
+            needTest="true" />
+        <SubItem
+            command="turnOn"
+            name_CN="turnOn"
+            name_EN="turnOn"
+            needTest="true" />
+        <SubItem
+            command="turnOff"
+            name_CN="turnOff"
+            name_EN="turnOff"
+            needTest="true" />
+        <SubItem
+            command="close"
+            name_CN="Close"
+            name_EN="Close"
+            needTest="true" />
+    </MainItem>
+    <MainItem
+        command="LEDAction3"
+        isActivity="false"
+        name_CN="LED3"
+        name_EN="LED3">
+        <SubItem
+            command="open"
+            name_CN="Open"
+            name_EN="Open"
+            needTest="true" />
+        <SubItem
+            command="getLogicalID"
+            name_CN="getLogicalID"
+            name_EN="getLogicalID"
+            needTest="true" />
+        <SubItem
+            command="startBlink"
+            name_CN="startBlink"
+            name_EN="startBlink"
+            needTest="true" />
+        <SubItem
+            command="cancelRequest"
+            name_CN="cancelRequest"
+            name_EN="cancelRequest"
+            needTest="true" />
+        <SubItem
+            command="cancelBlink"
+            name_CN="cancelBlink"
+            name_EN="cancelBlink"
+            needTest="true" />
+        <SubItem
+            command="blink"
+            name_CN="blink"
+            name_EN="blink"
+            needTest="true" />
+        <SubItem
+            command="getStatus"
+            name_CN="getStatus"
+            name_EN="getStatus"
+            needTest="true" />
+        <SubItem
+            command="turnOn"
+            name_CN="turnOn"
+            name_EN="turnOn"
+            needTest="true" />
+        <SubItem
+            command="turnOff"
+            name_CN="turnOff"
+            name_EN="turnOff"
+            needTest="true" />
+        <SubItem
+            command="close"
+            name_CN="Close"
+            name_EN="Close"
+            needTest="true" />
+    </MainItem>
+    <MainItem
+        command="LEDAction4"
+        isActivity="false"
+        name_CN="LED4"
+        name_EN="LED4">
+        <SubItem
+            command="open"
+            name_CN="Open"
+            name_EN="Open"
+            needTest="true" />
+        <SubItem
+            command="getLogicalID"
+            name_CN="getLogicalID"
+            name_EN="getLogicalID"
+            needTest="true" />
+        <SubItem
+            command="startBlink"
+            name_CN="startBlink"
+            name_EN="startBlink"
+            needTest="true" />
+        <SubItem
+            command="cancelRequest"
+            name_CN="cancelRequest"
+            name_EN="cancelRequest"
+            needTest="true" />
+        <SubItem
+            command="cancelBlink"
+            name_CN="cancelBlink"
+            name_EN="cancelBlink"
+            needTest="true" />
+        <SubItem
+            command="blink"
+            name_CN="blink"
+            name_EN="blink"
+            needTest="true" />
+        <SubItem
+            command="getStatus"
+            name_CN="getStatus"
+            name_EN="getStatus"
+            needTest="true" />
+        <SubItem
+            command="turnOn"
+            name_CN="turnOn"
+            name_EN="turnOn"
+            needTest="true" />
+        <SubItem
+            command="turnOff"
+            name_CN="turnOff"
+            name_EN="turnOff"
+            needTest="true" />
+        <SubItem
+            command="close"
+            name_CN="Close"
+            name_EN="Close"
+            needTest="true" />
+    </MainItem>
+    <MainItem
+        command="PrinterAction"
+        isActivity="false"
+        name_CN="打印机"
+        name_EN="Printer">
+        <SubItem
+            command="open"
+            name_CN="Open"
+            name_EN="Open"
+            needTest="true" />
+        <SubItem
+            command="printText"
+            name_CN="printText"
+            name_EN="printText"
+            needTest="true" />
+        <SubItem
+            command="printTextForFormat"
+            name_CN="printTextForFormat"
+            name_EN="printTextForFormat"
+            needTest="true" />
+        <SubItem
+            command="sendESCCommand"
+            name_CN="sendESCCommand"
+            name_EN="sendESCCommand"
+            needTest="true" />
+        <SubItem
+            command="queryStatus"
+            name_CN="queryStatus"
+            name_EN="queryStatus"
+            needTest="true" />
+        <SubItem
+            command="cutPaper"
+            name_CN="cutPaper"
+            name_EN="cutPaper"
+            needTest="true" />
+        <SubItem
+            command="printBitmap"
+            name_CN="printBitmap"
+            name_EN="printBitmap"
+            needTest="true" />
+        <SubItem
+            command="printHtml"
+            name_CN="printHtml"
+            name_EN="printHtml"
+            needTest="true" />
+        <SubItem
+            command="printBarcode"
+            name_CN="printBarcode"
+            name_EN="printBarcode"
+            needTest="true" />
+        <SubItem
+            command="printPDF"
+            name_CN="printPDF"
+            name_EN="printPDF"
+            needTest="true" />
+        <SubItem
+            command="close"
+            name_CN="Close"
+            name_EN="Close"
+            needTest="true" />
+    </MainItem>
+    <MainItem
+        command="FingerPrintAction"
+        isActivity="false"
+        name_CN="指纹匹配"
+        name_EN="FingerPrint">
+        <SubItem
+            command="open"
+            name_CN="Open"
+            name_EN="Open"
+            needTest="true" />
+        <SubItem
+            command="listenForFingerprint"
+            name_CN="listenForFingerprint"
+            name_EN="listenForFingerprint"
+            needTest="true" />
+        <SubItem
+            command="waitForFingerprint"
+            name_CN="waitForFingerprint"
+            name_EN="waitForFingerprint"
+            needTest="true" />
+        <SubItem
+            command="match"
+            name_CN="match"
+            name_EN="match"
+            needTest="true" />
+        <SubItem
+            command="cancelRequest"
+            name_CN="cancelRequest"
+            name_EN="cancelRequest"
+            needTest="true" />
+        <SubItem
+            command="close"
+            name_CN="close"
+            name_EN="close"
+            needTest="true" />
+    </MainItem>
+    <MainItem
+        command="IsoFingerPrintAction"
+        isActivity="false"
+        name_CN="Iso指纹匹配"
+        name_EN="IsoFingerPrintAction">
+        <SubItem
+            command="open"
+            name_CN="Open"
+            name_EN="Open"
+            needTest="true" />
+        <SubItem
+            command="listenForFingerprint"
+            name_CN="listenForFingerprint"
+            name_EN="listenForFingerprint"
+            needTest="true" />
+        <SubItem
+            command="waitForFingerprint"
+            name_CN="waitForFingerprint"
+            name_EN="waitForFingerprint"
+            needTest="true" />
+        <SubItem
+            command="enroll"
+            name_CN="Enroll"
+            name_EN="Enroll"
+            needTest="true" />
+        <SubItem
+            command="listenForEnroll"
+            name_CN="listenForEnroll"
+            name_EN="listenForEnroll"
+            needTest="true" />
+        <SubItem
+            command="verifyAgainstUserId"
+            name_CN="VerifyAgainstUserId"
+            name_EN="VerifyAgainstUserId"
+            needTest="true" />
+        <SubItem
+            command="verifyAll"
+            name_CN="VerifyAll"
+            name_EN="VerifyAll"
+            needTest="true" />
+        <SubItem
+            command="getId"
+            name_CN="GetId"
+            name_EN="GetId"
+            needTest="true" />
+        <SubItem
+            command="getFingerprint"
+            name_CN="GetFingerprint"
+            name_EN="GetFingerprint"
+            needTest="true" />
+        <SubItem
+            command="verifyAgainstFingerprint"
+            name_CN="VerifyAgainstFingerprint"
+            name_EN="VerifyAgainstFingerprint"
+            needTest="true" />
+        <SubItem
+            command="storeFeature"
+            name_CN="StoreFeature"
+            name_EN="StoreFeature"
+            needTest="true" />
+        <SubItem
+            command="match"
+            name_CN="Match"
+            name_EN="Match"
+            needTest="true" />
+        <SubItem
+            command="compare"
+            name_CN="Compare"
+            name_EN="Compare"
+            needTest="true" />
+        <SubItem
+            command="identify"
+            name_CN="Identify"
+            name_EN="Identify"
+            needTest="true" />
+        <SubItem
+            command="formatFingerConvert"
+            name_CN="FormatFingerConvert"
+            name_EN="FormatFingerConvert"
+            needTest="true" />
+        <SubItem
+            command="convertFormat"
+            name_CN="ConvertFormat"
+            name_EN="ConvertFormat"
+            needTest="true" />
+        <SubItem
+            command="listAllFingersStatus"
+            name_CN="ListAllFingersStatus"
+            name_EN="ListAllFingersStatus"
+            needTest="true" />
+        <SubItem
+            command="delFinger"
+            name_CN="DelFinger"
+            name_EN="DelFinger"
+            needTest="true" />
+        <SubItem
+            command="delAllFingers"
+            name_CN="DelAllFingers"
+            name_EN="DelAllFingers"
+            needTest="true" />
+        <SubItem
+            command="cancelRequest"
+            name_CN="cancelRequest"
+            name_EN="cancelRequest"
+            needTest="true" />
+        <SubItem
+            command="close"
+            name_CN="Close"
+            name_EN="Close"
+            needTest="true" />
+    </MainItem>
+    <MainItem
+        command="SignatureModel"
+        isActivity="false"
+        name_CN="签字设备(sign)"
+        name_EN="Signature">
+        <SubItem
+            command="open"
+            name_CN="Open"
+            name_EN="Open"
+            needTest="true" />
+        <SubItem
+            command="listenSignature"
+            name_CN="listenSignature"
+            name_EN="listenSignature"
+            needTest="true" />
+        <SubItem
+            command="waitSignature"
+            name_CN="waitSignature"
+            name_EN="waitSignature"
+            needTest="true" />
+        <SubItem
+            command="cancelRequest"
+            name_CN="cancelRequest"
+            name_EN="cancelRequest"
+            needTest="true" />
+        <SubItem
+            command="close"
+            name_CN="Close"
+            name_EN="Close"
+            needTest="true" />
+    </MainItem>
+    <MainItem
+        command="HSMModel"
+        isActivity="false"
+        name_CN="安全模块(HSM)"
+        name_EN="HSM">
+        <SubItem
+            command="open"
+            name_CN="Open"
+            name_EN="Open"
+            needTest="true" />
+        <SubItem
+            command="isTampered"
+            name_CN="isTampered"
+            name_EN="isTampered"
+            needTest="true" />
+        <SubItem
+            command="isKeyExist"
+            name_CN="isKeyExist"
+            name_EN="isKeyExist"
+            needTest="true" />
+        <SubItem
+            command="updateKey"
+            name_CN="updateKey"
+            name_EN="updateKey"
+            needTest="true" />
+        <SubItem
+            command="keyEncryptAndDecry_v1"
+            name_CN="keyEncryptAndDecry_v1"
+            name_EN="keyEncryptAndDecry_v1"
+            needTest="true" />
+        <SubItem
+            command="keyEncryptAndDecry"
+            name_CN="keyEncryptAndDecry"
+            name_EN="keyEncryptAndDecry"
+            needTest="true" />
+        <SubItem
+            command="generateKeyPair"
+            name_CN="generateKeyPair"
+            name_EN="generateKeyPair"
+            needTest="true" />
+        <SubItem
+            command="generateCSR"
+            name_CN="generateCSR"
+            name_EN="generateCSR"
+            needTest="true" />
+        <SubItem
+            command="injectPublicKeyCertificate"
+            name_CN="injectPublicKeyCertificate"
+            name_EN="injectPublicKeyCertificate"
+            needTest="true" />
+        <SubItem
+            command="injectRootCertificate"
+            name_CN="injectRootCertificate"
+            name_EN="injectRootCertificate"
+            needTest="injectRootCertificate" />
+        <SubItem
+            command="getCertificate"
+            name_CN="getCertificate"
+            name_EN="getCertificate"
+            needTest="true" />
+        <SubItem
+            command="queryCertificates"
+            name_CN="queryCertificates"
+            name_EN="queryCertificates"
+            needTest="true" />
+        <SubItem
+            command="getEncryptedUniqueCode"
+            name_CN="getEncryptedUniqueCode"
+            name_EN="getEncryptedUniqueCode"
+            needTest="true" />
+        <SubItem
+            command="generateRandom"
+            name_CN="generateRandom"
+            name_EN="generateRandom"
+            needTest="true" />
+        <SubItem
+            command="getFreeSpace"
+            name_CN="getFreeSpace"
+            name_EN="getFreeSpace"
+            needTest="true" />
+        <SubItem
+            command="deleteCertificate"
+            name_CN="deleteCertificate"
+            name_EN="deleteCertificate"
+            needTest="true" />
+        <SubItem
+            command="deleteKeyPair"
+            name_CN="deleteKeyPair"
+            name_EN="deleteKeyPair"
+            needTest="true" />
+        <SubItem
+            command="encrypt"
+            name_CN="encrypt"
+            name_EN="encrypt"
+            needTest="true" />
+        <SubItem
+            command="decrypt"
+            name_CN="decrypt"
+            name_EN="decrypt"
+            needTest="true" />
+        <SubItem
+            command="cancelRequest"
+            name_CN="cancelRequest"
+            name_EN="cancelRequest"
+            needTest="true" />
+        <SubItem
+            command="resetStatus"
+            name_CN="resetStatus"
+            name_EN="resetStatus"
+            needTest="true" />
+        <SubItem
+            command="close"
+            name_CN="close"
+            name_EN="close"
+            needTest="true" />
+    </MainItem>
+
+</DriverTest>

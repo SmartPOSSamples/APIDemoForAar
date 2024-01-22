@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.cloudpos.apidemoforunionpaycloudpossdk">
+
+    <queries>
+        <!--如果想要与其他的应用进行AIDL通信的话，需要在这里注册包名的信息-->
+        <!--谷歌的文档说明 https://developer.android.google.cn/guide/topics/manifest/queries-element?hl=en-->
+        <!--Android 11 解决跨应用绑定Service失败 https://blog.csdn.net/qq_30998053/article/details/123526627-->
+        <package android:name="com.wizarpos.apiadapter" />
+    </queries>
+
+    <!--WRITE_EXTERNAL_STORAGE-->
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+
+    
+    <!-- HDMI-CLOUDPOS_CLONESCREEN -->
+    <uses-permission android:name="android.permission.CLOUDPOS_CLONESCREEN" />
+    <!--D3 ADAPTER-->
+    <uses-permission android:name="android.permission.CLOUDPOS_PRINTER_ADAPTER" />
+    <!-- CLOUDPOS_PRINTER -->
+    <uses-permission android:name="android.permission.CLOUDPOS_PRINTER" />
+    <!-- MSR -->
+    <uses-permission android:name="android.permission.CLOUDPOS_MSR"/>
+    <!-- Contactless card-->
+    <uses-permission android:name="android.permission.CLOUDPOS_CONTACTLESS_CARD"/>
+    <!-- SmartCard-->
+    <uses-permission android:name="android.permission.CLOUDPOS_SMARTCARD"/>
+    <!-- Serial port -->
+    <uses-permission android:name="android.permission.CLOUDPOS_SERIAL" />
+    <!-- LED -->
+    <uses-permission android:name="android.permission.CLOUDPOS_LED" />
+    
+    <!-- CLOUDPOS_CUSTOMER_DISPLAY -->
+    <uses-permission android:name="android.permission.CLOUDPOS_CUSTOMER_DISPLAY" />
+    
+    <!-- Pinpad -->
+    <uses-permission android:name="android.permission.CLOUDPOS_PIN_GET_PIN_BLOCK"/> 
+    <uses-permission android:name="android.permission.CLOUDPOS_PIN_MAC" />
+    <uses-permission android:name="android.permission.CLOUDPOS_PIN_ENCRYPT_DATA"/>
+    <uses-permission android:name="android.permission.CLOUDPOS_PIN_UPDATE_USER_KEY"/>
+    <uses-permission android:name="android.permission.CLOUDPOS_PIN_UPDATE_MASTER_KEY"/>
+    
+    <!-- Chinese ID -->
+    <uses-permission android:name="android.permission.CLOUDPOS_IDCard"/>
+    <!-- ACCESS_NETWORK_STATE -->
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
+    <!-- INTERNET -->
+    <uses-permission android:name="android.permission.INTERNET" />
+
+    <!-- CLOUDPOS_MONEYBOX -->
+    <uses-permission android:name="android.permission.CLOUDPOS_MONEYBOX"/>
+    <!-- CLOUDPOS_FINGERPRINT -->
+    <uses-permission android:name="android.permission.CLOUDPOS_FINGERPRINT"/>
+    <!--CLOUDPOS_SIGNATURE-->
+    <uses-permission android:name="android.permission.CLOUDPOS_SIGNATURE"/>
+    <!--CLOUDPOS_SAFE_MODULE-->
+    <uses-permission android:name="android.permission.CLOUDPOS_SAFE_MODULE" />
+    <!--SYSTEM_ALERT_WINDOW-->
+    <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" />
+
+    <uses-permission android:name="android.permission.CLOUDPOS_PIN_UPDATE_TRANSFER_KEY"/>
+
+    <application
+        android:name="com.cloudpos.androidmvcmodel.MainApplication"
+        android:allowBackup="true"
+        android:icon="@drawable/ic_launcher"
+        android:label="@string/app_name"
+        android:theme="@style/AppTheme" >
+        <activity
+            android:name="com.cloudpos.androidmvcmodel.MainActivity"
+            android:label="@string/app_name" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+    </application>
+
+</manifest>
