@@ -5,11 +5,6 @@ import android.text.TextUtils;
 
 public class StringUtility
 {
-    /**
-     * @author 杨工
-     * @param strInput 传入String
-     * @return boolean 传入的String是否为空
-     */
     static public boolean isEmpty(String strInput)
     {
         /*
@@ -72,12 +67,6 @@ public class StringUtility
         return (byte) ((byteArry[0] << 4) | (byteArry[1] & 0x0F));
     }
 
-    /**
-     * @author 杨工
-     * @param String strInput
-     * @param byte[] arryByte
-     * @return int
-     */
     static public int StringToByteArray(String strInput, byte[] arryByte)
     {
         strInput = strInput.trim();// 清除空白
@@ -123,12 +112,6 @@ public class StringUtility
         return strOut;
     }
 
-    /**
-     * @author john.li
-     * @param String str 传入字符串
-     * @param String reg 按照哪种方式或哪个字段拆分
-     * @return Stringp[] 返回拆分后的数组。
-     */
     static public String[] spiltStrings(String str, String reg) {
         String[] arrayStr = str.split(reg);
         return arrayStr;

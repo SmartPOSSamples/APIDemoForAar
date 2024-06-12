@@ -32,7 +32,6 @@ public class ActionScheduler extends Thread {
                     mContext = (ActionContext)this.mActionQueue.take();
                     this.service.submit(mContext);
                 } catch (Exception var3) {
-                    Logger.error("调度器发生错误", var3);
                 }
             }
         }

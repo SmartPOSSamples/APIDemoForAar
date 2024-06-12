@@ -165,30 +165,18 @@ public class PrinterAction extends ActionModel {
     }
 
 
-    /**
-     * 创建二维码
-     *
-     * @param content   content
-     * @param widthPix  widthPix
-     * @param heightPix heightPix
-     * @return 二维码
-     */
     private Bitmap createQRCode(String content, int widthPix, int heightPix) {
         try {
             if (content == null || "".equals(content)) {
                 return null;
             }
-            // 配置参数
             Map<EncodeHintType, Object> hints = new HashMap<>();
             hints.put(EncodeHintType.CHARACTER_SET, "utf-8");
-            // 容错级别
             hints.put(EncodeHintType.ERROR_CORRECTION, ErrorCorrectionLevel.H);
-            // 图像数据转换，使用了矩阵转换
             BitMatrix bitMatrix = new QRCodeWriter().encode(content, BarcodeFormat.QR_CODE, widthPix,
                     heightPix, hints);
             int[] pixels = new int[widthPix * heightPix];
-            // 下面这里按照二维码的算法，逐个生成二维码的图片，
-            // 两个for循环是图片横列扫描的结果
+
             for (int y = 0; y < heightPix; y++) {
                 for (int x = 0; x < widthPix; x++) {
                     if (bitMatrix.get(x, y)) {
@@ -198,10 +186,8 @@ public class PrinterAction extends ActionModel {
                     }
                 }
             }
-            // 生成二维码图片的格式，使用ARGB_8888
             Bitmap bitmap = Bitmap.createBitmap(widthPix, heightPix, Bitmap.Config.ARGB_8888);
             bitmap.setPixels(pixels, 0, widthPix, 0, 0, widthPix, heightPix);
-            //必须使用compress方法将bitmap保存到文件中再进行读取。直接返回的bitmap是没有任何压缩的，内存消耗巨大！
             return bitmap;
         } catch (WriterException e) {
             e.printStackTrace();
@@ -266,18 +252,13 @@ public class PrinterAction extends ActionModel {
 
     public static Bitmap setBitmapSize(Context mContext, String id, int w, int h) {
         BitmapFactory.Options opts = new BitmapFactory.Options();//获取自定义参数对象
-        opts.inJustDecodeBounds = true;//设置只是解密（减少占用图片内存）只是修改图片属性
-        //修复图片参数（给的是图片地址，修改图片参数先要调用可以修改参数的方法decodeResource（）第三参数就是修改参数的对象）
-        //执行 BitmapFactory.decodeResource（）方法 设置的opts属性才生效
+        opts.inJustDecodeBounds = true;
         try {
             BitmapFactory.decodeStream(mContext.getResources().getAssets()
                     .open(id), null, opts);
-            //先获取加载图片的宽高
             int outWidth = opts.outWidth;
             int outHeight = opts.outHeight;
-            //设置缩放图片的系数(int类型)
             opts.inSampleSize = getSampleSize(outWidth, outHeight, w, h);
-            //注意前面设置只获取图片信息，这里要设置回获取图片
             opts.inJustDecodeBounds = false;
             return BitmapFactory.decodeStream(mContext.getResources().getAssets()
                     .open(id), null, opts);
@@ -287,7 +268,6 @@ public class PrinterAction extends ActionModel {
         return null;
     }
 
-    //计算图片实际宽高 是 传入宽高值的 最小整数倍数
     private static int getSampleSize(int outWidth, int outHeight, int w, int h) {
         int sizer = 1;
         if (outWidth > w && outHeight > h) {

@@ -2,17 +2,9 @@ package com.cloudpos.apidemo.util;
 
 import java.util.Scanner;
 
-/**
- *  @author john
- *  Convert byte[] to hex string
- * */
+
 public class ByteConvertStringUtil {
-	/**
-	 *  将byte转换成int，然后利用Integer.toHexString(int)来转换成16进制字符串。
-	 *  @param src byte[] data  
-	 *  @param hex string  
-	 *  
-	 * */
+
 	public static String bytesToHexString(byte[] src){
 		StringBuilder stringBuilder = new StringBuilder("");  
 	    if (src == null || src.length <= 0) {  

@@ -24,9 +24,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
-/**
- * create by rf.w 19-2-28上午10:24
- */
 public class IsoFingerPrintAction extends ActionModel {
     private FingerprintDevice device = null;
 

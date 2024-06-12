@@ -14,9 +14,6 @@ import com.cloudpos.mvc.base.ActionCallback;
 
 import java.util.Map;
 
-/**
- * create by rf.w 19-8-7下午3:23
- */
 public class SerialPortAction extends ActionModel {
 
     private SerialPortDevice device = null;

@@ -85,7 +85,6 @@ public class CAUtils {
 			isSuccess = CAUtils.getInstance().createRootCert(dn, snStr, CAUtils.DEFAULT_VALIDATE, context);
 		} catch (Exception e) {
 			isSuccess = false;
-			Log.e("APP", "无法产生终端私钥");
 			e.printStackTrace();
 		}
 		if(isSuccess){

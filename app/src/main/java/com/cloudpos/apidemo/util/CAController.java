@@ -88,17 +88,7 @@ public class CAController {
 		}
 		return null;
 	}
-	/**
-     * 用公钥加密
 
-     * 每次加密的字节数，不能超过密钥的长度值减去11
-     *
-     * @param data
-     *            需加密数据的byte数据
-     * @param pubKey
-     *            公钥
-     * @return 加密后的byte型数据
-     */
     public byte[] encryptData(byte[] data, PublicKey publicKey) {
         try {
             Cipher cipher = Cipher.getInstance("RSA");
@@ -112,14 +102,7 @@ public class CAController {
         }
     }
 
-    /**
-     * 用私钥解密
-     * @param encryptedData
-     *            经过encryptedData()加密返回的byte数据
-     * @param privateKey
-     *            私钥
-     * @return
-     */
+
     public  byte[] decryptData(byte[] encryptedData, PrivateKey privateKey){
         try{
             Cipher cipher = Cipher.getInstance("RSA");

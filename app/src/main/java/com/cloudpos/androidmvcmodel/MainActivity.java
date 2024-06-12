@@ -185,10 +185,6 @@ public class MainActivity extends Activity implements OnItemClickListener {
                 context, testParameters, actionCallback);
     }
 
-    /**
-     * 显示Introduction信息<br/>
-     * 如果isMain == true,则隐藏,否则显示
-     */
     private void displayIntroduction() {
         if (txtIntroduction != null) {
             if (isMain) {

@@ -197,7 +197,6 @@ public class HSMModel extends ActionModel {
             int length = in.available();
             byte[] bufCert = new byte[length];
             in.read(bufCert);
-            Log.e(APP_TAG, "注入证书：文件名 :" + "testcase_comm_true.crt" + "  注入别名：" + "testcase_comm_true");
 //            byte[] bufcert = generatePublicKeyCertificate(mContext);
             boolean issuccess2 = device.injectRootCertificate(device.CERT_TYPE_COMM_ROOT, ALIAS_COMM_KEY, bufCert, device.CERT_FORMAT_PEM);
             if (issuccess2 == true) {

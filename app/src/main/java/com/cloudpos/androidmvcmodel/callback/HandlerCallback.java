@@ -18,9 +18,6 @@ public class HandlerCallback implements Handler.Callback {
     private TextView txtResult;
     private Context context;
 
-    /**
-     * 将信息输出到显示屏上
-     */
     public HandlerCallback(Context context, TextView textView) {
         this.context = context;
         this.txtResult = textView;

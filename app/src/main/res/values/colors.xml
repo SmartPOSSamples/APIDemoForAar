@@ -13,8 +13,8 @@
     <color name="BLACK">#000000</color>
     <color name="ORANGE">#FFA500</color>
     <color name="weibo_listtab_off">#8d8d8d</color>
-    <color name="bg_head">#e9e9e9</color> <!-- head的背景颜色 -->
-    <color name="bg_main">#f8f8f8</color> <!-- 主页面的背景颜色 -->
+    <color name="bg_head">#e9e9e9</color>
+    <color name="bg_main">#f8f8f8</color>
     <color name="bg_icon">#41FFFFFF</color>
     <color name="bg_head_2">#e9e9e9</color>
     <color name="txt_color">#333333</color>
