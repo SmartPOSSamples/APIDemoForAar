@@ -239,7 +239,7 @@ public class PINPadAction extends ActionModel {
 
         byte[] bytes = "3838383838383838".getBytes();
         try {
-            byte[] cipher = device.encryptData(keyInfo, bytes);
+            byte[] cipher = device.encryptData(keyInfoD, bytes);
             sendSuccessLog(mContext.getString(R.string.operation_succeed) + " cipher data = "
                     + StringUtility.byteArray2String(cipher));
         } catch (DeviceException e) {
