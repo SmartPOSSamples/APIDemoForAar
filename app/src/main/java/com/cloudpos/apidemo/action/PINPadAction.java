@@ -231,6 +231,17 @@ public class PINPadAction extends ActionModel {
         }
     }
 
+    public void getTransportKeyCheckValue(Map<String, Object> param, ActionCallback callback) {
+        try {
+            byte[] getTransportKeyCheckValue = device.getTransportKeyCheckValue(1, checkType);
+            sendSuccessLog(mContext.getString(R.string.operation_succeed) + " getTransportKeyCheckValue = "
+                    + StringUtility.byteArray2String(getTransportKeyCheckValue));
+        } catch (DeviceException e) {
+            e.printStackTrace();
+            sendFailedLog(mContext.getString(R.string.operation_failed));
+        }
+    }
+
     public void encryptData(Map<String, Object> param, ActionCallback callback) {
         KeyInfo keyInfo = new KeyInfo(PINPadDevice.KEY_TYPE_MK_SK, 0, 2,
                 AlgorithmConstants.ALG_3DES);

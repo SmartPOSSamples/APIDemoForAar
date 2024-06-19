@@ -575,6 +575,11 @@
             name_EN="getHighestKeyCheckValue"
             needTest="true" />
         <SubItem
+            command="getTransportKeyCheckValue"
+            name_CN="getTransportKeyCheckValue"
+            name_EN="getTransportKeyCheckValue"
+            needTest="true" />
+        <SubItem
             command="encryptData"
             name_CN="encryptData"
             name_EN="encryptData"
