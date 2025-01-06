@@ -241,8 +241,6 @@ public class IsoFingerPrintAction extends ActionModel {
         } catch (DeviceException e) {
             e.printStackTrace();
             sendFailedLog(mContext.getString(R.string.operation_failed));
-        } catch (RemoteException e) {
-            e.printStackTrace();
         }
     }
 
@@ -270,8 +268,6 @@ public class IsoFingerPrintAction extends ActionModel {
         } catch (DeviceException e) {
             e.printStackTrace();
             sendFailedLog(mContext.getString(R.string.operation_failed));
-        } catch (RemoteException e) {
-            e.printStackTrace();
         }
     }
 

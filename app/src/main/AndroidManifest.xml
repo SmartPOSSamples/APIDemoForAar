@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     package="com.cloudpos.apidemoforunionpaycloudpossdk">
 
     <queries>
@@ -10,7 +11,6 @@
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
 
-    
     <!-- HDMI-CLOUDPOS_CLONESCREEN -->
     <uses-permission android:name="android.permission.CLOUDPOS_CLONESCREEN" />
     <!--D3 ADAPTER-->
@@ -18,55 +18,164 @@
     <!-- CLOUDPOS_PRINTER -->
     <uses-permission android:name="android.permission.CLOUDPOS_PRINTER" />
     <!-- MSR -->
-    <uses-permission android:name="android.permission.CLOUDPOS_MSR"/>
+    <uses-permission android:name="android.permission.CLOUDPOS_MSR" />
     <!-- Contactless card-->
-    <uses-permission android:name="android.permission.CLOUDPOS_CONTACTLESS_CARD"/>
+    <uses-permission android:name="android.permission.CLOUDPOS_CONTACTLESS_CARD" />
     <!-- SmartCard-->
-    <uses-permission android:name="android.permission.CLOUDPOS_SMARTCARD"/>
+    <uses-permission android:name="android.permission.CLOUDPOS_SMARTCARD" />
     <!-- Serial port -->
     <uses-permission android:name="android.permission.CLOUDPOS_SERIAL" />
     <!-- LED -->
     <uses-permission android:name="android.permission.CLOUDPOS_LED" />
-    
+    <!-- WIFI -->
+    <uses-permission android:name="android.permission.WIFI" />
+
     <!-- CLOUDPOS_CUSTOMER_DISPLAY -->
     <uses-permission android:name="android.permission.CLOUDPOS_CUSTOMER_DISPLAY" />
-    
+
     <!-- Pinpad -->
-    <uses-permission android:name="android.permission.CLOUDPOS_PIN_GET_PIN_BLOCK"/> 
+    <uses-permission android:name="android.permission.CLOUDPOS_PIN_GET_PIN_BLOCK" />
     <uses-permission android:name="android.permission.CLOUDPOS_PIN_MAC" />
-    <uses-permission android:name="android.permission.CLOUDPOS_PIN_ENCRYPT_DATA"/>
-    <uses-permission android:name="android.permission.CLOUDPOS_PIN_UPDATE_USER_KEY"/>
-    <uses-permission android:name="android.permission.CLOUDPOS_PIN_UPDATE_MASTER_KEY"/>
-    
+    <uses-permission android:name="android.permission.CLOUDPOS_PIN_ENCRYPT_DATA" />
+    <uses-permission android:name="android.permission.CLOUDPOS_PIN_UPDATE_USER_KEY" />
+    <uses-permission android:name="android.permission.CLOUDPOS_PIN_UPDATE_MASTER_KEY" />
+
     <!-- Chinese ID -->
-    <uses-permission android:name="android.permission.CLOUDPOS_IDCard"/>
+    <uses-permission android:name="android.permission.CLOUDPOS_IDCard" />
     <!-- ACCESS_NETWORK_STATE -->
-    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <!-- INTERNET -->
     <uses-permission android:name="android.permission.INTERNET" />
 
     <!-- CLOUDPOS_MONEYBOX -->
-    <uses-permission android:name="android.permission.CLOUDPOS_MONEYBOX"/>
+    <uses-permission android:name="android.permission.CLOUDPOS_MONEYBOX" />
     <!-- CLOUDPOS_FINGERPRINT -->
-    <uses-permission android:name="android.permission.CLOUDPOS_FINGERPRINT"/>
+    <uses-permission android:name="android.permission.CLOUDPOS_FINGERPRINT" />
     <!--CLOUDPOS_SIGNATURE-->
-    <uses-permission android:name="android.permission.CLOUDPOS_SIGNATURE"/>
+    <uses-permission android:name="android.permission.CLOUDPOS_SIGNATURE" />
     <!--CLOUDPOS_SAFE_MODULE-->
     <uses-permission android:name="android.permission.CLOUDPOS_SAFE_MODULE" />
     <!--SYSTEM_ALERT_WINDOW-->
     <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" />
 
-    <uses-permission android:name="android.permission.CLOUDPOS_PIN_UPDATE_TRANSFER_KEY"/>
+    <uses-permission android:name="android.permission.CLOUDPOS_PIN_UPDATE_TRANSFER_KEY" />
+
+    <uses-permission
+        android:name="android.permission.QUERY_ALL_PACKAGES"
+        tools:ignore="QueryAllPackagesPermission" />
+
+    <!--WRITE_EXTERNAL_STORAGE-->
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+
+    <!-- HDMI-CLOUDPOS_CLONESCREEN -->
+    <uses-permission android:name="android.permission.CLOUDPOS_CLONESCREEN" />
+    <!--D3 ADAPTER-->
+    <uses-permission android:name="android.permission.CLOUDPOS_PRINTER_ADAPTER" />
+    <!-- CLOUDPOS_PRINTER -->
+    <uses-permission android:name="android.permission.CLOUDPOS_PRINTER" />
+    <!-- MSR -->
+    <uses-permission android:name="android.permission.CLOUDPOS_MSR" />
+    <!-- Contactless card-->
+    <uses-permission android:name="android.permission.CLOUDPOS_CONTACTLESS_CARD" />
+    <!-- SmartCard-->
+    <uses-permission android:name="android.permission.CLOUDPOS_SMARTCARD" />
+    <!-- Serial port -->
+    <uses-permission android:name="android.permission.CLOUDPOS_SERIAL" />
+    <!-- LED -->
+    <uses-permission android:name="android.permission.CLOUDPOS_LED" />
+
+    <!-- CLOUDPOS_CUSTOMER_DISPLAY -->
+    <uses-permission android:name="android.permission.CLOUDPOS_CUSTOMER_DISPLAY" />
+
+    <!-- Pinpad -->
+    <uses-permission android:name="android.permission.CLOUDPOS_PIN_GET_PIN_BLOCK" />
+    <uses-permission android:name="android.permission.CLOUDPOS_PIN_MAC" />
+    <uses-permission android:name="android.permission.CLOUDPOS_PIN_ENCRYPT_DATA" />
+    <uses-permission android:name="android.permission.CLOUDPOS_PIN_UPDATE_USER_KEY" />
+    <uses-permission android:name="android.permission.CLOUDPOS_PIN_UPDATE_MASTER_KEY" />
+
+    <!-- Chinese ID -->
+    <uses-permission android:name="android.permission.CLOUDPOS_IDCard" />
+    <!-- ACCESS_NETWORK_STATE -->
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <!-- INTERNET -->
+    <uses-permission android:name="android.permission.INTERNET" />
+
+    <!-- CLOUDPOS_MONEYBOX -->
+    <uses-permission android:name="android.permission.CLOUDPOS_MONEYBOX" />
+    <!-- CLOUDPOS_FINGERPRINT -->
+    <uses-permission android:name="android.permission.CLOUDPOS_FINGERPRINT" />
+    <!--CLOUDPOS_SIGNATURE-->
+    <uses-permission android:name="android.permission.CLOUDPOS_SIGNATURE" />
+    <!--CLOUDPOS_SAFE_MODULE-->
+    <uses-permission android:name="android.permission.CLOUDPOS_SAFE_MODULE" />
+    <!--SYSTEM_ALERT_WINDOW-->
+    <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" />
+    <uses-permission android:name="android.permission.CLOUDPOS_PIN_UPDATE_TRANSFER_KEY" />
+
+    <!--BATTERY_COUNTER_MODE-->
+    <uses-permission android:name="android.permission.CLOUDPOS_SET_BATTERY_COUNTER_MODE" />
+    <uses-permission android:name="android.settings.action.MANAGE_OVERLAY_PERMISSION" />
+    <uses-permission android:name="android.permission.BLUETOOTH" />
+    <uses-permission android:name="android.permission.USER_PWD" />
+    <uses-permission android:name="android.permission.USER_PWD_MODIFY" />
+    <uses-permission android:name="android.permission.CLOUDPOS_REBOOT" />
+    <uses-permission android:name="android.permission.CLOSEPOS_SET_SCREEN_WAKEUP" />
+    <uses-permission android:name="android.permission.CLOUDPOS_DISABLE_POWER_KEY" />
+    <uses-permission
+        android:name="android.permission.ADMIN_PWD_MODIFY"
+        android:permissionGroup="android.permission-group.SYSTEM_TOOLS"
+        android:protectionLevel="normal" />
+    <uses-permission
+        android:name="android.permission.ADMIN_PWD"
+        android:permissionGroup="android.permission-group.SYSTEM_TOOLS"
+        android:protectionLevel="normal" />
+    <uses-permission
+        android:name="android.permission.ADMIN_PWD_RESET"
+        android:permissionGroup="android.permission-group.SYSTEM_TOOLS"
+        android:protectionLevel="normal" />
+    <uses-permission
+        android:name="android.permission.CLOUDPOS_NETWORK_MANAGE"
+        android:permissionGroup="android.permission-group.SYSTEM_TOOLS"
+        android:protectionLevel="normal" />
+    <uses-permission
+        android:name="com.wizarpos.permission.WRITE_APN_SETTINGS"
+        android:permissionGroup="android.permission-group.SYSTEM_TOOLS"
+        android:protectionLevel="normal" />
+    <uses-permission
+        android:name="android.permission.CLOUDPOS_SET_SCREEN_OFF_TIMEOUT"
+        android:permissionGroup="android.permission-group.SYSTEM_TOOLS"
+        android:protectionLevel="normal" />
+    <uses-permission
+        android:name="android.permission.CLOUDPOS_SET_MOBILE_DATA"
+        android:permissionGroup="android.permission-group.SYSTEM_TOOLS"
+        android:protectionLevel="normal" />
+    <uses-permission android:name="android.permission.CLOUDPOS_SET_BATTERY_COUNTER_MODE" />
+    <uses-permission
+        android:name="android.permission.CLOUDPOS_LOCK_STATUS_BAR"
+        android:permissionGroup="android.permission-group.SYSTEM_TOOLS"
+        android:protectionLevel="normal" />
+    <uses-permission android:name="android.permission.CLOUDPOS_REBOOT" />
+    <uses-permission android:name="android.permission.WIZARPOS_EEPROM" />
+    <uses-permission android:name="android.permission.CLOUDPOS_FINGERPRINT" />
+    <uses-permission android:name="android.permission.CLOUDPOS_PIN_LOAD_KEY" />
+    <uses-permission android:name="android.permission.CLOUDPOS_PIN_UPDATE_USER_KEY" />
+    <uses-permission android:name="android.permission.CLOUDPOS_PIN_UPDATE_MASTER_KEY" />
+    <uses-permission android:name="android.permission.CLOUDPOS_PIN_UPDATE_TRANSFER_KEY" />
+
+    <uses-permission android:name="com.wizarpos.permission.UPDATE_WORKSPACE_AND_WALLPAPER" />
+    <uses-permission android:name="com.wizarpos.permission.UPDATE_WORKSPACE_NOTIFICATION_BADGE" />
 
     <application
         android:name="com.cloudpos.androidmvcmodel.MainApplication"
         android:allowBackup="true"
         android:icon="@drawable/ic_launcher"
         android:label="@string/app_name"
-        android:theme="@style/AppTheme" >
+        android:theme="@style/AppTheme">
         <activity
             android:name="com.cloudpos.androidmvcmodel.MainActivity"
-            android:label="@string/app_name" >
+            android:label="@string/app_name">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
