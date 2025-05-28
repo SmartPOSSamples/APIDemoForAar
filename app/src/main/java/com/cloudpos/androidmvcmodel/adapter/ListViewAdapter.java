@@ -10,6 +10,8 @@ import android.widget.BaseAdapter;
 import android.widget.TextView;
 
 import com.cloudpos.androidmvcmodel.MainApplication;
+import com.cloudpos.androidmvcmodel.entity.SubItem;
+import com.cloudpos.androidmvcmodel.entity.TestItem;
 import com.cloudpos.apidemoforunionpaycloudpossdk.R;
 import com.cloudpos.androidmvcmodel.entity.MainItem;
 import com.cloudpos.androidmvcmodel.helper.LanguageHelper;
@@ -22,6 +24,7 @@ public class ListViewAdapter extends BaseAdapter {
     private int mainItemIndex = INDEX_NONE;
     public static final int INDEX_NONE = -1;
     private Context context;
+    private int subItemIndex = INDEX_NONE;
 
     public ListViewAdapter(Context context) {
         this.context = context;
@@ -31,25 +34,31 @@ public class ListViewAdapter extends BaseAdapter {
 
     @Override
     public int getCount() {
-        int count = 0;
-        if (mainItemIndex <= INDEX_NONE) {
-            count = MainApplication.testItems.size();
+        if (mainItemIndex == INDEX_NONE) {
+            return MainApplication.testItems.size();
+        } else if (subItemIndex == INDEX_NONE) {
+            return MainApplication.testItems.get(mainItemIndex).getSubItems().size();
         } else {
-            count = MainApplication.testItems.get(mainItemIndex).getSubItems().size();
+            return MainApplication.testItems.get(mainItemIndex)
+                    .getSubItem(subItemIndex)
+                    .getItems().size();
         }
-        return count;
     }
+
 
     @Override
     public Object getItem(int position) {
-        Object item;
-        if (mainItemIndex <= INDEX_NONE) {
-            item = MainApplication.testItems.get(position);
+        if (mainItemIndex == INDEX_NONE) {
+            return MainApplication.testItems.get(position);
+        } else if (subItemIndex == INDEX_NONE) {
+            return MainApplication.testItems.get(mainItemIndex).getSubItem(position);
         } else {
-            item = MainApplication.testItems.get(mainItemIndex).getSubItem(position);
+            return MainApplication.testItems.get(mainItemIndex)
+                    .getSubItem(subItemIndex)
+                    .getItems().get(position);
         }
-        return item;
     }
+
 
     @Override
     public long getItemId(int position) {
@@ -103,16 +112,22 @@ public class ListViewAdapter extends BaseAdapter {
     // }
 
     private void setDisplayedButton(int position, TextView txtButton) {
-        MainItem mainItem = getMainItem(position);
-        // txtButton.setText(mainItem.getDisplayName(LanguageHelper.getLanguageType(context)));
-        if (mainItemIndex <= INDEX_NONE) {
+        if (mainItemIndex == INDEX_NONE) {
+            MainItem mainItem = MainApplication.testItems.get(position);
             txtButton.setText(mainItem.getDisplayName(LanguageHelper.getLanguageType(context)));
+        } else if (subItemIndex == INDEX_NONE) {
+            SubItem subItem = MainApplication.testItems.get(mainItemIndex).getSubItem(position);
+            txtButton.setText(subItem.getDisplayName(LanguageHelper.getLanguageType(context)));
         } else {
-            txtButton.setText(mainItem.getSubItem(position).getDisplayName(
-                    LanguageHelper.getLanguageType(context)));
-//            txtButton.setTag(mainItem.getSubItem(position).getDisplayName(LanguageHelper.getLanguageType(context)));
+            TestItem item = MainApplication.testItems
+                    .get(mainItemIndex)
+                    .getSubItem(subItemIndex)
+                    .getItems()
+                    .get(position);
+            txtButton.setText(item.getDisplayName(LanguageHelper.getLanguageType(context)));
         }
     }
+
 
     /**
      * get test result from sqlite database<br/>
@@ -131,6 +146,42 @@ public class ListViewAdapter extends BaseAdapter {
             mainItem = MainApplication.testItems.get(mainItemIndex);
         }
         return mainItem;
+    }
+
+    public boolean isAtMainLevel() {
+        return mainItemIndex == INDEX_NONE;
+    }
+
+    public boolean isAtSubLevel() {
+        return mainItemIndex != INDEX_NONE && subItemIndex == INDEX_NONE;
+    }
+
+    public boolean isAtItemLevel() {
+        return mainItemIndex != INDEX_NONE && subItemIndex != INDEX_NONE;
+    }
+
+    public void enterSubList(int mainIndex) {
+        this.mainItemIndex = mainIndex;
+        this.subItemIndex = INDEX_NONE;
+        notifyDataSetChanged();
+    }
+
+    public void enterItemList(int subIndex) {
+        this.subItemIndex = subIndex;
+        notifyDataSetChanged();
+    }
+
+    public void resetToMain() {
+        this.mainItemIndex = INDEX_NONE;
+        this.subItemIndex = INDEX_NONE;
+        notifyDataSetChanged();
+    }
+        public int getMainIndex() {
+        return mainItemIndex;
+    }
+
+    public int getSubIndex() {
+        return subItemIndex;
     }
 
 }

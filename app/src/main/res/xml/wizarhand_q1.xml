@@ -1254,448 +1254,631 @@
             needTest="true" />
     </MainItem>
     <MainItem
-        command="IPINPadAction"
-        name_CN="PINPad(Advance)"
-        name_EN="PINPad(Advance)">
-        <SubItem
-            command="open"
-            name_CN="open"
-            name_EN="open"
-            needTest="true" />
-        <SubItem
-            command="resetMasterKey"
-            name_CN="resetMasterKey"
-            name_EN="resetMasterKey"
-            needTest="true" />
-        <SubItem
-            command="resetTransferKey"
-            name_CN="resetTransferKey"
-            name_EN="resetTransferKey"
-            needTest="true" />
-        <SubItem
-            command="close"
-            name_CN="close"
-            name_EN="close"
-            needTest="true" />
-    </MainItem>
-    <MainItem
-        command="IScannerAction"
-        name_CN="Scanner(Advance)"
-        name_EN="Scanner(Advance)">
-        <SubItem
-            command="open"
-            name_CN="open"
-            name_EN="open"
-            needTest="true" />
-        <SubItem
-            command="getScanType"
-            name_CN="getScanType"
-            name_EN="getScanType"
-            needTest="true" />
-        <SubItem
-            command="scanBarcode"
-            name_CN="scanBarcode"
-            name_EN="scanBarcode"
-            needTest="true" />
-        <SubItem
-            command="startScan"
-            name_CN="startScan"
-            name_EN="startScan"
-            needTest="true" />
-        <SubItem
-            command="stopScan"
-            name_CN="stopScan"
-            name_EN="stopScan"
-            needTest="true" />
-        <SubItem
-            command="close"
-            name_CN="close"
-            name_EN="close"
-            needTest="true" />
-    </MainItem>
-    <MainItem
-        command="IAdminAction"
-        name_CN="Admin(Advance)"
-        name_EN="Admin(Advance)">
-        <SubItem
-            command="open"
-            name_CN="open"
-            name_EN="open"
-            needTest="true" />
-        <SubItem
-            command="forceModifyAdminPwd"
-            name_CN="forceModifyAdminPwd"
-            name_EN="forceModifyAdminPwd"
-            needTest="true" />
-        <SubItem
-            command="forceModifyUserPwd"
-            name_CN="forceModifyUserPwd"
-            name_EN="forceModifyUserPwd"
-            needTest="true" />
-        <SubItem
-            command="isAdminLoggedIn"
-            name_CN="isAdminLoggedIn"
-            name_EN="isAdminLoggedIn"
-            needTest="true" />
-        <SubItem
-            command="isAdminPwd"
-            name_CN="isAdminPwd"
-            name_EN="isAdminPwd"
-            needTest="true" />
-        <SubItem
-            command="isUserLoggedIn"
-            name_CN="isUserLoggedIn"
-            name_EN="isUserLoggedIn"
-            needTest="true" />
-        <SubItem
-            command="isUserLoginMode"
-            name_CN="isUserLoginMode"
-            name_EN="isUserLoginMode"
-            needTest="true" />
-        <SubItem
-            command="setUserLoginMode"
-            name_CN="setUserLoginMode"
-            name_EN="setUserLoginMode"
-            needTest="true" />
-        <SubItem
-            command="verifyUserPwd"
-            name_CN="verifyUserPwd"
-            name_EN="verifyUserPwd"
-            needTest="true" />
-        <SubItem
-            command="close"
-            name_CN="close"
-            name_EN="close"
-            needTest="true" />
-    </MainItem>
-    <MainItem
-        command="INetworkAction"
-        name_CN="Network(Advance)"
-        name_EN="Network(Advance)">
-        <SubItem
-            command="open"
-            name_CN="open"
-            name_EN="open"
-            needTest="true" />
-        <SubItem
-            command="getPreferredNetworkType"
-            name_CN="getPreferredNetworkType"
-            name_EN="getPreferredNetworkType"
-            needTest="true" />
-        <SubItem
-            command="getSupportedNetworkTypes"
-            name_CN="getSupportedNetworkTypes"
-            name_EN="getSupportedNetworkTypes"
-            needTest="true" />
-        <SubItem
-            command="setMobileDataEnabled"
-            name_CN="setMobileDataEnabled"
-            name_EN="setMobileDataEnabled"
-            needTest="true" />
-        <SubItem
-            command="setMobileDataRoamingEnabled"
-            name_CN="setMobileDataRoamingEnabled"
-            name_EN="setMobileDataRoamingEnabled"
-            needTest="true" />
-        <SubItem
-            command="setPreferredNetworkType"
-            name_CN="setPreferredNetworkType"
-            name_EN="setPreferredNetworkType"
-            needTest="true" />
-        <SubItem
-            command="close"
-            name_CN="close"
-            name_EN="close"
-            needTest="true" />
-    </MainItem>
-    <MainItem
-        command="ISystemAction"
-        name_CN="System(Advance)"
-        name_EN="System(Advance)">
-        <SubItem
-            command="open"
-            name_CN="open"
-            name_EN="open"
-            needTest="true" />
-        <SubItem
-            command="enableAirplaneMode"
-            name_CN="enableAirplaneMode"
-            name_EN="enableAirplaneMode"
-            needTest="true" />
-        <SubItem
-            command="setStatusBarLocked"
-            name_CN="setStatusBarLocked"
-            name_EN="setStatusBarLocked"
-            needTest="true" />
-        <SubItem
-            command="close"
-            name_CN="close"
-            name_EN="close"
-            needTest="true" />
-    </MainItem>
-    <MainItem
-        command="IUpdateAppAction"
-        name_CN="UpdateApp(Advance)"
-        name_EN="UpdateApp(Advance)">
-        <SubItem
-            command="open"
-            name_CN="open"
-            name_EN="open"
-            needTest="true" />
-        <SubItem
-            command="installAndLaunchApkFile"
-            name_CN="installAndLaunchApkFile"
-            name_EN="installAndLaunchApkFile"
-            needTest="true" />
-        <SubItem
-            command="installApkFile"
-            name_CN="installApkFile"
-            name_EN="installApkFile"
-            needTest="true" />
-        <SubItem
-            command="uninstall"
-            name_CN="uninstall"
-            name_EN="uninstall"
-            needTest="true" />
-        <SubItem
-            command="close"
-            name_CN="close"
-            name_EN="close"
-            needTest="true" />
-    </MainItem>
-    <MainItem
-        command="IBatteryAction"
-        name_CN="Battery(Advance)"
-        name_EN="Battery(Advance)">
-        <SubItem
-            command="open"
-            name_CN="open"
-            name_EN="open"
-            needTest="true" />
-        <SubItem
-            command="getBatteryLevel"
-            name_CN="getBatteryLevel"
-            name_EN="getBatteryLevel"
-            needTest="true" />
-        <SubItem
-            command="isAutoCounterMode"
-            name_CN="isAutoCounterMode"
-            name_EN="isAutoCounterMode"
-            needTest="true" />
-        <SubItem
-            command="isCounterMode"
-            name_CN="isCounterMode"
-            name_EN="isCounterMode"
-            needTest="true" />
-        <SubItem
-            command="setAutoCounterMode"
-            name_CN="setAutoCounterMode"
-            name_EN="setAutoCounterMode"
-            needTest="true" />
-        <SubItem
-            command="setCounterMode"
-            name_CN="setCounterMode"
-            name_EN="setCounterMode"
-            needTest="true" />
-        <SubItem
-            command="close"
-            name_CN="close"
-            name_EN="close"
-            needTest="true" />
-    </MainItem>
-    <MainItem
-        command="IBluetoothAction"
-        name_CN="Bluetooth(Advance)"
-        name_EN="Bluetooth(Advance)">
-        <SubItem
-            command="open"
-            name_CN="open"
-            name_EN="open"
-            needTest="true" />
-        <SubItem
-            command="cancelPairedBluetoothDevice"
-            name_CN="cancelPairedBluetoothDevice"
-            name_EN="cancelPairedBluetoothDevice"
-            needTest="true" />
-        <SubItem
-            command="pairBluetoothDevice"
-            name_CN="pairBluetoothDevice"
-            name_EN="pairBluetoothDevice"
-            needTest="true" />
-        <SubItem
-            command="close"
-            name_CN="close"
-            name_EN="close"
-            needTest="true" />
-    </MainItem>
-    <MainItem
-        command="IHomeAction"
-        name_CN="Home(Advance)"
-        name_EN="Home(Advance)">
-        <SubItem
-            command="open"
-            name_CN="open"
-            name_EN="open"
-            needTest="true" />
-        <SubItem
-            command="setNotificationBadge"
-            name_CN="setNotificationBadge"
-            name_EN="setNotificationBadge"
-            needTest="true" />
-        <SubItem
-            command="close"
-            name_CN="close"
-            name_EN="close"
-            needTest="true" />
-    </MainItem>
-    <MainItem
-        command="ILocationAction"
-        name_CN="Location(Advance)"
-        name_EN="Location(Advance)">
-        <SubItem
-            command="open"
-            name_CN="open"
-            name_EN="open"
-            needTest="true" />
-        <SubItem
-            command="getLevel"
-            name_CN="getLevel"
-            name_EN="getLevel"
-            needTest="true" />
-        <SubItem
-            command="getLocation"
-            name_CN="getLocation"
-            name_EN="getLocation"
-            needTest="true" />
-        <SubItem
-            command="setParameter"
-            name_CN="setParameter"
-            name_EN="setParameter"
-            needTest="true" />
-        <SubItem
-            command="close"
-            name_CN="close"
-            name_EN="close"
-            needTest="true" />
-    </MainItem>
-    <MainItem
-        command="IApnAction"
-        name_CN="Apn(Advance)"
-        name_EN="Apn(Advance)">
-        <SubItem
-            command="open"
-            name_CN="open"
-            name_EN="open"
-            needTest="true" />
-        <SubItem
-            command="add"
-            name_CN="add"
-            name_EN="add"
-            needTest="true" />
-        <SubItem
-            command="addByAllArgs"
-            name_CN="addByAllArgs"
-            name_EN="addByAllArgs"
-            needTest="true" />
-        <SubItem
-            command="addByMCCAndMNC"
-            name_CN="addByMCCAndMNC"
-            name_EN="addByMCCAndMNC"
-            needTest="true" />
-        <SubItem
-            command="clear"
-            name_CN="clear"
-            name_EN="clear"
-            needTest="true" />
-        <SubItem
-            command="clearWithSlot"
-            name_CN="clearWithSlot"
-            name_EN="clearWithSlot"
-            needTest="true" />
-        <SubItem
-            command="getSelected"
-            name_CN="getSelected"
-            name_EN="getSelected"
-            needTest="true" />
-        <SubItem
-            command="query"
-            name_CN="query"
-            name_EN="query"
-            needTest="true" />
-        <SubItem
-            command="queryByName"
-            name_CN="queryByName"
-            name_EN="queryByName"
-            needTest="true" />
-        <SubItem
-            command="setSelected"
-            name_CN="setSelected"
-            name_EN="setSelected"
-            needTest="true" />
-        <SubItem
-            command="close"
-            name_CN="close"
-            name_EN="close"
-            needTest="true" />
-    </MainItem>
-    <MainItem
-        command="IEthernetAction"
-        name_CN="Ethernet(Advance)"
-        name_EN="Ethernet(Advance)">
-        <SubItem
-            command="open"
-            name_CN="open"
-            name_EN="open"
-            needTest="true" />
-        <SubItem
-            command="getStaticIp"
-            name_CN="getStaticIp"
-            name_EN="getStaticIp"
-            needTest="true" />
-        <SubItem
-            command="isEnabledEthernet"
-            name_CN="isEnabledEthernet"
-            name_EN="isEnabledEthernet"
-            needTest="true" />
-        <SubItem
-            command="isStaticIp"
-            name_CN="isStaticIp"
-            name_EN="isStaticIp"
-            needTest="true" />
-        <SubItem
-            command="setEthernet"
-            name_CN="setEthernet"
-            name_EN="setEthernet"
-            needTest="true" />
-        <SubItem
-            command="setStaticIp"
-            name_CN="setStaticIp"
-            name_EN="setStaticIp"
-            needTest="true" />
-        <SubItem
-            command="close"
-            name_CN="close"
-            name_EN="close"
-            needTest="true" />
-    </MainItem>
-    <MainItem
-        command="IWifiAction"
-        name_CN="Wifi(Advance)"
-        name_EN="Wifi(Advance)">
-        <SubItem
-            command="open"
-            name_CN="open"
-            name_EN="open"
-            needTest="true" />
-        <SubItem
-            command="removeWifiSSID"
-            name_CN="removeWifiSSID"
-            name_EN="removeWifiSSID"
-            needTest="true" />
-        <SubItem
-            command="close"
-            name_CN="close"
-            name_EN="close"
-            needTest="true" />
+        command="Advance"
+        name_CN="Advance"
+        name_EN="Advance">
+
+        <SubItem
+            command="IPINPadAction"
+            name_CN="PINPad(Advance)"
+            name_EN="PINPad(Advance)"
+            needTest="true">
+            <SubItem
+                command="open"
+                name_CN="open"
+                name_EN="open"
+                needTest="true"></SubItem>
+            <SubItem
+                command="resetMasterKey"
+                name_CN="resetMasterKey"
+                name_EN="resetMasterKey"
+                needTest="true" />
+            <SubItem
+                command="resetTransferKey"
+                name_CN="resetTransferKey"
+                name_EN="resetTransferKey"
+                needTest="true" />
+            <SubItem
+                command="close"
+                name_CN="close"
+                name_EN="close"
+                needTest="true" />
+        </SubItem>
+        <SubItem
+            command="IScannerAction"
+            name_CN="Scanner(Advance)"
+            name_EN="Scanner(Advance)"
+            needTest="true">
+            <SubItem
+                command="open"
+                name_CN="open"
+                name_EN="open"
+                needTest="true" />
+            <SubItem
+                command="getScanType"
+                name_CN="getScanType"
+                name_EN="getScanType"
+                needTest="true" />
+            <SubItem
+                command="scanBarcode"
+                name_CN="scanBarcode"
+                name_EN="scanBarcode"
+                needTest="true" />
+            <SubItem
+                command="startScan"
+                name_CN="startScan"
+                name_EN="startScan"
+                needTest="true" />
+            <SubItem
+                command="stopScan"
+                name_CN="stopScan"
+                name_EN="stopScan"
+                needTest="true" />
+            <SubItem
+                command="close"
+                name_CN="close"
+                name_EN="close"
+                needTest="true" />
+        </SubItem>
+        <SubItem
+            command="IAdminAction"
+            name_CN="Admin(Advance)"
+            name_EN="Admin(Advance)">
+            <SubItem
+                command="open"
+                name_CN="open"
+                name_EN="open"
+                needTest="true" />
+            <SubItem
+                command="forceModifyAdminPwd"
+                name_CN="forceModifyAdminPwd"
+                name_EN="forceModifyAdminPwd"
+                needTest="true" />
+            <SubItem
+                command="forceModifyUserPwd"
+                name_CN="forceModifyUserPwd"
+                name_EN="forceModifyUserPwd"
+                needTest="true" />
+            <SubItem
+                command="isAdminLoggedIn"
+                name_CN="isAdminLoggedIn"
+                name_EN="isAdminLoggedIn"
+                needTest="true" />
+            <SubItem
+                command="isAdminPwd"
+                name_CN="isAdminPwd"
+                name_EN="isAdminPwd"
+                needTest="true" />
+            <SubItem
+                command="isUserLoggedIn"
+                name_CN="isUserLoggedIn"
+                name_EN="isUserLoggedIn"
+                needTest="true" />
+            <SubItem
+                command="isUserLoginMode"
+                name_CN="isUserLoginMode"
+                name_EN="isUserLoginMode"
+                needTest="true" />
+            <SubItem
+                command="setUserLoginMode"
+                name_CN="setUserLoginMode"
+                name_EN="setUserLoginMode"
+                needTest="true" />
+            <SubItem
+                command="verifyUserPwd"
+                name_CN="verifyUserPwd"
+                name_EN="verifyUserPwd"
+                needTest="true" />
+            <SubItem
+                command="close"
+                name_CN="close"
+                name_EN="close"
+                needTest="true" />
+        </SubItem>
+        <SubItem
+            command="INetworkAction"
+            name_CN="Network(Advance)"
+            name_EN="Network(Advance)">
+            <SubItem
+                command="open"
+                name_CN="open"
+                name_EN="open"
+                needTest="true" />
+            <SubItem
+                command="getPreferredNetworkType"
+                name_CN="getPreferredNetworkType"
+                name_EN="getPreferredNetworkType"
+                needTest="true" />
+            <SubItem
+                command="getSupportedNetworkTypes"
+                name_CN="getSupportedNetworkTypes"
+                name_EN="getSupportedNetworkTypes"
+                needTest="true" />
+            <SubItem
+                command="setMobileDataEnabled"
+                name_CN="setMobileDataEnabled"
+                name_EN="setMobileDataEnabled"
+                needTest="true" />
+            <SubItem
+                command="setMobileDataRoamingEnabled"
+                name_CN="setMobileDataRoamingEnabled"
+                name_EN="setMobileDataRoamingEnabled"
+                needTest="true" />
+            <SubItem
+                command="setPreferredNetworkType"
+                name_CN="setPreferredNetworkType"
+                name_EN="setPreferredNetworkType"
+                needTest="true" />
+            <SubItem
+                command="close"
+                name_CN="close"
+                name_EN="close"
+                needTest="true" />
+        </SubItem>
+        <SubItem
+            command="ISystemAction"
+            name_CN="System(Advance)"
+            name_EN="System(Advance)">
+            <SubItem
+                command="open"
+                name_CN="open"
+                name_EN="open"
+                needTest="true" />
+            <SubItem
+                command="enableAirplaneMode"
+                name_CN="enableAirplaneMode"
+                name_EN="enableAirplaneMode"
+                needTest="true" />
+            <SubItem
+                command="getMtpStatus"
+                name_CN="getMtpStatus"
+                name_EN="getMtpStatus"
+                needTest="true" />
+            <SubItem
+                command="getRebootTimeByEveryDay"
+                name_CN="getRebootTimeByEveryDay"
+                name_EN="getRebootTimeByEveryDay"
+                needTest="true" />
+            <SubItem
+                command="getShowTouchesState"
+                name_CN="getShowTouchesState"
+                name_EN="getShowTouchesState"
+                needTest="true" />
+            <SubItem
+                command="getStatusbarSettingsButtonVisibility"
+                name_CN="getStatusbarSettingsButtonVisibility"
+                name_EN="getStatusbarSettingsButtonVisibility"
+                needTest="true" />
+            <SubItem
+                command="getTouchScreenWakeupValue"
+                name_CN="getTouchScreenWakeupValue"
+                name_EN="getTouchScreenWakeupValue"
+                needTest="true" />
+            <SubItem
+                command="isEnableAutoTime"
+                name_CN="isEnableAutoTime"
+                name_EN="isEnableAutoTime"
+                needTest="true" />
+            <SubItem
+                command="isEnableAutoTimeGUI"
+                name_CN="isEnableAutoTimeGUI"
+                name_EN="isEnableAutoTimeGUI"
+                needTest="true" />
+            <SubItem
+                command="isEnableAutoTimezone"
+                name_CN="isEnableAutoTimezone"
+                name_EN="isEnableAutoTimezone"
+                needTest="true" />
+            <SubItem
+                command="isEnableAutoTimezoneGUI"
+                name_CN="isEnableAutoTimezoneGUI"
+                name_EN="isEnableAutoTimezoneGUI"
+                needTest="true" />
+            <SubItem
+                command="isEnableBluetooth"
+                name_CN="isEnableBluetooth"
+                name_EN="isEnableBluetooth"
+                needTest="true" />
+            <SubItem
+                command="isEnableWifi"
+                name_CN="isEnableWifi"
+                name_EN="isEnableWifi"
+                needTest="true" />
+            <SubItem
+                command="isPowerKeyBlocked"
+                name_CN="isPowerKeyBlocked"
+                name_EN="isPowerKeyBlocked"
+                needTest="true" />
+            <SubItem
+                command="reboot"
+                name_CN="reboot"
+                name_EN="reboot"
+                needTest="true" />
+            <SubItem
+                command="setAutoTime"
+                name_CN="setAutoTime"
+                name_EN="setAutoTime"
+                needTest="true" />
+            <SubItem
+                command="setAutoTimeGUI"
+                name_CN="setAutoTimeGUI"
+                name_EN="setAutoTimeGUI"
+                needTest="true" />
+            <SubItem
+                command="setAutoTimezone"
+                name_CN="setAutoTimezone"
+                name_EN="setAutoTimezone"
+                needTest="true" />
+            <SubItem
+                command="setAutoTimezoneGUI"
+                name_CN="setAutoTimezoneGUI"
+                name_EN="setAutoTimezoneGUI"
+                needTest="true" />
+            <SubItem
+                command="setBluetooth"
+                name_CN="setBluetooth"
+                name_EN="setBluetooth"
+                needTest="true" />
+            <SubItem
+                command="setCustomAttribute"
+                name_CN="setCustomAttribute"
+                name_EN="setCustomAttribute"
+                needTest="true" />
+            <SubItem
+                command="setDeviceOwner"
+                name_CN="setDeviceOwner"
+                name_EN="setDeviceOwner"
+                needTest="true" />
+            <SubItem
+                command="setLanguage"
+                name_CN="setLanguage"
+                name_EN="setLanguage"
+                needTest="true" />
+            <SubItem
+                command="setMtp"
+                name_CN="setMtp"
+                name_EN="setMtp"
+                needTest="true" />
+            <SubItem
+                command="setPasswordLock"
+                name_CN="setPasswordLock"
+                name_EN="setPasswordLock"
+                needTest="true" />
+            <SubItem
+                command="setPatternLock"
+                name_CN="setPatternLock"
+                name_EN="setPatternLock"
+                needTest="true" />
+            <SubItem
+                command="setPinLock"
+                name_CN="setPinLock"
+                name_EN="setPinLock"
+                needTest="true" />
+            <SubItem
+                command="setPowerKeyBlocked"
+                name_CN="setPowerKeyBlocked"
+                name_EN="setPowerKeyBlocked"
+                needTest="true" />
+            <SubItem
+                command="setRebootTimeByEveryDay"
+                name_CN="setRebootTimeByEveryDay"
+                name_EN="setRebootTimeByEveryDay"
+                needTest="true" />
+            <SubItem
+                command="setRestrictBackground"
+                name_CN="setRestrictBackground"
+                name_EN="setRestrictBackground"
+                needTest="true" />
+            <SubItem
+                command="setScreenOffTimeout"
+                name_CN="setScreenOffTimeout"
+                name_EN="setScreenOffTimeout"
+                needTest="true" />
+            <SubItem
+                command="setShowTouches"
+                name_CN="setShowTouches"
+                name_EN="setShowTouches"
+                needTest="true" />
+            <SubItem
+                command="setStatusBarLocked"
+                name_CN="setStatusBarLocked"
+                name_EN="setStatusBarLocked"
+                needTest="true" />
+            <SubItem
+                command="setStatusbarSettingsButtonVisibility"
+                name_CN="setStatusbarSettingsButtonVisibility"
+                name_EN="setStatusbarSettingsButtonVisibility"
+                needTest="true" />
+            <SubItem
+                command="setTouchScreenWakeupValue"
+                name_CN="setTouchScreenWakeupValue"
+                name_EN="setTouchScreenWakeupValue"
+                needTest="true" />
+            <SubItem
+                command="setUnknownSources"
+                name_CN="setUnknownSources"
+                name_EN="setUnknownSources"
+                needTest="true" />
+            <SubItem
+                command="setWifi"
+                name_CN="setWifi"
+                name_EN="setWifi"
+                needTest="true" />
+            <SubItem
+                command="shutdown"
+                name_CN="shutdown"
+                name_EN="shutdown"
+                needTest="true" />
+            <SubItem
+                command="close"
+                name_CN="close"
+                name_EN="close"
+                needTest="true" />
+        </SubItem>
+        <SubItem
+            command="IUpdateAppAction"
+            name_CN="UpdateApp(Advance)"
+            name_EN="UpdateApp(Advance)">
+            <SubItem
+                command="open"
+                name_CN="open"
+                name_EN="open"
+                needTest="true" />
+            <SubItem
+                command="installAndLaunchApkFile"
+                name_CN="installAndLaunchApkFile"
+                name_EN="installAndLaunchApkFile"
+                needTest="true" />
+            <SubItem
+                command="installApkFile"
+                name_CN="installApkFile"
+                name_EN="installApkFile"
+                needTest="true" />
+            <SubItem
+                command="uninstall"
+                name_CN="uninstall"
+                name_EN="uninstall"
+                needTest="true" />
+            <SubItem
+                command="close"
+                name_CN="close"
+                name_EN="close"
+                needTest="true" />
+        </SubItem>
+        <SubItem
+            command="IBatteryAction"
+            name_CN="Battery(Advance)"
+            name_EN="Battery(Advance)">
+            <SubItem
+                command="open"
+                name_CN="open"
+                name_EN="open"
+                needTest="true" />
+            <SubItem
+                command="getBatteryLevel"
+                name_CN="getBatteryLevel"
+                name_EN="getBatteryLevel"
+                needTest="true" />
+            <SubItem
+                command="isAutoCounterMode"
+                name_CN="isAutoCounterMode"
+                name_EN="isAutoCounterMode"
+                needTest="true" />
+            <SubItem
+                command="isCounterMode"
+                name_CN="isCounterMode"
+                name_EN="isCounterMode"
+                needTest="true" />
+            <SubItem
+                command="setAutoCounterMode"
+                name_CN="setAutoCounterMode"
+                name_EN="setAutoCounterMode"
+                needTest="true" />
+            <SubItem
+                command="setCounterMode"
+                name_CN="setCounterMode"
+                name_EN="setCounterMode"
+                needTest="true" />
+            <SubItem
+                command="close"
+                name_CN="close"
+                name_EN="close"
+                needTest="true" />
+        </SubItem>
+        <SubItem
+            command="IBluetoothAction"
+            name_CN="Bluetooth(Advance)"
+            name_EN="Bluetooth(Advance)">
+            <SubItem
+                command="open"
+                name_CN="open"
+                name_EN="open"
+                needTest="true" />
+            <SubItem
+                command="cancelPairedBluetoothDevice"
+                name_CN="cancelPairedBluetoothDevice"
+                name_EN="cancelPairedBluetoothDevice"
+                needTest="true" />
+            <SubItem
+                command="pairBluetoothDevice"
+                name_CN="pairBluetoothDevice"
+                name_EN="pairBluetoothDevice"
+                needTest="true" />
+            <SubItem
+                command="close"
+                name_CN="close"
+                name_EN="close"
+                needTest="true" />
+        </SubItem>
+        <SubItem
+            command="IHomeAction"
+            name_CN="Home(Advance)"
+            name_EN="Home(Advance)">
+            <SubItem
+                command="open"
+                name_CN="open"
+                name_EN="open"
+                needTest="true" />
+            <SubItem
+                command="setNotificationBadge"
+                name_CN="setNotificationBadge"
+                name_EN="setNotificationBadge"
+                needTest="true" />
+            <SubItem
+                command="close"
+                name_CN="close"
+                name_EN="close"
+                needTest="true" />
+        </SubItem>
+        <SubItem
+            command="ILocationAction"
+            name_CN="Location(Advance)"
+            name_EN="Location(Advance)">
+            <SubItem
+                command="open"
+                name_CN="open"
+                name_EN="open"
+                needTest="true" />
+            <SubItem
+                command="getLevel"
+                name_CN="getLevel"
+                name_EN="getLevel"
+                needTest="true" />
+            <SubItem
+                command="getLocation"
+                name_CN="getLocation"
+                name_EN="getLocation"
+                needTest="true" />
+            <SubItem
+                command="setParameter"
+                name_CN="setParameter"
+                name_EN="setParameter"
+                needTest="true" />
+            <SubItem
+                command="close"
+                name_CN="close"
+                name_EN="close"
+                needTest="true" />
+        </SubItem>
+        <SubItem
+            command="IApnAction"
+            name_CN="Apn(Advance)"
+            name_EN="Apn(Advance)">
+            <SubItem
+                command="open"
+                name_CN="open"
+                name_EN="open"
+                needTest="true" />
+            <SubItem
+                command="add"
+                name_CN="add"
+                name_EN="add"
+                needTest="true" />
+            <SubItem
+                command="addByAllArgs"
+                name_CN="addByAllArgs"
+                name_EN="addByAllArgs"
+                needTest="true" />
+            <SubItem
+                command="addByMCCAndMNC"
+                name_CN="addByMCCAndMNC"
+                name_EN="addByMCCAndMNC"
+                needTest="true" />
+            <SubItem
+                command="clear"
+                name_CN="clear"
+                name_EN="clear"
+                needTest="true" />
+            <SubItem
+                command="clearWithSlot"
+                name_CN="clearWithSlot"
+                name_EN="clearWithSlot"
+                needTest="true" />
+            <SubItem
+                command="getSelected"
+                name_CN="getSelected"
+                name_EN="getSelected"
+                needTest="true" />
+            <SubItem
+                command="query"
+                name_CN="query"
+                name_EN="query"
+                needTest="true" />
+            <SubItem
+                command="queryByName"
+                name_CN="queryByName"
+                name_EN="queryByName"
+                needTest="true" />
+            <SubItem
+                command="setSelected"
+                name_CN="setSelected"
+                name_EN="setSelected"
+                needTest="true" />
+            <SubItem
+                command="close"
+                name_CN="close"
+                name_EN="close"
+                needTest="true" />
+        </SubItem>
+        <SubItem
+            command="IEthernetAction"
+            name_CN="Ethernet(Advance)"
+            name_EN="Ethernet(Advance)">
+            <SubItem
+                command="open"
+                name_CN="open"
+                name_EN="open"
+                needTest="true" />
+            <SubItem
+                command="getStaticIp"
+                name_CN="getStaticIp"
+                name_EN="getStaticIp"
+                needTest="true" />
+            <SubItem
+                command="isEnabledEthernet"
+                name_CN="isEnabledEthernet"
+                name_EN="isEnabledEthernet"
+                needTest="true" />
+            <SubItem
+                command="isStaticIp"
+                name_CN="isStaticIp"
+                name_EN="isStaticIp"
+                needTest="true" />
+            <SubItem
+                command="setEthernet"
+                name_CN="setEthernet"
+                name_EN="setEthernet"
+                needTest="true" />
+            <SubItem
+                command="setStaticIp"
+                name_CN="setStaticIp"
+                name_EN="setStaticIp"
+                needTest="true" />
+            <SubItem
+                command="close"
+                name_CN="close"
+                name_EN="close"
+                needTest="true" />
+        </SubItem>
+        <SubItem
+            command="IWifiAction"
+            name_CN="Wifi(Advance)"
+            name_EN="Wifi(Advance)">
+            <SubItem
+                command="open"
+                name_CN="open"
+                name_EN="open"
+                needTest="true" />
+            <SubItem
+                command="removeWifiSSID"
+                name_CN="removeWifiSSID"
+                name_EN="removeWifiSSID"
+                needTest="true" />
+            <SubItem
+                command="close"
+                name_CN="close"
+                name_EN="close"
+                needTest="true" />
+        </SubItem>
     </MainItem>
 </DriverTest>

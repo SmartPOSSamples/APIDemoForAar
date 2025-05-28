@@ -7,6 +7,7 @@ public class Constants {
     public static final String CLOSE = "close";
     public static final String MAIN_ITEM = "MainItem";
     public static final String SUB_ITEM = "SubItem";
+    public static final String ITEM = "Item";
     public static final String TEST_RESULT = "TestResult";
     public static final String MAIN_ITEM_DISPLAY_NAME = "MainItem displayName";
     public static final String CLICK_POSITION = "ClickPosition";

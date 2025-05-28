@@ -72,36 +72,62 @@ public class XmlPullParserHelper {
     }
 
     public static List<MainItem> getTestItems(Context context, int terminalType) {
-        Log.d("DEBUG", "getTestItems");
-        List<MainItem> testItems = new ArrayList<MainItem>();
+        List<MainItem> testItems = new ArrayList<>();
         try {
-            XmlPullParser xmlPullParser = XmlPullParserHelper.getXmlPullParser(context,
-                    terminalType);
-            int mEventType = xmlPullParser.getEventType();
-            MainItem mainItem = null;
-            String tagName = null;
-            while (mEventType != XmlPullParser.END_DOCUMENT) {
-                if (mEventType == XmlPullParser.START_TAG) {
-                    tagName = xmlPullParser.getName();
-                    if (tagName.equals(Constants.MAIN_ITEM)) {
-                        mainItem = XmlPullParserHelper.parseToMainItem(xmlPullParser);
-//                        Log.d("DEBUG", "" + mainItem.getDisplayName(1));
-                    } else if (tagName.equals(Constants.SUB_ITEM)) {
-                        SubItem subItem = parseToSubItem(xmlPullParser);
-                        mainItem.addSubItem(subItem);
+            XmlPullParser parser = getXmlPullParser(context, terminalType);
+            int eventType = parser.getEventType();
+            MainItem currentMainItem = null;
+            List<SubItem> currentSubItems = null;
+            List<SubItem> currentItemStack = new ArrayList<>(); // 用栈维护当前的 SubItem 嵌套层级
+
+            while (eventType != XmlPullParser.END_DOCUMENT) {
+                String tagName = parser.getName();
+
+                boolean isEquals = Constants.SUB_ITEM.equals(tagName) || Constants.ITEM.equals(tagName);
+                if (eventType == XmlPullParser.START_TAG) {
+                    if (Constants.MAIN_ITEM.equals(tagName)) {
+                        currentMainItem = parseToMainItem(parser);
+                        currentSubItems = new ArrayList<>();
+                    } else if (isEquals) {
+                        SubItem subItem = parseToSubItem(parser);
+
+                        // 如果当前在嵌套结构中，加入其父 SubItem 的 items
+                        if (!currentItemStack.isEmpty()) {
+                            currentItemStack.get(currentItemStack.size() - 1).addItem(subItem);
+                        } else if (currentSubItems != null) {
+                            currentSubItems.add(subItem);
+                        }
+
+                        currentItemStack.add(subItem); // 入栈
                     }
-                } else if (mEventType == XmlPullParser.END_TAG) {
-                    tagName = xmlPullParser.getName();
-                    if (tagName.equals(Constants.MAIN_ITEM)) {
-                        testItems.add(mainItem);
+
+                } else if (eventType == XmlPullParser.END_TAG) {
+                    if (Constants.MAIN_ITEM.equals(tagName)) {
+                        if (currentMainItem != null && currentSubItems != null) {
+                            for (SubItem item : currentSubItems) {
+                                currentMainItem.addSubItem(item);
+                            }
+                            testItems.add(currentMainItem);
+                        }
+                        currentMainItem = null;
+                        currentSubItems = null;
+                    } else if (isEquals) {
+                        // 出栈
+                        if (!currentItemStack.isEmpty()) {
+                            currentItemStack.remove(currentItemStack.size() - 1);
+                        }
                     }
                 }
-                mEventType = xmlPullParser.next();
+
+                eventType = parser.next();
             }
+
         } catch (Exception e) {
             e.printStackTrace();
         }
+
         return testItems;
     }
+
 
 }

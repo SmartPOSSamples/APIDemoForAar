@@ -2,6 +2,7 @@
 package com.cloudpos.androidmvcmodel;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import android.app.Activity;
@@ -29,6 +30,8 @@ import com.android.common.utils.PackageUtils;
 import com.cloudpos.androidmvcmodel.adapter.ListViewAdapter;
 import com.cloudpos.androidmvcmodel.common.Constants;
 import com.cloudpos.androidmvcmodel.entity.MainItem;
+import com.cloudpos.androidmvcmodel.entity.SubItem;
+import com.cloudpos.androidmvcmodel.entity.TestItem;
 import com.cloudpos.androidmvcmodel.helper.LanguageHelper;
 import com.cloudpos.androidmvcmodel.helper.LogHelper;
 import com.cloudpos.mvc.impl.ActionCallbackImpl;
@@ -113,37 +116,91 @@ public class MainActivity extends Activity implements OnItemClickListener {
         }
         return super.onMenuItemSelected(featureId, item);
     }
-
+    private int currentMainIndex = ListViewAdapter.INDEX_NONE;
+    private int currentSubIndex = ListViewAdapter.INDEX_NONE;
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-        clickedPosition = position;
-        if (isMain) {
-            performMainItemClick();
-        } else {
-            performSubItemClick();
+        if (adapter.isAtMainLevel()) {
+            currentMainIndex = position;
+            currentSubIndex = ListViewAdapter.INDEX_NONE;
+            adapter.enterSubList(position);
+            displayIntroduction();
+            actionCallback.sendResponse(context.getString(R.string.welcome_to)
+                    + "\t" + MainApplication.testItems
+                    .get(currentMainIndex).getDisplayName(LanguageHelper.getLanguageType(context)));
+            lvwTestItems.setSelection(0);
+
+        } else if (adapter.isAtSubLevel()) {
+            currentSubIndex = position;
+
+            SubItem subItem = MainApplication.testItems
+                    .get(currentMainIndex)
+                    .getSubItem(currentSubIndex);
+
+            if (subItem.hasChildren()) {
+                adapter.enterItemList(currentSubIndex);
+                actionCallback.sendResponse(context.getString(R.string.welcome_to)
+                        + "\t" + subItem.getDisplayName(LanguageHelper.getLanguageType(context)));
+                lvwTestItems.setSelection(0);
+            } else {
+
+                testParameters.clear();
+                testParameters.put(Constants.MAIN_ITEM,
+                        MainApplication.testItems.get(currentMainIndex).getCommand());
+                testParameters.put(Constants.SUB_ITEM, subItem.getCommand());
+
+                ActionManager.doSubmit(MainApplication.testItems.get(currentMainIndex).getCommand()
+                                + "/" + subItem.getCommand(),
+                        context,
+                        testParameters,
+                        actionCallback
+                );
+            }
+        } else if (adapter.isAtItemLevel()) {
+            TestItem item = MainApplication.testItems.get(currentMainIndex)
+                    .getSubItem(currentSubIndex)
+                    .getItems()
+                    .get(position);
+
+            testParameters.clear();
+            testParameters.put(Constants.MAIN_ITEM,
+                    MainApplication.testItems.get(currentMainIndex).getCommand());
+            testParameters.put(Constants.SUB_ITEM,
+                    MainApplication.testItems.get(currentMainIndex)
+                            .getSubItem(currentSubIndex).getCommand());
+            testParameters.put(Constants.ITEM, item.getCommand());
+
+            ActionManager.doSubmit(
+                    MainApplication.testItems.get(currentMainIndex)
+                            .getSubItem(currentSubIndex).getCommand()
+                            + "/" + item.getCommand(),
+                    context,
+                    testParameters,
+                    actionCallback
+            );
         }
     }
 
     @Override
     public boolean onKeyDown(int keyCode, KeyEvent event) {
         if (keyCode == KeyEvent.KEYCODE_BACK) {
-            onBackKeyClick();
+            if (adapter.isAtItemLevel()) {
+                currentSubIndex = ListViewAdapter.INDEX_NONE;
+                adapter.enterSubList(currentMainIndex);
+            } else if (adapter.isAtSubLevel()) {
+                adapter.resetToMain();
+                currentMainIndex = ListViewAdapter.INDEX_NONE;
+                currentSubIndex = ListViewAdapter.INDEX_NONE;
+            } else {
+                System.exit(0);
+            }
+            displayIntroduction();
+            actionCallback.sendResponse(context.getString(R.string.test_end));
             return true;
         }
         return super.onKeyDown(keyCode, event);
     }
 
-    private void onBackKeyClick() {
-        if (isMain) {
-            System.exit(0);
-        } else {
-            isMain = true;
-            displayIntroduction();
-            adapter.refreshView(ListViewAdapter.INDEX_NONE);
-            setListViewSelection();
-            actionCallback.sendResponse(context.getString(R.string.test_end));
-        }
-    }
 
     private void setListViewSelection() {
         lvwTestItems.setAdapter(adapter);
@@ -176,6 +233,11 @@ public class MainActivity extends Activity implements OnItemClickListener {
     }
 
     private void performSubItemClick() {
+        boolean hasChildren = clickedMainItem.getSubItem(clickedPosition).hasChildren();
+        if(hasChildren){
+            showSubItems(clickedMainItem.getSubItem(clickedPosition).getItems());
+            return;
+        }
         testParameters.clear();
         testParameters.put(Constants.MAIN_ITEM, clickedMainItem.getCommand());
         String subItemCommand = clickedMainItem.getSubItem(clickedPosition).getCommand();
@@ -184,6 +246,16 @@ public class MainActivity extends Activity implements OnItemClickListener {
         ActionManager.doSubmit(clickedMainItem.getCommand() + "/" + subItemCommand,
                 context, testParameters, actionCallback);
     }
+
+    private void showSubItems(List<SubItem> subItemList) {
+        this.isMain = false;
+
+        adapter.refreshView(0);
+        lvwTestItems.setAdapter(adapter);
+        lvwTestItems.setSelection(0);
+    }
+
+
 
     private void displayIntroduction() {
         if (txtIntroduction != null) {
