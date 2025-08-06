@@ -1292,6 +1292,37 @@
             name_EN="close"
             needTest="true" />
     </MainItem>
+    <MainItem
+        command="CashBoxAction"
+        isActivity="false"
+        name_CN="钱箱"
+        name_EN="CashBox">
+        <SubItem
+            command="open"
+            name_CN="Open"
+            name_EN="Open"
+            needTest="true" />
+        <SubItem
+            command="openCashBox"
+            name_CN="openCashBox"
+            name_EN="openCashBox"
+            needTest="true" />
+        <SubItem
+            command="queryStatus"
+            name_CN="queryStatus"
+            name_EN="queryStatus"
+            needTest="true" />
+        <SubItem
+            command="kickOut"
+            name_CN="kickOut"
+            name_EN="kickOut"
+            needTest="true" />
+        <SubItem
+            command="close"
+            name_CN="Close"
+            name_EN="Close"
+            needTest="true" />
+    </MainItem>
 
     <MainItem
         command="Advance"

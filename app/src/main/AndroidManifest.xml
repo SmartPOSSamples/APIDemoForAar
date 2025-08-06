@@ -7,12 +7,6 @@
         <package android:name="com.wizarpos.apiadapter" />
     </queries>
 
-    <!--WRITE_EXTERNAL_STORAGE-->
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
-    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
-
-    <!-- HDMI-CLOUDPOS_CLONESCREEN -->
-    <uses-permission android:name="android.permission.CLOUDPOS_CLONESCREEN" />
     <!--D3 ADAPTER-->
     <uses-permission android:name="android.permission.CLOUDPOS_PRINTER_ADAPTER" />
     <!-- CLOUDPOS_PRINTER -->
@@ -168,6 +162,12 @@
     <uses-permission android:name="com.wizarpos.permission.UPDATE_WORKSPACE_NOTIFICATION_BADGE" />
     <uses-permission android:name="android.permission.CONNECTIVITY_INTERNAL"/>
     <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW"/>
+
+
+    <uses-permission android:name="android.permission.CLOUDPOS_MONEYBOX"/>
+    <uses-permission android:name="android.permission.CLOUDPOS_INSTALL_SILENCE"/>
+
+
 
     <application
         android:name="com.cloudpos.androidmvcmodel.MainApplication"
