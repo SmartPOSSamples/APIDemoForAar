@@ -166,6 +166,8 @@
 
     <uses-permission android:name="com.wizarpos.permission.UPDATE_WORKSPACE_AND_WALLPAPER" />
     <uses-permission android:name="com.wizarpos.permission.UPDATE_WORKSPACE_NOTIFICATION_BADGE" />
+    <uses-permission android:name="android.permission.CONNECTIVITY_INTERNAL"/>
+    <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW"/>
 
     <application
         android:name="com.cloudpos.androidmvcmodel.MainApplication"

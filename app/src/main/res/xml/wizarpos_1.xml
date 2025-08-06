@@ -1625,6 +1625,11 @@
                 name_EN="setStatusBarLocked"
                 needTest="true" />
             <SubItem
+                command="setStatusBarUnLocked"
+                name_CN="setStatusBarUnLocked"
+                name_EN="setStatusBarUnLocked"
+                needTest="true" />
+            <SubItem
                 command="setStatusbarSettingsButtonVisibility"
                 name_CN="setStatusbarSettingsButtonVisibility"
                 name_EN="setStatusbarSettingsButtonVisibility"
@@ -1888,6 +1893,11 @@
                 command="setEthernet"
                 name_CN="setEthernet"
                 name_EN="setEthernet"
+                needTest="true" />
+            <SubItem
+                command="enableStaticIp"
+                name_CN="enableStaticIp"
+                name_EN="enableStaticIp"
                 needTest="true" />
             <SubItem
                 command="setStaticIp"

@@ -96,15 +96,23 @@ public class IEthernetAction extends ActionModel {
             sendFailedLog(mContext.getString(R.string.operation_failed));
         }
     }
-
+    public void enableStaticIp(Map<String, Object> param, ActionCallback callback) {
+        try {
+            iDevice.enableStaticIp(true);
+            sendSuccessLog("enableStaticIp : " + mContext.getString(R.string.operation_succeed));
+        } catch (DeviceException e) {
+            e.printStackTrace();
+            sendFailedLog(mContext.getString(R.string.operation_failed));
+        }
+    }
     public void setStaticIp(Map<String, Object> param, ActionCallback callback) {
         try {
             IpBean ipBean = new IpBean();
             boolean b = iDevice.setStaticIp(ipBean);
             if (b) {
-                sendSuccessLog("clearWithSlot : " + mContext.getString(R.string.operation_succeed));
+                sendSuccessLog("setStaticIp : " + mContext.getString(R.string.operation_succeed));
             } else {
-                sendSuccessLog("clearWithSlot : " + mContext.getString(R.string.operation_failed));
+                sendSuccessLog("setStaticIp : " + mContext.getString(R.string.operation_failed));
             }
         } catch (DeviceException e) {
             e.printStackTrace();

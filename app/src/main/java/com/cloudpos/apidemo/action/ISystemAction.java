@@ -409,10 +409,18 @@ public class ISystemAction extends ActionModel {
             sendFailedLog(mContext.getString(R.string.operation_failed));
         }
     }
-
-    public void setStatusBarLocked(Map<String, Object> param, ActionCallback callback) {
+    public void setStatusBarUnLocked(Map<String, Object> param, ActionCallback callback) {
         try {
             iDevice.setStatusBarLocked(false);
+            sendSuccessLog("setStatusBarUnLocked : " + mContext.getString(R.string.operation_succeed));
+        } catch (DeviceException e) {
+            e.printStackTrace();
+            sendFailedLog(mContext.getString(R.string.operation_failed));
+        }
+    }
+    public void setStatusBarLocked(Map<String, Object> param, ActionCallback callback) {
+        try {
+            iDevice.setStatusBarLocked(true);
             sendSuccessLog("setStatusBarLocked : " + mContext.getString(R.string.operation_succeed));
         } catch (DeviceException e) {
             e.printStackTrace();
