@@ -9,8 +9,8 @@ import org.xmlpull.v1.XmlPullParserException;
 import org.xmlpull.v1.XmlPullParserFactory;
 
 import android.content.Context;
-import android.util.Log;
 
+import com.cloudpos.androidmvcmodel.MainApplication;
 import com.cloudpos.androidmvcmodel.common.Constants;
 import com.cloudpos.apidemoforunionpaycloudpossdk.R;
 import com.cloudpos.androidmvcmodel.entity.MainItem;
@@ -43,9 +43,15 @@ public class XmlPullParserHelper {
         String nameEN = xmlPullParser.getAttributeValue(null, "name_EN");
         String command = xmlPullParser.getAttributeValue(null, "command");
         String isActivity = xmlPullParser.getAttributeValue(null, "isActivity");
+        String type = xmlPullParser.getAttributeValue(null, "type");
         mainItem.setDisplayNameCN(nameCN);
         mainItem.setDisplayNameEN(nameEN);
         mainItem.setCommand(command);
+        try {
+            mainItem.setType(Integer.parseInt(type));
+        }catch (NumberFormatException e){
+            mainItem.setType(0);
+        }
         if (isActivity != null && isActivity.equals("true")) {
             mainItem.setActivity(true);
         } else {
@@ -60,9 +66,21 @@ public class XmlPullParserHelper {
         String nameEN = xmlPullParser.getAttributeValue(null, "name_EN");
         String command = xmlPullParser.getAttributeValue(null, "command");
         String needTest = xmlPullParser.getAttributeValue(null, "needTest");
+        String type = xmlPullParser.getAttributeValue(null, "type");
+        String spinner = xmlPullParser.getAttributeValue(null, "spinner");
         subItem.setDisplayNameCN(nameCN);
         subItem.setDisplayNameEN(nameEN);
         subItem.setCommand(command);
+        if(type != null){
+            try {
+                subItem.setType(Integer.parseInt(type));
+            }catch (NumberFormatException e){
+                subItem.setType(0);
+            }
+        }
+
+        if(spinner != null)
+         subItem.setSpinner(spinner.split(","));
         if (needTest != null && needTest.equals("true")) {
             subItem.setNeedTest(true);
         } else {

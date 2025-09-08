@@ -1,12 +1,12 @@
 
 package com.cloudpos.androidmvcmodel;
 
-import java.io.File;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
@@ -39,8 +39,9 @@ import com.cloudpos.mvc.impl.ActionCallbackImpl;
 import com.cloudpos.apidemoforunionpaycloudpossdk.R;
 import com.cloudpos.mvc.base.ActionCallback;
 import com.cloudpos.mvc.base.ActionManager;
+import com.cloudpos.serialport.SerialPortDevice;
 
-public class MainActivity extends Activity implements OnItemClickListener {
+public class MainActivity extends Activity implements OnItemClickListener, OnItemEventListener {
 
     private static final String TAG = "DEBUG";
     private static final int MENU_CLEAN_LOG = Menu.FIRST;
@@ -59,6 +60,7 @@ public class MainActivity extends Activity implements OnItemClickListener {
     private Handler handler;
     private ActionCallback actionCallback;
     private Map<String, Object> testParameters;
+    private AlertDialog spinnerDialog;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -72,7 +74,7 @@ public class MainActivity extends Activity implements OnItemClickListener {
 
     private void initParameter() {
         this.context = MainActivity.this;
-        adapter = new ListViewAdapter(context);
+        adapter = new ListViewAdapter(context, this);
         handler = new Handler(handlerCallback);
         actionCallback = new ActionCallbackImpl(context, handler);
         testParameters = new HashMap<String, Object>();
@@ -301,7 +303,9 @@ public class MainActivity extends Activity implements OnItemClickListener {
                 case Constants.HANDLER_LOG_FAILED:
                     LogHelper.infoAppendMsgForFailed((String) msg.obj, txtLog);
                     break;
-
+                case Constants.HANDLER_OPEN_SERIAL_PORT:
+                    showSerialPortSpinner();
+                    break;
                 default:
                     break;
             }
@@ -309,4 +313,189 @@ public class MainActivity extends Activity implements OnItemClickListener {
         }
     };
 
+    private Handler popupHandler = new Handler(){
+        @Override
+        public void handleMessage(Message msg) {
+            switch (msg.what) {
+                case 0:
+                    if(spinnerDialog != null){
+                        spinnerDialog.show();
+                    }
+
+                    break;
+            }
+        }
+    };
+
+    @Override
+    public void onSpinnerSelected(int rootPositon, int selectedIndex, String[] spinners) {
+        if (adapter.isAtMainLevel()) {
+            currentMainIndex = rootPositon;
+            currentSubIndex = ListViewAdapter.INDEX_NONE;
+            adapter.enterSubList(rootPositon);
+            displayIntroduction();
+            actionCallback.sendResponse(context.getString(R.string.welcome_to)
+                    + "\t" + MainApplication.testItems
+                    .get(currentMainIndex).getDisplayName(LanguageHelper.getLanguageType(context)));
+            lvwTestItems.setSelection(0);
+
+        } else if (adapter.isAtSubLevel()) {
+            currentSubIndex = rootPositon;
+
+            SubItem subItem = MainApplication.testItems
+                    .get(currentMainIndex)
+                    .getSubItem(currentSubIndex);
+
+            if (subItem.hasChildren()) {
+                adapter.enterItemList(currentSubIndex);
+                actionCallback.sendResponse(context.getString(R.string.welcome_to)
+                        + "\t" + subItem.getDisplayName(LanguageHelper.getLanguageType(context)));
+                lvwTestItems.setSelection(0);
+            } else {
+
+                testParameters.clear();
+                testParameters.put(Constants.MAIN_ITEM,
+                        MainApplication.testItems.get(currentMainIndex).getCommand());
+                testParameters.put(Constants.SUB_ITEM, subItem.getCommand());
+                testParameters.put(Constants.SPINNERS, spinners);
+                testParameters.put(Constants.SELECTED_INDEX, selectedIndex);
+
+                ActionManager.doSubmit(MainApplication.testItems.get(currentMainIndex).getCommand()
+                                + "/" + subItem.getCommand(),
+                        context,
+                        testParameters,
+                        actionCallback
+                );
+            }
+        } else if (adapter.isAtItemLevel()) {
+            TestItem item = MainApplication.testItems.get(currentMainIndex)
+                    .getSubItem(currentSubIndex)
+                    .getItems()
+                    .get(rootPositon);
+
+            testParameters.clear();
+            testParameters.put(Constants.MAIN_ITEM,
+                    MainApplication.testItems.get(currentMainIndex).getCommand());
+            testParameters.put(Constants.SUB_ITEM,
+                    MainApplication.testItems.get(currentMainIndex)
+                            .getSubItem(currentSubIndex).getCommand());
+            testParameters.put(Constants.ITEM, item.getCommand());
+            testParameters.put(Constants.SPINNERS, spinners);
+            testParameters.put(Constants.SELECTED_INDEX, selectedIndex);
+
+            ActionManager.doSubmit(
+                    MainApplication.testItems.get(currentMainIndex)
+                            .getSubItem(currentSubIndex).getCommand()
+                            + "/" + item.getCommand(),
+                    context,
+                    testParameters,
+                    actionCallback
+            );
+        }
+    }
+
+    @Override
+    public void onSwitch(int rootPositon, boolean isChecked) {
+        if (adapter.isAtMainLevel()) {
+            currentMainIndex = rootPositon;
+            currentSubIndex = ListViewAdapter.INDEX_NONE;
+            adapter.enterSubList(rootPositon);
+            displayIntroduction();
+            actionCallback.sendResponse(context.getString(R.string.welcome_to)
+                    + "\t" + MainApplication.testItems
+                    .get(currentMainIndex).getDisplayName(LanguageHelper.getLanguageType(context)));
+            lvwTestItems.setSelection(0);
+
+        } else if (adapter.isAtSubLevel()) {
+            currentSubIndex = rootPositon;
+
+            SubItem subItem = MainApplication.testItems
+                    .get(currentMainIndex)
+                    .getSubItem(currentSubIndex);
+
+            if (subItem.hasChildren()) {
+                adapter.enterItemList(currentSubIndex);
+                actionCallback.sendResponse(context.getString(R.string.welcome_to)
+                        + "\t" + subItem.getDisplayName(LanguageHelper.getLanguageType(context)));
+                lvwTestItems.setSelection(0);
+            } else {
+
+                testParameters.clear();
+                testParameters.put(Constants.MAIN_ITEM,
+                        MainApplication.testItems.get(currentMainIndex).getCommand());
+                testParameters.put(Constants.SUB_ITEM, subItem.getCommand());
+                testParameters.put(Constants.IS_CHECKED, isChecked);
+
+                ActionManager.doSubmit(MainApplication.testItems.get(currentMainIndex).getCommand()
+                                + "/" + subItem.getCommand(),
+                        context,
+                        testParameters,
+                        actionCallback
+                );
+            }
+        } else if (adapter.isAtItemLevel()) {
+            TestItem item = MainApplication.testItems.get(currentMainIndex)
+                    .getSubItem(currentSubIndex)
+                    .getItems()
+                    .get(rootPositon);
+
+            testParameters.clear();
+            testParameters.put(Constants.MAIN_ITEM,
+                    MainApplication.testItems.get(currentMainIndex).getCommand());
+            testParameters.put(Constants.SUB_ITEM,
+                    MainApplication.testItems.get(currentMainIndex)
+                            .getSubItem(currentSubIndex).getCommand());
+            testParameters.put(Constants.ITEM, item.getCommand());
+            testParameters.put(Constants.IS_CHECKED, isChecked);
+
+            ActionManager.doSubmit(
+                    MainApplication.testItems.get(currentMainIndex)
+                            .getSubItem(currentSubIndex).getCommand()
+                            + "/" + item.getCommand(),
+                    context,
+                    testParameters,
+                    actionCallback
+            );
+        }
+    }
+
+    private void showSerialPortSpinner(){
+        String[] logicIDs = MainApplication.getInstance().getApplicationContext().getResources().getStringArray(R.array.logicID);
+        spinnerDialog = new AlertDialog.Builder(this).setItems(logicIDs, (dialog, which) -> {
+            int logicID = SerialPortDevice.ID_USB_SLAVE_SERIAL;
+            switch (logicIDs[which]) {
+                case "ID_USB_SLAVE_SERIAL":
+                    logicID = SerialPortDevice.ID_USB_SLAVE_SERIAL;
+                    break;
+                case "ID_USB_HOST_SERIAL":
+                    logicID = SerialPortDevice.ID_USB_HOST_SERIAL;
+                    break;
+                case "ID_SERIAL_EXT":
+                    logicID = SerialPortDevice.ID_SERIAL_EXT;
+                    break;
+                case "ID_USB_CDC":
+                    logicID = SerialPortDevice.ID_USB_CDC;
+                    break;
+                case "ID_USB_GPRINTER":
+                    logicID = SerialPortDevice.ID_USB_GPRINTER;
+                    break;
+                case "ID_USB_SLAVE_SERIAL_ACM":
+                    logicID = SerialPortDevice.ID_USB_SLAVE_SERIAL_ACM;
+                    break;
+                default:
+                    break;
+            }
+            TestItem item = MainApplication.testItems.get(currentMainIndex)
+                    .getSubItem(currentSubIndex);
+            testParameters.put(Constants.LOGICID, logicID);
+            ActionManager.doSubmit(
+                    MainApplication.testItems.get(currentMainIndex).getCommand()
+                            + "/" + item.getCommand(),
+                    context,
+                    testParameters,
+                    actionCallback
+            );
+        }).create();
+        popupHandler.sendEmptyMessageAtTime(0, 200);
+    }
 }

@@ -6,29 +6,42 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.BaseAdapter;
+import android.widget.CompoundButton;
+import android.widget.LinearLayout;
+import android.widget.Spinner;
+import android.widget.Switch;
 import android.widget.TextView;
 
 import com.cloudpos.androidmvcmodel.MainApplication;
+import com.cloudpos.androidmvcmodel.OnItemEventListener;
 import com.cloudpos.androidmvcmodel.entity.SubItem;
 import com.cloudpos.androidmvcmodel.entity.TestItem;
+import com.cloudpos.androidmvcmodel.entity.TypeConstant;
 import com.cloudpos.apidemoforunionpaycloudpossdk.R;
 import com.cloudpos.androidmvcmodel.entity.MainItem;
 import com.cloudpos.androidmvcmodel.helper.LanguageHelper;
 
+import java.util.HashMap;
+
 public class ListViewAdapter extends BaseAdapter {
 
     private static final String TAG = "ListViewAdapter";
+    private final OnItemEventListener mOnItemEventListener;
     private LayoutInflater inflater;
     // private DBHelper dbHelper;
     private int mainItemIndex = INDEX_NONE;
     public static final int INDEX_NONE = -1;
     private Context context;
     private int subItemIndex = INDEX_NONE;
+    private HashMap<String, ArrayAdapter> mAdapterMap = new HashMap<>();
 
-    public ListViewAdapter(Context context) {
+    public ListViewAdapter(Context context, OnItemEventListener onItemEventListener) {
         this.context = context;
         this.inflater = LayoutInflater.from(context);
+        this.mOnItemEventListener = onItemEventListener;
         // dbHelper = DBHelper.getInstance();
     }
 
@@ -67,14 +80,9 @@ public class ListViewAdapter extends BaseAdapter {
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
-        if (convertView == null) {
-            convertView = inflater.inflate(R.layout.item_test, null);
-        }
-        TextView txtButton = (TextView) convertView.findViewById(R.id.txt_button);
 //        TextView txt_signature = (TextView) convertView.findViewById(R.id.txt_signature);
 //        setDisplayedSignature(position, txtSignature);
-        setDisplayedButton(position, txtButton);
-        return convertView;
+        return setDisplayedButton(convertView, position);
     }
 
     /**
@@ -111,21 +119,98 @@ public class ListViewAdapter extends BaseAdapter {
     // }
     // }
 
-    private void setDisplayedButton(int position, TextView txtButton) {
+    private View setDisplayedButton(View convertView, int position) {
         if (mainItemIndex == INDEX_NONE) {
             MainItem mainItem = MainApplication.testItems.get(position);
-            txtButton.setText(mainItem.getDisplayName(LanguageHelper.getLanguageType(context)));
+            convertView = setConvertView(convertView, position, mainItem);
         } else if (subItemIndex == INDEX_NONE) {
             SubItem subItem = MainApplication.testItems.get(mainItemIndex).getSubItem(position);
-            txtButton.setText(subItem.getDisplayName(LanguageHelper.getLanguageType(context)));
+            convertView = setConvertView(convertView, position, subItem);
         } else {
             TestItem item = MainApplication.testItems
                     .get(mainItemIndex)
                     .getSubItem(subItemIndex)
                     .getItems()
                     .get(position);
-            txtButton.setText(item.getDisplayName(LanguageHelper.getLanguageType(context)));
+            convertView = setConvertView(convertView, position, item);
         }
+        return convertView;
+    }
+
+    private View setConvertView(View convertView, int rootPosition, TestItem item){
+        ViewHloder viewHloder = new ViewHloder();
+        if (convertView == null) {
+            convertView = inflater.inflate(R.layout.item_test, null);
+            viewHloder.txtButton = (TextView) convertView.findViewById(R.id.txt_button);
+            viewHloder.txtName = (TextView) convertView.findViewById(R.id.txt_name);
+            viewHloder.spinner = (Spinner) convertView.findViewById(R.id.myspinner);
+            viewHloder.aSwitch = (Switch) convertView.findViewById(R.id.sw_btn);
+            viewHloder.llSpinner = (LinearLayout) convertView.findViewById(R.id.ll_spinner);
+            convertView.setTag(viewHloder);
+        }
+        viewHloder = (ViewHloder) convertView.getTag();
+        switch (item.getType()){
+            case TypeConstant.TYPE_CONSTANT_BUTTON:
+                viewHloder.llSpinner.setVisibility(View.GONE);
+                viewHloder.aSwitch.setVisibility(View.GONE);
+                viewHloder.txtButton.setVisibility(View.VISIBLE);
+                viewHloder.txtButton.setText(item.getDisplayName(LanguageHelper.getLanguageType(context)));
+                break;
+            case TypeConstant.TYPE_CONSTANT_SPINNER:
+                viewHloder.llSpinner.setVisibility(View.VISIBLE);
+                viewHloder.aSwitch.setVisibility(View.GONE);
+                viewHloder.txtButton.setVisibility(View.GONE);
+                viewHloder.txtName.setText(item.getDisplayName(LanguageHelper.getLanguageType(context)));
+                if(mAdapterMap.get(item.getDisplayName(LanguageHelper.getLanguageType(context))) == null){
+                    ArrayAdapter adapter = new ArrayAdapter<String>(context, R.layout.spinner_item, item.getSpinner());
+                    viewHloder.spinner.setAdapter(adapter);
+                    mAdapterMap.put(item.getDisplayName(LanguageHelper.getLanguageType(context)), adapter);
+                }else{
+                    mAdapterMap.get(item.getDisplayName(LanguageHelper.getLanguageType(context))).notifyDataSetChanged();
+                }
+                viewHloder.spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+                    @Override
+                    public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                        mOnItemEventListener.onSpinnerSelected(rootPosition, position, item.getSpinner());
+                    }
+
+                    @Override
+                    public void onNothingSelected(AdapterView<?> parent) {
+
+                    }
+                });
+                break;
+            case TypeConstant.TYPE_CONSTANT_SWITCH:
+                viewHloder.llSpinner.setVisibility(View.GONE);
+                viewHloder.aSwitch.setVisibility(View.VISIBLE);
+                viewHloder.txtButton.setVisibility(View.GONE);
+                viewHloder = (ViewHloder) convertView.getTag();
+                viewHloder.aSwitch.setText(item.getDisplayName(LanguageHelper.getLanguageType(context)));
+                viewHloder.aSwitch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+                    @Override
+                    public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                        mOnItemEventListener.onSwitch(rootPosition, isChecked);
+                    }
+                });
+                break;
+            default:
+                viewHloder.llSpinner.setVisibility(View.GONE);
+                viewHloder.aSwitch.setVisibility(View.GONE);
+                viewHloder.txtButton.setVisibility(View.VISIBLE);
+                viewHloder.txtButton.setText(item.getDisplayName(LanguageHelper.getLanguageType(context)));
+                break;
+        }
+        return convertView;
+    }
+
+    private class ViewHloder{
+        Switch aSwitch;
+        Spinner spinner;
+        TextView txtName;
+        TextView txtButton;
+        LinearLayout llSpinner;
+        int index = 0;
+        boolean isChecked = false;
     }
 
 

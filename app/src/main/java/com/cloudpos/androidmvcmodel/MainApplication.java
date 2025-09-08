@@ -6,6 +6,7 @@ import java.util.List;
 
 import android.app.Application;
 import android.content.Context;
+import android.mtp.MtpConstants;
 import android.util.Log;
 
 import com.cloudpos.androidmvcmodel.helper.XmlPullParserHelper;
@@ -19,11 +20,14 @@ public class MainApplication extends Application {
     private Context context;
     public static List<MainItem> testItems = new ArrayList<MainItem>();
 
+    private static MainApplication instance;
+
     @Override
     public void onCreate() {
         super.onCreate();
         initParameter();
         ActionManager.initActionContainer(new com.cloudpos.mvc.impl.ActionContainerImpl(context));
+        instance = this;
     }
 
     private void initParameter() {
@@ -32,5 +36,12 @@ public class MainApplication extends Application {
         for (MainItem mainItem : testItems) {
             Log.e("DEBUG", "" + mainItem.getDisplayName(LanguageHelper.getLanguageType(context)));
         }
+    }
+
+    public static MainApplication getInstance(){
+//        if(instance == null){
+//            instance = new MainApplication();
+//        }
+        return instance;
     }
 }

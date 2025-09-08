@@ -103,5 +103,28 @@
     <string name="defalut_copy_db_path">/mnt/sdcard1</string>
 
     <string name="waiting">please wait.</string>
+    <string-array name="baudrates">
+        <item>9600</item>
+        <item>14400 </item>
+        <item>19200</item>
+        <item>38400</item>
+        <item>57600</item>
+        <item>115200</item>
+        <item>460800</item>
+    </string-array>
+    <string-array name="DataBits">
+        <item >DATABITS_5</item>
+        <item >DATABITS_6</item>
+        <item >DATABITS_7</item>
+        <item >DATABITS_8</item>
+    </string-array>
 
+    <string-array name="logicID">
+        <item >ID_USB_SLAVE_SERIAL</item>
+        <item >ID_USB_HOST_SERIAL</item>
+        <item >ID_SERIAL_EXT</item>
+        <item >ID_USB_CDC</item>
+        <item >ID_USB_GPRINTER</item>
+        <item >ID_USB_SLAVE_SERIAL_ACM</item>
+    </string-array>
 </resources>

@@ -11,6 +11,8 @@ public class TestItem {
     private String command;
     private String displayNameCN;
     private String displayNameEN;
+    private int type;
+    private String[] spinner;
 
     private List<SubItem> items = new ArrayList<>();
 
@@ -56,5 +58,21 @@ public class TestItem {
     public String toString() {
         return String.format("command = %s, displayCN = %s, displyEN = %s", command, displayNameCN,
                 displayNameEN);
+    }
+
+    public int getType() {
+        return type;
+    }
+
+    public void setType(int type) {
+        this.type = type;
+    }
+
+    public String[] getSpinner() {
+        return spinner;
+    }
+
+    public void setSpinner(String[] spinner) {
+        this.spinner = spinner;
     }
 }

@@ -168,7 +168,6 @@
     <uses-permission android:name="android.permission.CLOUDPOS_INSTALL_SILENCE"/>
 
 
-
     <application
         android:name="com.cloudpos.androidmvcmodel.MainApplication"
         android:allowBackup="true"

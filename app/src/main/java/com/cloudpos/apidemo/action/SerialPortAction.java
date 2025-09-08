@@ -4,6 +4,7 @@ import com.cloudpos.DeviceException;
 import com.cloudpos.OperationListener;
 import com.cloudpos.OperationResult;
 import com.cloudpos.POSTerminal;
+import com.cloudpos.androidmvcmodel.common.Constants;
 import com.cloudpos.mvc.common.Logger;
 import com.cloudpos.mvc.impl.ActionCallbackImpl;
 import com.cloudpos.sdk.common.SystemProperties;
@@ -21,34 +22,45 @@ public class SerialPortAction extends ActionModel {
     private int timeout = 5000;
     private int baudrate = 38400;
     private String testString = "cloudpos";
+    private int logicID = SerialPortDevice.ID_USB_SLAVE_SERIAL;
+
 
     @Override
     protected void doBefore(Map<String, Object> param, ActionCallback callback) {
         super.doBefore(param, callback);
-        if (device == null) {
-            device = (SerialPortDevice) POSTerminal.getInstance(mContext).getDevice("cloudpos.device.serialport");
-        }
     }
 
 
     public void open(Map<String, Object> param, ActionCallback callback) {
-        try {
+        if(param.get(Constants.LOGICID) != null) {
             /**
              *     int ID_USB_SLAVE_SERIAL = 0;
              *     int ID_USB_HOST_SERIAL = 1;
              *     int ID_SERIAL_EXT = 2;
              */
-            device.open(SerialPortDevice.ID_USB_SLAVE_SERIAL);
-            sendSuccessLog(mContext.getString(R.string.operation_succeed));
-        } catch (DeviceException e) {
-            e.printStackTrace();
-            sendFailedLog(mContext.getString(R.string.operation_failed));
+            try {
+                logicID = (int) param.get(Constants.LOGICID);
+                if (device == null) {
+                    device = (SerialPortDevice) POSTerminal.getInstance(mContext).getDevice("cloudpos.device.serialport", logicID);
+                }
+                device.open();
+                sendSuccessLog(mContext.getString(R.string.operation_succeed));
+            } catch (DeviceException e) {
+                if(e.getCode() == DeviceException.ARGUMENT_EXCEPTION || e.getCode() == DeviceException.GENERAL_EXCEPTION)
+                    device = null;
+                e.printStackTrace();
+                sendFailedLog(mContext.getString(R.string.operation_failed));
+            }
+        }else{
+            mCallback.sendResponse(Constants.HANDLER_OPEN_SERIAL_PORT, null);
         }
+
     }
 
     public void close(Map<String, Object> param, ActionCallback callback) {
         try {
             device.close();
+            device = null;
             sendSuccessLog(mContext.getString(R.string.operation_succeed));
         } catch (DeviceException e) {
             e.printStackTrace();
@@ -137,4 +149,42 @@ public class SerialPortAction extends ActionModel {
         }
         return deviceName;
     }
+
+    public void changeSerialPortParams(Map<String, Object> param, ActionCallbackImpl callback) {
+        try {
+            device.changeSerialPortParams(115200, SerialPortDevice.DATABITS_8, SerialPortDevice.STOPBITS_1, SerialPortDevice.PARITY_NONE);
+            sendSuccessLog2(mContext.getString(R.string.operation_succeed));
+        } catch (DeviceException e) {
+            e.printStackTrace();
+            sendFailedLog(mContext.getString(R.string.operation_failed));
+        }
+    }
+
+//    public void setLogicID(Map<String, Object> param, ActionCallback callback) {
+//        String[] spinner = (String[]) param.get(Constants.SPINNERS);
+//        int selectedIndex = (int) param.get(Constants.SELECTED_INDEX);
+//        switch (spinner[selectedIndex]){
+//            case "ID_USB_SLAVE_SERIAL":
+//                logicID = SerialPortDevice.ID_USB_SLAVE_SERIAL;
+//                break;
+//            case "ID_USB_HOST_SERIAL":
+//                logicID = SerialPortDevice.ID_USB_HOST_SERIAL;
+//                break;
+//            case "ID_SERIAL_EXT":
+//                logicID = SerialPortDevice.ID_SERIAL_EXT;
+//                break;
+//            case "ID_USB_CDC":
+//                logicID = SerialPortDevice.ID_USB_CDC;
+//                break;
+//            case "ID_USB_GPRINTER":
+//                logicID = SerialPortDevice.ID_USB_GPRINTER;
+//                break;
+//            case "ID_USB_SLAVE_SERIAL_ACM":
+//                logicID = SerialPortDevice.ID_USB_SLAVE_SERIAL_ACM;
+//                break;
+//            default:
+//                logicID = SerialPortDevice.ID_USB_SLAVE_SERIAL;
+//                break;
+//        }
+//    }
 }

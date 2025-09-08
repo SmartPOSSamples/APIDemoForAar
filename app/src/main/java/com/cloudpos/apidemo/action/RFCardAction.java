@@ -105,10 +105,24 @@ public class RFCardAction extends ActionModel {
     public void waitForCardPresent(Map<String, Object> param, ActionCallback callback) {
         try {
             sendSuccessLog("");
-            OperationResult operationResult = device.waitForCardPresent(TimeConstants.FOREVER);
+            RFCardReaderOperationResult operationResult = device.waitForCardPresent(TimeConstants.FOREVER);
             if (operationResult.getResultCode() == OperationResult.SUCCESS) {
                 sendSuccessLog2(mContext.getString(R.string.find_card_succeed));
                 rfCard = ((RFCardReaderOperationResult) operationResult).getCard();
+                try {
+                    int[] cardTypeValue = device.getCardTypeValue();
+                    cardType = cardTypeValue[0];
+                    if (cardType == MIFARE_CARD_S50 || cardType == MIFARE_CARD_S70) {
+                        sectorIndex = 3;
+                        blockIndex = 0;//0,1,2
+                    } else if (cardType == MIFARE_ULTRALIGHT_CARD) {
+                        sectorIndex = 0;
+                        blockIndex = 5;//4-63
+                    }
+                    sendSuccessLog2(mContext.getString(R.string.find_card_succeed) + ",cardType=" + cardType + ",sectorIndex=" + sectorIndex + ",blockIndex=" + blockIndex);
+                } catch (DeviceException e) {
+                    e.printStackTrace();
+                }
             } else {
                 sendFailedOnlyLog(mContext.getString(R.string.find_card_failed));
             }
