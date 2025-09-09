@@ -39,6 +39,7 @@ import com.cloudpos.mvc.impl.ActionCallbackImpl;
 import com.cloudpos.apidemoforunionpaycloudpossdk.R;
 import com.cloudpos.mvc.base.ActionCallback;
 import com.cloudpos.mvc.base.ActionManager;
+import com.cloudpos.sdk.smartcardreader.impl.PSAMDeviceMgr;
 import com.cloudpos.serialport.SerialPortDevice;
 
 public class MainActivity extends Activity implements OnItemClickListener, OnItemEventListener {
@@ -306,6 +307,9 @@ public class MainActivity extends Activity implements OnItemClickListener, OnIte
                 case Constants.HANDLER_OPEN_SERIAL_PORT:
                     showSerialPortSpinner();
                     break;
+                case Constants.HANDLER_OPEN_PSAMCARD_PORT:
+                    showPSAMCardSpinner();
+                    break;
                 default:
                     break;
             }
@@ -481,6 +485,40 @@ public class MainActivity extends Activity implements OnItemClickListener, OnIte
                     break;
                 case "ID_USB_SLAVE_SERIAL_ACM":
                     logicID = SerialPortDevice.ID_USB_SLAVE_SERIAL_ACM;
+                    break;
+                default:
+                    break;
+            }
+            TestItem item = MainApplication.testItems.get(currentMainIndex)
+                    .getSubItem(currentSubIndex);
+            testParameters.put(Constants.LOGICID, logicID);
+            ActionManager.doSubmit(
+                    MainApplication.testItems.get(currentMainIndex).getCommand()
+                            + "/" + item.getCommand(),
+                    context,
+                    testParameters,
+                    actionCallback
+            );
+        }).create();
+        popupHandler.sendEmptyMessageAtTime(0, 200);
+    }
+
+    private void showPSAMCardSpinner(){
+        String[] logicIDs = MainApplication.getInstance().getApplicationContext().getResources().getStringArray(R.array.samCardID);
+        spinnerDialog = new AlertDialog.Builder(this).setItems(logicIDs, (dialog, which) -> {
+            int logicID = 1;
+            switch (logicIDs[which]) {
+                case "SAM_1":
+                    logicID = 1;
+                    break;
+                case "SAM_2":
+                    logicID = 2;
+                    break;
+                case "SAM_3":
+                    logicID = 3;
+                    break;
+                case "SAM_4":
+                    logicID = 4;
                     break;
                 default:
                     break;

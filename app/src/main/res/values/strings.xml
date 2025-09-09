@@ -127,4 +127,10 @@
         <item >ID_USB_GPRINTER</item>
         <item >ID_USB_SLAVE_SERIAL_ACM</item>
     </string-array>
+    <string-array name="samCardID">
+        <item >SAM_1</item>
+        <item >SAM_2</item>
+        <item >SAM_3</item>
+        <item >SAM_4</item>
+    </string-array>
 </resources>

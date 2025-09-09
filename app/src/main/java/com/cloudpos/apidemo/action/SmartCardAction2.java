@@ -1,6 +1,8 @@
 
 package com.cloudpos.apidemo.action;
 
+import android.util.Log;
+
 import java.util.Map;
 
 import com.cloudpos.DeviceException;
@@ -8,10 +10,14 @@ import com.cloudpos.OperationListener;
 import com.cloudpos.OperationResult;
 import com.cloudpos.POSTerminal;
 import com.cloudpos.TimeConstants;
+import com.cloudpos.androidmvcmodel.common.Constants;
 import com.cloudpos.card.ATR;
 import com.cloudpos.card.CPUCard;
 import com.cloudpos.card.Card;
 import com.cloudpos.card.SLE4442Card;
+import com.cloudpos.jniinterface.SmartCardInterface;
+import com.cloudpos.sdk.smartcardreader.impl.SmartCardReaderDeviceImpl;
+import com.cloudpos.serialport.SerialPortDevice;
 import com.cloudpos.smartcardreader.SmartCardReaderDevice;
 import com.cloudpos.smartcardreader.SmartCardReaderOperationResult;
 import com.cloudpos.apidemo.util.StringUtility;
@@ -23,29 +29,77 @@ import com.cloudpos.mvc.base.ActionCallback;
  * */
 public class SmartCardAction2 extends ActionModel {
 
-    private SmartCardReaderDevice device =null;
+    private SmartCardReaderDeviceImpl device1 =null;
+    private SmartCardReaderDeviceImpl device2 =null;
+    private SmartCardReaderDeviceImpl device3 =null;
+    private SmartCardReaderDeviceImpl device4 =null;
+    private SmartCardReaderDeviceImpl currentDevice =null;
     private Card psamCard;
     int area = SLE4442Card.MEMORY_CARD_AREA_MAIN;
     int address = 0;
     int length = 10;
-    int logicalID = SmartCardReaderDevice.ID_PSAMCARD;
-    
+    int logicalID = 2;
+    int samCardID = 1;
+
+    boolean isOpen;
+
     @Override
     protected void doBefore(Map<String, Object> param, ActionCallback callback) {
         super.doBefore(param, callback);
-        if (device == null) {
-            device = (SmartCardReaderDevice) POSTerminal.getInstance(mContext)
-                    .getDevice("cloudpos.device.smartcardreader",logicalID);
+        if (device1 == null) {
+            device1 = (SmartCardReaderDeviceImpl) POSTerminal.getInstance(mContext)
+                    .getDevice("cloudpos.device.smartcardreader",1);
+        }
+        if (device2 == null) {
+            device2 = (SmartCardReaderDeviceImpl) POSTerminal.getInstance(mContext)
+                    .getDevice("cloudpos.device.smartcardreader",2);
+        }
+        if (device3 == null) {
+            device3 = (SmartCardReaderDeviceImpl) POSTerminal.getInstance(mContext)
+                    .getDevice("cloudpos.device.smartcardreader",3);
+        }
+        if (device4 == null) {
+            device4 = (SmartCardReaderDeviceImpl) POSTerminal.getInstance(mContext)
+                    .getDevice("cloudpos.device.smartcardreader",4);
         }
     }
-    
+
     public void open(Map<String, Object> param, ActionCallback callback) {
-        try {
-            device.open(logicalID);
-            sendSuccessLog(mContext.getString(R.string.operation_succeed));
-        } catch (DeviceException e) {
-            e.printStackTrace();
+        if(isOpen){
             sendFailedLog(mContext.getString(R.string.operation_failed));
+            return;
+        }
+        if(param.get(Constants.LOGICID) != null) {
+            try {
+                samCardID = (int) param.get(Constants.LOGICID);
+                Log.d("SmartCardAction2", "smartCardId = " + samCardID);
+                switch (samCardID){
+                    case 1:
+                        currentDevice = device1;
+                        break;
+                    case 2:
+                        currentDevice = device2;
+                        break;
+                    case 3:
+                        currentDevice = device3;
+                        break;
+                    case 4:
+                        currentDevice = device4;
+                        break;
+                    default:
+                        break;
+                }
+                currentDevice.open(samCardID);
+                isOpen = true;
+                sendSuccessLog(mContext.getString(R.string.operation_succeed));
+            } catch (DeviceException e) {
+//                if(e.getCode() == DeviceException.ARGUMENT_EXCEPTION || e.getCode() == DeviceException.GENERAL_EXCEPTION)
+//                    device = null;
+                e.printStackTrace();
+                sendFailedLog(mContext.getString(R.string.operation_failed));
+            }
+        }else{
+            mCallback.sendResponse(Constants.HANDLER_OPEN_PSAMCARD_PORT, null);
         }
     }
 
@@ -63,7 +117,7 @@ public class SmartCardAction2 extends ActionModel {
                     }
                 }
             };
-            device.listenForCardPresent(listener, TimeConstants.FOREVER);
+            currentDevice.listenForCardPresent(listener, TimeConstants.FOREVER);
             sendSuccessLog("");
         } catch (DeviceException e) {
             e.printStackTrace();
@@ -74,7 +128,7 @@ public class SmartCardAction2 extends ActionModel {
     public void waitForCardPresent(Map<String, Object> param, ActionCallback callback) {
         try {
             sendSuccessLog("");
-            OperationResult operationResult = device.waitForCardPresent(TimeConstants.FOREVER);
+            OperationResult operationResult = currentDevice.waitForCardPresent(TimeConstants.FOREVER);
             if (operationResult.getResultCode() == OperationResult.SUCCESS) {
                 sendSuccessLog2(mContext.getString(R.string.find_card_succeed));
                 psamCard = ((SmartCardReaderOperationResult) operationResult).getCard();
@@ -89,7 +143,7 @@ public class SmartCardAction2 extends ActionModel {
 
     public void cancelRequest(Map<String, Object> param, ActionCallback callback) {
         try {
-            device.cancelRequest();
+            currentDevice.cancelRequest();
             sendSuccessLog(mContext.getString(R.string.operation_succeed));
         } catch (DeviceException e) {
             e.printStackTrace();
@@ -173,7 +227,8 @@ public class SmartCardAction2 extends ActionModel {
     public void close(Map<String, Object> param, ActionCallback callback) {
         try {
             psamCard = null;
-            device.close();
+            currentDevice.close();
+            isOpen = false;
             sendSuccessLog(mContext.getString(R.string.operation_succeed));
         } catch (DeviceException e) {
             e.printStackTrace();
