@@ -22,6 +22,7 @@ import com.cloudpos.mvc.base.ActionCallback;
 public class PINPadAction extends ActionModel {
 
     private PINPadExtendDevice device = null;
+    private int transportKeyID = 0;
     private int masterKeyID = 0;
     private int userKeyID = 0;
     private int algo = 0;
@@ -181,6 +182,117 @@ public class PINPadAction extends ActionModel {
             sendFailedLog(mContext.getString(R.string.operation_failed));
         }
     }
+
+//    public void updateUserKeyWithTR31Format(Map<String, Object> param, ActionCallback callback){
+//        //old masterKey plaintext: 36 37 38 38 38 38 38 38 38 38 40 41 42 42 42 42
+//        //new masterKey plaintext: 39 40 38 38 38 38 38 38 38 38 40 41 46 46 46 46
+//        String transportKey = "38 03 E3 9E 06 19 ED 8C F5 2D 78 5F B5 76 5D 49";
+//        String masterKeyorg = "11111111111111111111111111111111";
+//        String userKeyorg =  "22222222222222222222222222222222";
+//        String useKey = "950973182317F80B950973182317F80B";
+//        final byte[] arryCipherUserrKey = new byte[16];
+//        StringUtility.StringToByteArray(useKey, arryCipherUserrKey);
+//
+//        try {
+////            device.updateTransferKeyWithTransferKeyByTr31()
+//            device.updateUserKeyWithTR31Format(masterKeyID, userKeyID, arryCipherUserrKey);
+//            sendSuccessLog(mContext.getString(R.string.operation_succeed));
+//        } catch (DeviceException e) {
+//            e.printStackTrace();
+//            sendFailedLog(mContext.getString(R.string.operation_failed));
+//        }
+//    }
+
+    public void updateMasterKey(Map<String, Object> param, ActionCallback callback){
+        //old masterKey plaintext: 36 37 38 38 38 38 38 38 38 38 40 41 42 42 42 42
+        //new masterKey plaintext: 39 40 38 38 38 38 38 38 38 38 40 41 46 46 46 46
+        String cipherMasterKey = "36 37 38 38 38 38 38 38 38 38 40 41 42 42 42 42";
+        final byte[] arryCipherNewMasterKey = new byte[16];
+        StringUtility.StringToByteArray(cipherMasterKey, arryCipherNewMasterKey);
+        byte[] arryCheckValue = new byte[]{};
+        try {
+            device.updateMasterKey(masterKeyID,arryCipherNewMasterKey,arryCipherNewMasterKey);
+            sendSuccessLog(mContext.getString(R.string.operation_succeed));
+        } catch (DeviceException e) {
+            e.printStackTrace();
+            sendFailedLog(mContext.getString(R.string.operation_failed));
+        }
+    }
+
+//    public void updateMasterKeyWithMasterKeyByTr31(Map<String, Object> param, ActionCallback callback){
+//        //old masterKey plaintext: 36 37 38 38 38 38 38 38 38 38 40 41 42 42 42 42
+//        //new masterKey plaintext: 39 40 38 38 38 38 38 38 38 38 40 41 46 46 46 46
+//        String transportKey = "38 03 E3 9E 06 19 ED 8C F5 2D 78 5F B5 76 5D 49";
+//        String masterKeyorg = "11111111111111111111111111111111";
+//        String masterKey = "4AC2F0809D0053224AC2F0809D005322";
+//        final byte[] arryCipherNewMasterKey = new byte[16];
+//        StringUtility.StringToByteArray(masterKey, arryCipherNewMasterKey);
+////        byte[] strMsg = {0x42, 0x30, 0x30, 0x38, 0x30, 0x4B, 0x30, 0x54,
+////                0x44, 0x30, 0x30, 0x4E, 0x30, 0x30, 0x30, 0x30,
+////                0x38, 0x31, 0x38, 0x43, 0x32, 0x30, 0x36, 0x43,
+////                0x44, 0x46, 0x46, 0x36, 0x33, 0x30, 0x44, 0x35,
+////                0x36, 0x41, 0x42, 0x32, 0x45, 0x32, 0x36, 0x43,
+////                0x32, 0x38, 0x39, 0x45, 0x46, 0x46, 0x39, 0x35,
+////                0x30, 0x31, 0x30, 0x39, 0x41, 0x33, 0x37, 0x39,
+////                0x45, 0x38, 0x46, 0x32, 0x33, 0x33, 0x34, 0x44,
+////                0x43, 0x30, 0x38, 0x32, 0x30, 0x31, 0x37, 0x38,
+////                0x35, 0x45, 0x34, 0x44, 0x35, 0x44, 0x34, 0x31 };
+//
+//        try {
+////            device.updateTransferKeyWithTransferKeyByTr31()
+//            device.updateMasterKeyWithMasterKeyByTr31(masterKeyID,arryCipherNewMasterKey);
+//            sendSuccessLog(mContext.getString(R.string.operation_succeed));
+//        } catch (DeviceException e) {
+//            e.printStackTrace();
+//            sendFailedLog(mContext.getString(R.string.operation_failed));
+//        }
+//    }
+//
+//
+//    public void updateMasterKeyWithTransferKeyByTr31(Map<String, Object> param, ActionCallback callback){
+//        //old masterKey plaintext: 36 37 38 38 38 38 38 38 38 38 40 41 42 42 42 42
+//        //new masterKey plaintext: 39 40 38 38 38 38 38 38 38 38 40 41 46 46 46 46
+//        String transportKey = "38 03 E3 9E 06 19 ED 8C F5 2D 78 5F B5 76 5D 49";
+//        String masterKeyorg = "11111111111111111111111111111111";
+//        String masterKey = "4AC2F0809D0053224AC2F0809D005322";
+//        final byte[] arryCipherNewMasterKey = new byte[16];
+//        StringUtility.StringToByteArray(masterKey, arryCipherNewMasterKey);
+////        byte[] strMsg = {0x42, 0x30, 0x30, 0x38, 0x30, 0x4B, 0x30, 0x54,
+////                0x44, 0x30, 0x30, 0x4E, 0x30, 0x30, 0x30, 0x30,
+////                0x38, 0x31, 0x38, 0x43, 0x32, 0x30, 0x36, 0x43,
+////                0x44, 0x46, 0x46, 0x36, 0x33, 0x30, 0x44, 0x35,
+////                0x36, 0x41, 0x42, 0x32, 0x45, 0x32, 0x36, 0x43,
+////                0x32, 0x38, 0x39, 0x45, 0x46, 0x46, 0x39, 0x35,
+////                0x30, 0x31, 0x30, 0x39, 0x41, 0x33, 0x37, 0x39,
+////                0x45, 0x38, 0x46, 0x32, 0x33, 0x33, 0x34, 0x44,
+////                0x43, 0x30, 0x38, 0x32, 0x30, 0x31, 0x37, 0x38,
+////                0x35, 0x45, 0x34, 0x44, 0x35, 0x44, 0x34, 0x31 };
+//
+//        try {
+////            device.updateTransferKeyWithTransferKeyByTr31()
+//            device.updateMasterKeyWithTransferKeyByTr31(masterKeyID,arryCipherNewMasterKey);
+//            sendSuccessLog(mContext.getString(R.string.operation_succeed));
+//        } catch (DeviceException e) {
+//            e.printStackTrace();
+//            sendFailedLog(mContext.getString(R.string.operation_failed));
+//        }
+//    }
+
+//    public void updateTransferKeyWithTransferKeyByTr31(Map<String, Object> param, ActionCallback callback){
+//        //old masterKey plaintext: 36 37 38 38 38 38 38 38 38 38 40 41 42 42 42 42
+//        //new masterKey plaintext: 39 40 38 38 38 38 38 38 38 38 40 41 46 46 46 46
+//        String transportKey = "3803E39E0619ED8CF52D785FB5765D49";
+//        final byte[] arryCipherNewMasterKey = new byte[16];
+//        StringUtility.StringToByteArray(transportKey, arryCipherNewMasterKey);
+//        byte[] arryCheckValue = new byte[]{};
+//        try {
+//            device.updateTransferKeyWithTransferKeyByTr31(transportKeyID,arryCipherNewMasterKey);
+//            sendSuccessLog(mContext.getString(R.string.operation_succeed));
+//        } catch (DeviceException e) {
+//            e.printStackTrace();
+//            sendFailedLog(mContext.getString(R.string.operation_failed));
+//        }
+//    }
 
     public void updateMasterKeyCheckMK(Map<String, Object> param, ActionCallback callback){
         //old masterKey plaintext: 36 37 38 38 38 38 38 38 38 38 40 41 42 42 42 42

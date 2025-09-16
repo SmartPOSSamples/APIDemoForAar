@@ -24,7 +24,7 @@ public class MSRAction extends ActionModel {
 
 //    private MSRDevice device = new MSRDeviceImpl();
     private MSRDevice device = null;
-    private PINPadDevice pinpadDevice = null;
+//    private PINPadDevice pinpadDevice = null;
 
     @Override
     protected void doBefore(Map<String, Object> param, ActionCallback callback) {
@@ -33,10 +33,10 @@ public class MSRAction extends ActionModel {
             device = (MSRDevice) POSTerminal.getInstance(mContext)
                     .getDevice("cloudpos.device.msr");
         }
-        if (pinpadDevice == null) {
-            pinpadDevice = (PINPadExtendDevice) POSTerminal.getInstance(mContext)
-                    .getDevice("cloudpos.device.pinpad");
-        }
+//        if (pinpadDevice == null) {
+//            pinpadDevice = (PINPadExtendDevice) POSTerminal.getInstance(mContext)
+//                    .getDevice("cloudpos.device.pinpad");
+//        }
     }
 
     public void open(Map<String, Object> param, ActionCallback callback) {
@@ -51,7 +51,6 @@ public class MSRAction extends ActionModel {
 
     public void openForEncryptPAN(Map<String, Object> param, ActionCallback callback) {
         try {
-            pinpadDevice.open();
             KeyInfo keyInfoD = new KeyInfo(PINPadDevice.KEY_TYPE_MK_SK, 0, 0,
                     AlgorithmConstants.ALG_3DES);
             byte[] iv = new byte[]{0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00};
@@ -148,7 +147,7 @@ public class MSRAction extends ActionModel {
     public void close(Map<String, Object> param, ActionCallback callback) {
         try {
             device.close();
-            pinpadDevice.close();
+//            pinpadDevice.close();
             sendSuccessLog(mContext.getString(R.string.operation_succeed));
         } catch (DeviceException e) {
             e.printStackTrace();
