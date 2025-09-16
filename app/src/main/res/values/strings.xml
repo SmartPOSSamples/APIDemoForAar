@@ -133,4 +133,8 @@
         <item >SAM_3</item>
         <item >SAM_4</item>
     </string-array>
+    <string-array name="imeiSlot">
+        <item >slot_0</item>
+        <item >slot_1</item>
+    </string-array>
 </resources>

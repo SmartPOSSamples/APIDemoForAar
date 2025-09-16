@@ -8,6 +8,8 @@ import com.cloudpos.advance.ext.system.network.INetworkDevice;
 import com.cloudpos.advance.ext.system.network.IWifiDevice;
 import com.cloudpos.apidemoforunionpaycloudpossdk.R;
 import com.cloudpos.mvc.base.ActionCallback;
+import com.cloudpos.sdk.util.ByteConvertStringUtil;
+import com.cloudpos.sdk.util.SystemUtil;
 
 import java.util.Map;
 
@@ -65,6 +67,20 @@ public class IWifiAction extends ActionModel {
                 sendSuccessLog("removeWifiSSID : " + mContext.getString(R.string.operation_succeed));
             } else {
                 sendSuccessLog("removeWifiSSID : " + mContext.getString(R.string.operation_failed));
+            }
+        } catch (DeviceException e) {
+            e.printStackTrace();
+            sendFailedLog(mContext.getString(R.string.operation_failed));
+        }
+    }
+
+    public void getWifiMac(Map<String, Object> param, ActionCallback callback) {
+        try {
+            byte[] bytes = iDevice.getWifiMac();
+            if (bytes != null && bytes.length > 0) {
+                sendSuccessLog(ByteConvertStringUtil.bytesToMac(bytes));
+            } else {
+                sendFailedLog( mContext.getString(R.string.operation_failed));
             }
         } catch (DeviceException e) {
             e.printStackTrace();

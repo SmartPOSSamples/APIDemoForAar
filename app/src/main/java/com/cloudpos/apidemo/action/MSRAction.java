@@ -3,6 +3,7 @@ package com.cloudpos.apidemo.action;
 
 import java.util.Map;
 
+import com.cloudpos.AlgorithmConstants;
 import com.cloudpos.DeviceException;
 import com.cloudpos.OperationListener;
 import com.cloudpos.OperationResult;
@@ -14,11 +15,16 @@ import com.cloudpos.msr.MSRTrackData;
 import com.cloudpos.apidemo.util.StringUtility;
 import com.cloudpos.apidemoforunionpaycloudpossdk.R;
 import com.cloudpos.mvc.base.ActionCallback;
+import com.cloudpos.pinpad.KeyInfo;
+import com.cloudpos.pinpad.PINPadDevice;
+import com.cloudpos.pinpad.extend.PINPadExtendDevice;
+import com.cloudpos.sdk.util.Logger;
 
 public class MSRAction extends ActionModel {
 
 //    private MSRDevice device = new MSRDeviceImpl();
     private MSRDevice device = null;
+    private PINPadDevice pinpadDevice = null;
 
     @Override
     protected void doBefore(Map<String, Object> param, ActionCallback callback) {
@@ -27,11 +33,29 @@ public class MSRAction extends ActionModel {
             device = (MSRDevice) POSTerminal.getInstance(mContext)
                     .getDevice("cloudpos.device.msr");
         }
+        if (pinpadDevice == null) {
+            pinpadDevice = (PINPadExtendDevice) POSTerminal.getInstance(mContext)
+                    .getDevice("cloudpos.device.pinpad");
+        }
     }
 
     public void open(Map<String, Object> param, ActionCallback callback) {
         try {
             device.open();
+            sendSuccessLog(mContext.getString(R.string.operation_succeed));
+        } catch (DeviceException e) {
+            e.printStackTrace();
+            sendFailedLog(mContext.getString(R.string.operation_failed));
+        }
+    }
+
+    public void openForEncryptPAN(Map<String, Object> param, ActionCallback callback) {
+        try {
+            pinpadDevice.open();
+            KeyInfo keyInfoD = new KeyInfo(PINPadDevice.KEY_TYPE_MK_SK, 0, 0,
+                    AlgorithmConstants.ALG_3DES);
+            byte[] iv = new byte[]{0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00};
+            device.open(0, keyInfoD, AlgorithmConstants.PINPAD_ENCRYPT_STRING_MODE_EBC, iv, MSRDevice.TYPE_F6L4);
             sendSuccessLog(mContext.getString(R.string.operation_succeed));
         } catch (DeviceException e) {
             e.printStackTrace();
@@ -48,12 +72,17 @@ public class MSRAction extends ActionModel {
                     if (arg0.getResultCode() == OperationResult.SUCCESS) {
                         sendSuccessLog2(mContext.getString(R.string.find_card_succeed));
                         MSRTrackData data = ((MSROperationResult) arg0).getMSRTrackData();
+                        if(data != null && data.getTruncatedPAN() != null){
+                            sendSuccessLog2(String.format("getTruncatedPAN=%s", StringUtility.ByteArrayToString(data.getTruncatedPAN(), data.getTruncatedPAN().length)));
+                        }
                         int trackError = 0;
                         byte[] trackData = null;
+                        byte[] truncatedPAN = null;
                         for (int trackNo = 0; trackNo < 3; trackNo++) {
                             trackError = data.getTrackError(trackNo);
                             if (trackError == MSRTrackData.NO_ERROR) {
                                 trackData = data.getTrackData(trackNo);
+                                truncatedPAN = data.getTruncatedPAN();
                                 sendSuccessLog2(String.format("trackNO = %d, trackData = %s", trackNo,
                                         StringUtility.ByteArrayToString(trackData, trackData.length)));
                             } else {
@@ -81,6 +110,9 @@ public class MSRAction extends ActionModel {
             if (operationResult.getResultCode() == OperationResult.SUCCESS) {
                 sendSuccessLog2(mContext.getString(R.string.find_card_succeed));
                 MSRTrackData data = ((MSROperationResult) operationResult).getMSRTrackData();
+                if(data != null && data.getTruncatedPAN() != null){
+                    sendSuccessLog2(String.format("getTruncatedPAN=%s", StringUtility.ByteArrayToString(data.getTruncatedPAN(), data.getTruncatedPAN().length)));
+                }
                 int trackError = 0;
                 byte[] trackData = null;
                 for (int trackNo = 0; trackNo < 3; trackNo++) {
@@ -116,6 +148,7 @@ public class MSRAction extends ActionModel {
     public void close(Map<String, Object> param, ActionCallback callback) {
         try {
             device.close();
+            pinpadDevice.close();
             sendSuccessLog(mContext.getString(R.string.operation_succeed));
         } catch (DeviceException e) {
             e.printStackTrace();

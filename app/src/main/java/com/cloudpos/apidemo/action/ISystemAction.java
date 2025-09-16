@@ -3,6 +3,7 @@ package com.cloudpos.apidemo.action;
 
 import com.cloudpos.DeviceException;
 import com.cloudpos.advance.ext.POSTerminalAdvance;
+import com.cloudpos.advance.ext.sdk.system.constants.SystemAdvanceConstants;
 import com.cloudpos.advance.ext.system.ISystemDevice;
 import com.cloudpos.apidemoforunionpaycloudpossdk.R;
 import com.cloudpos.mvc.base.ActionCallback;
@@ -433,6 +434,31 @@ public class ISystemAction extends ActionModel {
             if (iDevice.isOpened()) {
                 iDevice.close();
             }
+            sendSuccessLog(mContext.getString(R.string.operation_succeed));
+        } catch (DeviceException e) {
+            e.printStackTrace();
+            sendFailedLog(mContext.getString(R.string.operation_failed));
+        }
+    }
+
+
+    public void enableNavigationButton(Map<String, Object> param, ActionCallback callback) {
+        try {
+            iDevice.disableNavigationBarButton(SystemAdvanceConstants.BTN_ID_HOME, true);
+            iDevice.disableNavigationBarButton(SystemAdvanceConstants.BTN_ID_BACK, true);
+            iDevice.disableNavigationBarButton(SystemAdvanceConstants.BTN_ID_RESENT, true);
+            sendSuccessLog(mContext.getString(R.string.operation_succeed));
+        } catch (DeviceException e) {
+            e.printStackTrace();
+            sendFailedLog(mContext.getString(R.string.operation_failed));
+        }
+    }
+
+    public void disableNavigationButton(Map<String, Object> param, ActionCallback callback) {
+        try {
+            iDevice.disableNavigationBarButton(SystemAdvanceConstants.BTN_ID_HOME, false);
+            iDevice.disableNavigationBarButton(SystemAdvanceConstants.BTN_ID_BACK, false);
+            iDevice.disableNavigationBarButton(SystemAdvanceConstants.BTN_ID_RESENT, false);
             sendSuccessLog(mContext.getString(R.string.operation_succeed));
         } catch (DeviceException e) {
             e.printStackTrace();

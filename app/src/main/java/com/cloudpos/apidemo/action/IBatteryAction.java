@@ -2,11 +2,14 @@
 package com.cloudpos.apidemo.action;
 
 import com.cloudpos.DeviceException;
+import com.cloudpos.POSTerminal;
 import com.cloudpos.advance.ext.POSTerminalAdvance;
 import com.cloudpos.advance.ext.system.ISystemDevice;
 import com.cloudpos.advance.ext.system.battery.IBatteryDevice;
+import com.cloudpos.androidmvcmodel.common.Constants;
 import com.cloudpos.apidemoforunionpaycloudpossdk.R;
 import com.cloudpos.mvc.base.ActionCallback;
+import com.cloudpos.serialport.SerialPortDevice;
 
 import java.util.Map;
 
@@ -38,6 +41,16 @@ public class IBatteryAction extends ActionModel {
                 iDevice.open(this.mContext);
             }
             sendSuccessLog(mContext.getString(R.string.operation_succeed));
+        } catch (DeviceException e) {
+            e.printStackTrace();
+            sendFailedLog(mContext.getString(R.string.operation_failed));
+        }
+    }
+
+    public void switchShowBatteryPercent(Map<String, Object> param, ActionCallback callback) {
+        try {
+            iSystemDevice.setShowBatteryPercent(!iSystemDevice.isEnabledShowBatteryPercent());
+            sendSuccessLog(iSystemDevice.isEnabledShowBatteryPercent()?"open":"close");
         } catch (DeviceException e) {
             e.printStackTrace();
             sendFailedLog(mContext.getString(R.string.operation_failed));

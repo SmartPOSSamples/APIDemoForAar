@@ -23,4 +23,6 @@ public class Constants {
     public static final String LOGICID = "LogicID";
     public static final int HANDLER_OPEN_SERIAL_PORT = 5;
     public static final int HANDLER_OPEN_PSAMCARD_PORT = 6;
+    public static final String SLOT_ID = "SLOT_ID";
+    public static final int HANDLER_CHECK_IMEI_SLOT = 7;
 }

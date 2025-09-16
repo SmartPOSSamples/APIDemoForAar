@@ -310,6 +310,9 @@ public class MainActivity extends Activity implements OnItemClickListener, OnIte
                 case Constants.HANDLER_OPEN_PSAMCARD_PORT:
                     showPSAMCardSpinner();
                     break;
+                case Constants.HANDLER_CHECK_IMEI_SLOT:
+                    showCheckIMEISlot();
+                    break;
                 default:
                     break;
             }
@@ -526,6 +529,35 @@ public class MainActivity extends Activity implements OnItemClickListener, OnIte
             TestItem item = MainApplication.testItems.get(currentMainIndex)
                     .getSubItem(currentSubIndex);
             testParameters.put(Constants.LOGICID, logicID);
+            ActionManager.doSubmit(
+                    MainApplication.testItems.get(currentMainIndex).getCommand()
+                            + "/" + item.getCommand(),
+                    context,
+                    testParameters,
+                    actionCallback
+            );
+        }).create();
+        popupHandler.sendEmptyMessageAtTime(0, 200);
+    }
+
+
+    private void showCheckIMEISlot() {
+        String[] logicIDs = MainApplication.getInstance().getApplicationContext().getResources().getStringArray(R.array.imeiSlot);
+        spinnerDialog = new AlertDialog.Builder(this).setItems(logicIDs, (dialog, which) -> {
+            int logicID = 1;
+            switch (logicIDs[which]) {
+                case "slot_0":
+                    logicID = 0;
+                    break;
+                case "slot_1":
+                    logicID = 1;
+                    break;
+                default:
+                    break;
+            }
+            TestItem item = MainApplication.testItems.get(currentMainIndex)
+                    .getSubItem(currentSubIndex);
+            testParameters.put(Constants.SLOT_ID, logicID);
             ActionManager.doSubmit(
                     MainApplication.testItems.get(currentMainIndex).getCommand()
                             + "/" + item.getCommand(),

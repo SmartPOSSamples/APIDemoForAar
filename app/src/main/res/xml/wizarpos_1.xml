@@ -483,6 +483,11 @@
             name_EN="Open"
             needTest="true" />
         <SubItem
+            command="openForEncryptPAN"
+            name_CN="openForEncryptPAN"
+            name_EN="openForEncryptPAN"
+            needTest="true" />
+        <SubItem
             command="listenForSwipe"
             name_CN="listenForSwipe"
             name_EN="listenForSwipe"
@@ -563,6 +568,42 @@
             name_CN="getMasterKeyCheckValue"
             name_EN="getMasterKeyCheckValue"
             needTest="true" />
+<!--        <SubItem-->
+<!--            command="updateUserKeyWithTR31Format"-->
+<!--            name_CN="updateUserKeyWithTR31Format"-->
+<!--            name_EN="updateUserKeyWithTR31Format"-->
+<!--            needTest="true" />-->
+
+        <SubItem
+            command="updateMasterKey"
+            name_CN="updateMasterKey"
+            name_EN="updateMasterKey"
+            needTest="true" />
+        <SubItem
+            command="updateMasterKeyCheckMK"
+            name_CN="updateMasterKeyCheckMK"
+            name_EN="updateMasterKeyCheckMK"
+            needTest="true" />
+        <SubItem
+            command="getMasterKeyCheckValue"
+            name_CN="getMasterKeyCheckValue"
+            name_EN="getMasterKeyCheckValue"
+            needTest="true" />
+<!--        <SubItem-->
+<!--            command="updateMasterKeyWithMasterKeyByTr31"-->
+<!--            name_CN="updateMasterKeyWithMasterKeyByTr31"-->
+<!--            name_EN="updateMasterKeyWithMasterKeyByTr31"-->
+<!--            needTest="true" />-->
+<!--        <SubItem-->
+<!--            command="updateMasterKeyWithTransferKeyByTr31"-->
+<!--            name_CN="updateMasterKeyWithTransferKeyByTr31"-->
+<!--            name_EN="updateMasterKeyWithTransferKeyByTr31"-->
+<!--            needTest="true" />-->
+<!--        <SubItem-->
+<!--            command="updateTransferKeyWithTransferKeyByTr31"-->
+<!--            name_CN="updateTransferKeyWithTransferKeyByTr31"-->
+<!--            name_EN="updateTransferKeyWithTransferKeyByTr31"-->
+<!--            needTest="true" />-->
         <SubItem
             command="getSessionKeyCheckValue"
             name_CN="getSessionKeyCheckValue"
@@ -911,9 +952,19 @@
         name_CN="串口测试"
         name_EN="SerialPort">
         <SubItem
+            command="testUSB"
+            name_CN="testUSB"
+            name_EN="testUSB"
+            needTest="true" />
+        <SubItem
             command="open"
             name_CN="Open"
             name_EN="Open"
+            needTest="true" />
+        <SubItem
+            command="changeSerialPortParams"
+            name_CN="changeSerialPortParams"
+            name_EN="changeSerialPortParams"
             needTest="true" />
         <SubItem
             command="waitForRead"
@@ -1686,6 +1737,16 @@
                 name_EN="shutdown"
                 needTest="true" />
             <SubItem
+                command="enableNavigationButton"
+                name_CN="enableNavigationButton"
+                name_EN="enableNavigationButton"
+                needTest="true" />
+            <SubItem
+                command="disableNavigationButton"
+                name_CN="disableNavigationButton"
+                name_EN="disableNavigationButton"
+                needTest="true" />
+            <SubItem
                 command="close"
                 name_CN="close"
                 name_EN="close"
@@ -1759,6 +1820,11 @@
                 command="close"
                 name_CN="close"
                 name_EN="close"
+                needTest="true" />
+            <SubItem
+                command="switchShowBatteryPercent"
+                name_CN="switchShowBatteryPercent"
+                name_EN="switchShowBatteryPercent"
                 needTest="true" />
         </SubItem>
         <SubItem
@@ -1956,6 +2022,11 @@
                 name_EN="removeWifiSSID"
                 needTest="true" />
             <SubItem
+                command="getWifiMac"
+                name_CN="getWifiMac"
+                name_EN="getWifiMac"
+                needTest="true" />
+            <SubItem
                 command="close"
                 name_CN="close"
                 name_EN="close"
@@ -1963,4 +2034,45 @@
         </SubItem>
     </MainItem>
 
+    <MainItem
+        command="CustomerDisplayAction"
+        name_CN="CustomerDisplay"
+        name_EN="CustomerDisplay">
+        <SubItem
+            command="open"
+            name_CN="open"
+            name_EN="open"
+            needTest="true" />
+        <SubItem
+            command="displayImageOnCustomerScreenByBitmap"
+            name_CN="displayImageOnCustomerScreen(Bitmap)"
+            name_EN="displayImageOnCustomerScreen(Bitmap)"
+            needTest="true" />
+        <SubItem
+            command="displayImageOnCustomerScreenByImageData"
+            name_CN="displayImageOnCustomerScreen(ImageData)"
+            name_EN="displayImageOnCustomerScreen(ImageData)"
+            needTest="true" />
+        <SubItem
+            command="close"
+            name_CN="close"
+            name_EN="close"
+            needTest="true" />
+    </MainItem>
+
+    <MainItem
+        command="TerminalAction"
+        name_CN="Terminal"
+        name_EN="Terminal">
+        <SubItem
+            command="getIMEI"
+            name_CN="getIMEI"
+            name_EN="getIMEI"
+            needTest="true" />
+        <SubItem
+            command="getSIMCardSN"
+            name_CN="getSIMCardSN"
+            name_EN="getSIMCardSN"
+            needTest="true" />
+    </MainItem>
 </DriverTest>
