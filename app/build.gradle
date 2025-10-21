@@ -32,9 +32,9 @@ android {
 
 dependencies {
     implementation files('libs/allutils.jar')
-    implementation(name: 'cloudpossdkV1.7.6.3_Standard', ext: 'aar')
-    implementation files('libs/bcprov-jdk15-138.jar')
+    implementation(name: 'cloudpossdkV1.7.6.8_Standard', ext: 'aar')
     //create QR code
     implementation files('libs/zxing.jar')
     implementation 'com.alibaba:fastjson:1.2.78'
+    implementation files('libs\\bcprov-jdk15-138.jar')
 }

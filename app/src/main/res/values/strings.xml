@@ -29,6 +29,9 @@
     <string name="scan_fingerprint_fail">Scan fingerprint failed</string>
     <string name="scan_fingerprint_first">Scan first fingerprint</string>
     <string name="scan_fingerprint_second">Scan second fingerprint</string>
+    <string name="scan_fingerprint_third">Scan third fingerprint</string>
+    <string name="scan_fingerprint_fourth">Scan fourth fingerprint</string>
+    <string name="scan_fingerprint_target">Scan target fingerprint</string>
     <string name="match_fingerprint">Match fingerprint</string>
     <string name="match_fingerprint_result">Fingerprint match degree ：</string>
     <string name="match_fingerprint_fail">Match fail</string>

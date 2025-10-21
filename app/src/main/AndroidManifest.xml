@@ -168,6 +168,8 @@
     <uses-permission android:name="android.permission.CLOUDPOS_INSTALL_SILENCE"/>
     <uses-permission android:name="android.permission.CLOUDPOS_NAVIGATION_BUTTON" />
 
+    <uses-permission android:name="android.permission.CLOUDPOS_USERCERTIFICATE" />
+
     <application
         android:name="com.cloudpos.androidmvcmodel.MainApplication"
         android:allowBackup="true"

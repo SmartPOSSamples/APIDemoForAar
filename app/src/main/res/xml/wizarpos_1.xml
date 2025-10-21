@@ -1110,6 +1110,7 @@
             name_CN="cancelRequest"
             name_EN="cancelRequest"
             needTest="true" />
+
         <SubItem
             command="close"
             name_CN="close"
@@ -1251,6 +1252,11 @@
             command="updateKey"
             name_CN="updateKey"
             name_EN="updateKey"
+            needTest="true" />
+        <SubItem
+            command="updateSM4Key"
+            name_CN="updateSM4Key"
+            name_EN="updateSM4Key"
             needTest="true" />
         <SubItem
             command="keyEncryptAndDecry_v1"
@@ -2032,6 +2038,76 @@
                 name_EN="close"
                 needTest="true" />
         </SubItem>
+        <SubItem
+            command="IUserCredentialsAction"
+            name_CN="UserCredentials"
+            name_EN="UserCredentials">
+            <SubItem
+                command="open"
+                name_CN="open"
+                name_EN="open"
+                needTest="true" />
+            <SubItem
+                command="close"
+                name_CN="close"
+                name_EN="close"
+                needTest="true" />
+            <SubItem
+                command="clearCredentials"
+                name_CN="clearCredentials"
+                name_EN="clearCredentials"
+                needTest="true" />
+            <SubItem
+                command="deleteCaCert"
+                name_CN="deleteCaCert"
+                name_EN="deleteCaCert"
+                needTest="true" />
+            <SubItem
+                command="existCaCert"
+                name_CN="existCaCert"
+                name_EN="existCaCert"
+                needTest="true" />
+            <SubItem
+                command="existWifiKeyPair"
+                name_CN="existWifiKeyPair"
+                name_EN="existWifiKeyPair"
+                needTest="true" />
+            <SubItem
+                command="existVPNKeyPair"
+                name_CN="existVPNKeyPair"
+                name_EN="existVPNKeyPair"
+                needTest="true" />
+            <SubItem
+                command="getCaCert"
+                name_CN="getCaCert"
+                name_EN="getCaCert"
+                needTest="true" />
+            <SubItem
+                command="installCaCert"
+                name_CN="installCaCert"
+                name_EN="installCaCert"
+                needTest="true" />
+            <SubItem
+                command="installWifiKeyPair"
+                name_CN="installWifiKeyPair"
+                name_EN="installWifiKeyPair"
+                needTest="true" />
+            <SubItem
+                command="installVPNKeyPair"
+                name_CN="installVPNKeyPair"
+                name_EN="installVPNKeyPair"
+                needTest="true" />
+            <SubItem
+                command="removeWifiKeyPair"
+                name_CN="removeWifiKeyPair"
+                name_EN="removeWifiKeyPair"
+                needTest="true" />
+            <SubItem
+                command="removeVPNKeyPair"
+                name_CN="removeVPNKeyPair"
+                name_EN="removeVPNKeyPair"
+                needTest="true" />
+        </SubItem>
     </MainItem>
 
     <MainItem
@@ -2073,6 +2149,67 @@
             command="getSIMCardSN"
             name_CN="getSIMCardSN"
             name_EN="getSIMCardSN"
+            needTest="true" />
+    </MainItem>
+
+    <MainItem
+        command="ExtBoardAction"
+        name_CN="ExtBoard"
+        name_EN="ExtBoard">
+        <SubItem
+            command="open"
+            name_CN="open"
+            name_EN="open"
+            needTest="true" />
+        <SubItem
+            command="close"
+            name_CN="close"
+            name_EN="close"
+            needTest="true" />
+        <SubItem
+            command="getBoardVersion"
+            name_CN="getBoardVersion"
+            name_EN="getBoardVersion"
+            needTest="true" />
+        <SubItem
+            command="listenForRead"
+            name_CN="listenForRead"
+            name_EN="listenForRead"
+            needTest="true" />
+        <SubItem
+            command="readDIN"
+            name_CN="readDIN"
+            name_EN="readDIN"
+            needTest="true" />
+        <SubItem
+            command="setLowPulseVoltage"
+            name_CN="setLowPulseVoltage"
+            name_EN="setLowPulseVoltage"
+            needTest="true" />
+        <SubItem
+            command="setHighPulseVoltage"
+            name_CN="setHighPulseVoltage"
+            name_EN="setHighPulseVoltage"
+            needTest="true" />
+        <SubItem
+            command="triggerRelay"
+            name_CN="triggerRelay"
+            name_EN="triggerRelay"
+            needTest="true" />
+        <SubItem
+            command="triggerPulse"
+            name_CN="triggerPulse"
+            name_EN="triggerPulse"
+            needTest="true" />
+        <SubItem
+            command="waitForRead"
+            name_CN="waitForRead"
+            name_EN="waitForRead"
+            needTest="true" />
+        <SubItem
+            command="write"
+            name_CN="write"
+            name_EN="write"
             needTest="true" />
     </MainItem>
 </DriverTest>

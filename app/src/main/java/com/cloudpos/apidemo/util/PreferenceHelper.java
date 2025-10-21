@@ -92,4 +92,10 @@ public class PreferenceHelper {
 		edit.putBoolean(key, value);
 		edit.commit();
 	}
+
+    public void setStringValue(String key, String value) {
+        Editor edit = preferences.edit();
+        edit.putString(key, value);
+        edit.commit();
+    }
 }

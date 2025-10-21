@@ -43,4 +43,13 @@ public class TerminalAction extends ActionModel{
             mCallback.sendResponse(Constants.HANDLER_CHECK_IMEI_SLOT, null);
         }
     }
+
+    public void getSN(Map<String, Object> param, ActionCallback callback) {
+        if(device == null){
+            device =
+                    (TerminalSpec) POSTerminal.getInstance(mContext).getTerminalSpec();
+            device.getSerialNumber();
+        }
+
+    }
 }

@@ -7,6 +7,8 @@ import com.cloudpos.AlgorithmConstants;
 import com.cloudpos.DeviceException;
 import com.cloudpos.POSTerminal;
 import com.cloudpos.TerminalSpec;
+import com.cloudpos.apidemo.util.KeyGenerator;
+import com.cloudpos.apidemo.util.SM4Utils;
 import com.cloudpos.hsm.HSMDevice;
 import com.cloudpos.apidemo.util.ByteConvertStringUtil;
 import com.cloudpos.apidemo.util.CAController;
@@ -90,6 +92,28 @@ public class HSMModel extends ActionModel {
             }
 
         } catch (DeviceException e) {
+            e.printStackTrace();
+            sendFailedOnlyLog(mContext.getString(R.string.hsm_falied));
+        }
+    }
+
+    public void updateSM4Key(Map<String, Object> param, ActionCallback callback){
+        byte[] key = new byte[16];
+        try {
+            key = KeyGenerator.generate128BitKey();
+            String data = "this is a data";
+            byte[] encrypted = SM4Utils.encryptByEcbPkcs7Padding(key, data.getBytes());
+            byte[] signatureData = SM4Utils.sign(key, encrypted);
+            int result = device.updateSM4Key(6,key,signatureData);
+            if(result >= 0){
+                sendSuccessLog2(mContext.getString(R.string.hsm_succeed));
+            }else {
+                sendFailedOnlyLog(mContext.getString(R.string.hsm_falied));
+            }
+        } catch (NoSuchAlgorithmException e) {
+            e.printStackTrace();
+            sendFailedOnlyLog(mContext.getString(R.string.hsm_falied));
+        } catch (Exception e) {
             e.printStackTrace();
             sendFailedOnlyLog(mContext.getString(R.string.hsm_falied));
         }

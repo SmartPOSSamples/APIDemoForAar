@@ -12,6 +12,7 @@ import com.cloudpos.fingerprint.FingerprintDevice;
 import com.cloudpos.fingerprint.FingerprintOperationResult;
 import com.cloudpos.apidemoforunionpaycloudpossdk.R;
 import com.cloudpos.mvc.base.ActionCallback;
+import com.cloudpos.sdk.impl.DeviceName;
 
 public class FingerPrintAction extends ActionModel {
 
@@ -27,9 +28,14 @@ public class FingerPrintAction extends ActionModel {
     }
 
     public void open(Map<String, Object> param, ActionCallback callback) {
+        boolean result = POSTerminal.getInstance(mContext).isDeviceExist(DeviceName.FINGERPRINT);
         try {
-            device.open(FingerprintDevice.FINGERPRINT);
-            sendSuccessLog(mContext.getString(R.string.operation_succeed));
+            if(result){
+                device.open(FingerprintDevice.FINGERPRINT);
+                sendSuccessLog(mContext.getString(R.string.operation_succeed));
+            }else{
+                sendSuccessLog(mContext.getString(R.string.operation_failed));
+            }
         } catch (DeviceException e) {
             e.printStackTrace();
             sendFailedLog(mContext.getString(R.string.operation_failed));
@@ -90,6 +96,7 @@ public class FingerPrintAction extends ActionModel {
         }
     }
 
+
     public void cancelRequest(Map<String, Object> param, ActionCallback callback) {
         try {
             device.cancelRequest();
@@ -111,19 +118,23 @@ public class FingerPrintAction extends ActionModel {
     }
 
     private Fingerprint getFingerprint() {
-        Fingerprint fingerprint = null;
-        try {
-            FingerprintOperationResult operationResult = device.waitForFingerprint(TimeConstants.FOREVER);
-            if (operationResult.getResultCode() == OperationResult.SUCCESS) {
-                fingerprint = operationResult.getFingerprint(0, 0);
-                sendSuccessLog2(mContext.getString(R.string.scan_fingerprint_success));
-            } else {
-                sendFailedOnlyLog(mContext.getString(R.string.scan_fingerprint_fail));
+        boolean result = POSTerminal.getInstance(mContext).isDeviceExist(DeviceName.FINGERPRINT);
+        if(result){
+            Fingerprint fingerprint = null;
+            try {
+                FingerprintOperationResult operationResult = device.waitForFingerprint(TimeConstants.FOREVER);
+                if (operationResult.getResultCode() == OperationResult.SUCCESS) {
+                    fingerprint = operationResult.getFingerprint(0, 0);
+                    sendSuccessLog2(mContext.getString(R.string.scan_fingerprint_success));
+                } else {
+                    sendFailedOnlyLog(mContext.getString(R.string.scan_fingerprint_fail));
+                }
+            } catch (DeviceException e) {
+                e.printStackTrace();
+                sendFailedOnlyLog(mContext.getString(R.string.operation_failed));
             }
-        } catch (DeviceException e) {
-            e.printStackTrace();
-            sendFailedOnlyLog(mContext.getString(R.string.operation_failed));
+            return fingerprint;
         }
-        return fingerprint;
+        return null;
     }
 }

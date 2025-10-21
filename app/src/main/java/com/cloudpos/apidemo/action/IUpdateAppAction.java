@@ -46,9 +46,9 @@ public class IUpdateAppAction extends ActionModel {
 
     public void installAndLaunchApkFile(Map<String, Object> param, ActionCallback callback) {
         try {
-            String apkFilePath = "";
+            String apkFilePath = "sdcard/apk/PayWizard_Demo_V2.0.0_2508081.apk";
             int type = 1;
-            String packageName = "";
+            String packageName = "com.wizarpos.paywizard.demo";
             String classNameOrAction = "";
             boolean b = iDevice.installAndLaunchApkFile(apkFilePath, type, packageName, classNameOrAction);
             if (b) {

@@ -16,6 +16,7 @@ import com.cloudpos.fingerprint.FingerprintOperationResult;
 import com.cloudpos.fingerprint.FingerprintPressOperationResult;
 import com.cloudpos.fingerprint.FingerprintRemoveOperationResult;
 import com.cloudpos.fingerprint.FingerprintTimeoutOperationResult;
+import com.cloudpos.sdk.impl.DeviceName;
 import com.cloudpos.sdk.util.SystemUtil;
 import com.cloudpos.apidemoforunionpaycloudpossdk.R;
 import com.cloudpos.mvc.base.ActionCallback;
@@ -256,7 +257,7 @@ public class IsoFingerPrintAction extends ActionModel {
             callback.sendResponse(mContext.getString(R.string.press_fingerprint) + "4");
             fpList.add(device.getFingerprint(ISOFINGERPRINT_TYPE_ISO2005).getFeature());
             callback.sendResponse(mContext.getString(R.string.waiting));
-            int[] matchResultIndex = device.identify(fingerprint1.getFeature(), fpList, 3);
+            int[] matchResultIndex = device.identify(fingerprint1.getFeature(), fpList, 1);
             Log.d("matchResultIndex", "matchResultIndex = " + matchResultIndex.length);
             if (matchResultIndex.length > 0) {
                 for (int index : matchResultIndex) {
@@ -344,5 +345,26 @@ public class IsoFingerPrintAction extends ActionModel {
             e.printStackTrace();
             sendFailedLog(mContext.getString(R.string.operation_failed));
         }
+    }
+
+    private Fingerprint getFingerprint() {
+        boolean result = POSTerminal.getInstance(mContext).isDeviceExist(DeviceName.FINGERPRINT);
+        if(result){
+            Fingerprint fingerprint = null;
+            try {
+                FingerprintOperationResult operationResult = device.waitForFingerprint(TimeConstants.FOREVER);
+                if (operationResult.getResultCode() == OperationResult.SUCCESS) {
+                    fingerprint = operationResult.getFingerprint(0, 0);
+                    sendSuccessLog2(mContext.getString(R.string.scan_fingerprint_success));
+                } else {
+                    sendFailedOnlyLog(mContext.getString(R.string.scan_fingerprint_fail));
+                }
+            } catch (DeviceException e) {
+                e.printStackTrace();
+                sendFailedOnlyLog(mContext.getString(R.string.operation_failed));
+            }
+            return fingerprint;
+        }
+        return null;
     }
 }
