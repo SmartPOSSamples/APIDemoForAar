@@ -7,8 +7,8 @@ android {
         applicationId "com.cloudpos.apidemoforunionpaycloudpossdk"
         minSdkVersion 23
         targetSdkVersion 29
-        versionCode 125
-        versionName "1.2.5_V1.5.4.082"
+        versionCode 126
+        versionName "1.2.6_V1.5.4.082"
     }
 
     repositories {
@@ -32,7 +32,7 @@ android {
 
 dependencies {
     implementation files('libs/allutils.jar')
-    implementation(name: 'cloudpossdkV1.7.6.8_Standard', ext: 'aar')
+    implementation(name: 'cloudpossdkV1.7.6.10_Standard', ext: 'aar')
     //create QR code
     implementation files('libs/zxing.jar')
     implementation 'com.alibaba:fastjson:1.2.78'

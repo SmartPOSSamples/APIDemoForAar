@@ -11,6 +11,7 @@ import android.widget.ArrayAdapter;
 import android.widget.BaseAdapter;
 import android.widget.CompoundButton;
 import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.Spinner;
 import android.widget.Switch;
 import android.widget.TextView;
@@ -20,6 +21,7 @@ import com.cloudpos.androidmvcmodel.OnItemEventListener;
 import com.cloudpos.androidmvcmodel.entity.SubItem;
 import com.cloudpos.androidmvcmodel.entity.TestItem;
 import com.cloudpos.androidmvcmodel.entity.TypeConstant;
+import com.cloudpos.apidemo.util.PreferenceHelper;
 import com.cloudpos.apidemoforunionpaycloudpossdk.R;
 import com.cloudpos.androidmvcmodel.entity.MainItem;
 import com.cloudpos.androidmvcmodel.helper.LanguageHelper;
@@ -146,6 +148,7 @@ public class ListViewAdapter extends BaseAdapter {
             viewHloder.spinner = (Spinner) convertView.findViewById(R.id.myspinner);
             viewHloder.aSwitch = (Switch) convertView.findViewById(R.id.sw_btn);
             viewHloder.llSpinner = (LinearLayout) convertView.findViewById(R.id.ll_spinner);
+            viewHloder.rlItemTest = (RelativeLayout) convertView.findViewById(R.id.rl_item_test);
             convertView.setTag(viewHloder);
         }
         viewHloder = (ViewHloder) convertView.getTag();
@@ -155,19 +158,18 @@ public class ListViewAdapter extends BaseAdapter {
                 viewHloder.aSwitch.setVisibility(View.GONE);
                 viewHloder.txtButton.setVisibility(View.VISIBLE);
                 viewHloder.txtButton.setText(item.getDisplayName(LanguageHelper.getLanguageType(context)));
+                viewHloder.rlItemTest.setBackgroundResource(R.drawable.btn_selector);
                 break;
             case TypeConstant.TYPE_CONSTANT_SPINNER:
+                viewHloder.rlItemTest.setBackgroundResource(R.color.transparent);
                 viewHloder.llSpinner.setVisibility(View.VISIBLE);
                 viewHloder.aSwitch.setVisibility(View.GONE);
                 viewHloder.txtButton.setVisibility(View.GONE);
                 viewHloder.txtName.setText(item.getDisplayName(LanguageHelper.getLanguageType(context)));
-                if(mAdapterMap.get(item.getDisplayName(LanguageHelper.getLanguageType(context))) == null){
-                    ArrayAdapter adapter = new ArrayAdapter<String>(context, R.layout.spinner_item, item.getSpinner());
-                    viewHloder.spinner.setAdapter(adapter);
-                    mAdapterMap.put(item.getDisplayName(LanguageHelper.getLanguageType(context)), adapter);
-                }else{
-                    mAdapterMap.get(item.getDisplayName(LanguageHelper.getLanguageType(context))).notifyDataSetChanged();
-                }
+                ArrayAdapter adapter = new ArrayAdapter<String>(context, android.R.layout.simple_spinner_item, item.getSpinner());
+                viewHloder.spinner.setAdapter(adapter);
+                mAdapterMap.put(item.getDisplayName(LanguageHelper.getLanguageType(context)), adapter);
+                viewHloder.spinner.setSelection(PreferenceHelper.getInstance(context).getIntValue(item.getCommand()));
                 viewHloder.spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
                     @Override
                     public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
@@ -181,6 +183,7 @@ public class ListViewAdapter extends BaseAdapter {
                 });
                 break;
             case TypeConstant.TYPE_CONSTANT_SWITCH:
+                viewHloder.rlItemTest.setBackgroundResource(R.color.transparent);
                 viewHloder.llSpinner.setVisibility(View.GONE);
                 viewHloder.aSwitch.setVisibility(View.VISIBLE);
                 viewHloder.txtButton.setVisibility(View.GONE);
@@ -209,6 +212,7 @@ public class ListViewAdapter extends BaseAdapter {
         TextView txtName;
         TextView txtButton;
         LinearLayout llSpinner;
+        RelativeLayout rlItemTest;
         int index = 0;
         boolean isChecked = false;
     }

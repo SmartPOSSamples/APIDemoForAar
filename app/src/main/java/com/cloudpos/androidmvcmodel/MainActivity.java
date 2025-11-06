@@ -35,6 +35,7 @@ import com.cloudpos.androidmvcmodel.entity.SubItem;
 import com.cloudpos.androidmvcmodel.entity.TestItem;
 import com.cloudpos.androidmvcmodel.helper.LanguageHelper;
 import com.cloudpos.androidmvcmodel.helper.LogHelper;
+import com.cloudpos.apidemo.util.PreferenceHelper;
 import com.cloudpos.mvc.impl.ActionCallbackImpl;
 import com.cloudpos.apidemoforunionpaycloudpossdk.R;
 import com.cloudpos.mvc.base.ActionCallback;
@@ -366,7 +367,7 @@ public class MainActivity extends Activity implements OnItemClickListener, OnIte
                 testParameters.put(Constants.SUB_ITEM, subItem.getCommand());
                 testParameters.put(Constants.SPINNERS, spinners);
                 testParameters.put(Constants.SELECTED_INDEX, selectedIndex);
-
+                PreferenceHelper.getInstance(this).setIntValue(subItem.getCommand(), selectedIndex);
                 ActionManager.doSubmit(MainApplication.testItems.get(currentMainIndex).getCommand()
                                 + "/" + subItem.getCommand(),
                         context,
@@ -389,6 +390,7 @@ public class MainActivity extends Activity implements OnItemClickListener, OnIte
             testParameters.put(Constants.ITEM, item.getCommand());
             testParameters.put(Constants.SPINNERS, spinners);
             testParameters.put(Constants.SELECTED_INDEX, selectedIndex);
+            PreferenceHelper.getInstance(this).setIntValue(item.getCommand(), selectedIndex);
 
             ActionManager.doSubmit(
                     MainApplication.testItems.get(currentMainIndex)

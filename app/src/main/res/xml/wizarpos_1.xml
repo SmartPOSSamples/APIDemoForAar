@@ -130,9 +130,35 @@
         name_CN="非接卡(Mifare)"
         name_EN="RFCard(Mifare)">
         <SubItem
+            command="setSectorIndex"
+            name_CN="setSectorIndex"
+            name_EN="setSectorIndex"
+            spinner="0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15"
+            type='2'
+            needTest="true" />
+        <SubItem
+            command="setBlockIndex"
+            name_CN="setBlockIndex"
+            name_EN="setBlockIndex"
+            spinner="0,1,2,3"
+            type='2'
+            needTest="true" />
+        <SubItem
+            command="setTransferBlockIndex"
+            name_CN="setTransferBlockIndex"
+            name_EN="setTransferBlockIndex"
+            spinner="0,1,2,3"
+            type='2'
+            needTest="true" />
+        <SubItem
             command="open"
             name_CN="Open"
             name_EN="Open"
+            needTest="true" />
+        <SubItem
+            command="getMode"
+            name_CN="GetMode"
+            name_EN="GetMode"
             needTest="true" />
         <SubItem
             command="listenForCardPresent"
@@ -208,6 +234,16 @@
             command="verifyKeyB"
             name_CN="verifyKeyB"
             name_EN="verifyKeyB"
+            needTest="true" />
+        <SubItem
+            command="restoreValue"
+            name_CN="restoreValue"
+            name_EN="restoreValue"
+            needTest="true" />
+        <SubItem
+            command="transferValue"
+            name_CN="transferValue"
+            name_EN="transferValue"
             needTest="true" />
         <SubItem
             command="readBlock"

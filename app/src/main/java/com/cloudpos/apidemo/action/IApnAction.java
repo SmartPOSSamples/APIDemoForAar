@@ -60,8 +60,8 @@ public class IApnAction extends ActionModel {
 
     public void add(Map<String, Object> param, ActionCallback callback) {
         try {
-            String name = "";
-            String apn = "";
+            String name = "APN add";
+            String apn = "IMS";
             String result = iDevice.add(name, apn);
             sendSuccessLog(mContext.getString(R.string.operation_succeed) + " add : " + result);
         } catch (DeviceException e) {
@@ -72,22 +72,25 @@ public class IApnAction extends ActionModel {
 
     public void addByAllArgs(Map<String, Object> param, ActionCallback callback) {
         try {
-            String apn = "IMS";
-            String carrier = "Orange Botswana";
-            String mcc = "460";
-            String mnc = "01";
-            String protocol = "IPv4/IPv6";
-            String roaming_protocol = "IPv4/IPv6";
+            String apn = "mms";
+            String carrier = "APN addByAllArgs";
+            String mcc = "204";
+            String mnc = "04";
+            String protocol = "IPv4";
+            String roaming_protocol = "IPv4";
             String type = "ims";
+            String userName = "user";
+            String pwd = "123456789";
+            String mmsc = "http://mmsc.monternet.com";
             String result = iDevice.addByAllArgs(carrier, apn, mcc, mnc, null, null,
                     null,
                     null,
+                    userName,
                     null,
-                    null,
-                    null,
-                    null,
+                    pwd,
+                    mmsc,
                     null, protocol, roaming_protocol, type, null, null, null);
-            sendSuccessLog(mContext.getString(R.string.operation_succeed) + " addByAllArgs : " + result);
+            sendSuccessLog("addByAllArgs : " + result);
         } catch (DeviceException e) {
             e.printStackTrace();
             sendFailedLog(mContext.getString(R.string.operation_failed));
@@ -97,9 +100,9 @@ public class IApnAction extends ActionModel {
     public void addByMCCAndMNC(Map<String, Object> param, ActionCallback callback) {
         try {
             String apn = "IMS";
-            String carrier = "Orange Botswana";
-            String mcc = "460";
-            String mnc = "01";
+            String carrier = "APN addByMCCAndMNC";
+            String mcc = "204";
+            String mnc = "04";
             String result = iDevice.addByMCCAndMNC(carrier, apn, mcc, mnc);
             sendSuccessLog("addByMCCAndMNC : " + mContext.getString(R.string.operation_succeed));
         } catch (DeviceException e) {

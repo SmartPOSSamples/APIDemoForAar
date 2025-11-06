@@ -5,4 +5,5 @@
     android:background="@android:color/white"
     android:textSize="20sp"
     android:textColor="@android:color/black"
+    android:drawableRight="@drawable/bg_item"
     android:gravity="center"/>

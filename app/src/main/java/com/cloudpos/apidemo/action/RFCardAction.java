@@ -1,6 +1,8 @@
 
 package com.cloudpos.apidemo.action;
 
+import android.util.Log;
+
 import java.util.Map;
 
 import com.cloudpos.DeviceException;
@@ -8,7 +10,10 @@ import com.cloudpos.OperationListener;
 import com.cloudpos.OperationResult;
 import com.cloudpos.POSTerminal;
 import com.cloudpos.TimeConstants;
+import com.cloudpos.androidmvcmodel.common.Constants;
 import com.cloudpos.apidemo.common.Common;
+import com.cloudpos.apidemo.util.MIFARECryptoOperations;
+import com.cloudpos.apidemo.util.PreferenceHelper;
 import com.cloudpos.card.ATR;
 import com.cloudpos.card.CPUCard;
 import com.cloudpos.card.Card;
@@ -21,6 +26,7 @@ import com.cloudpos.rfcardreader.RFCardReaderOperationResult;
 import com.cloudpos.apidemo.util.StringUtility;
 import com.cloudpos.apidemoforunionpaycloudpossdk.R;
 import com.cloudpos.mvc.base.ActionCallback;
+import com.cloudpos.sdk.util.ByteConvertStringUtil;
 
 public class RFCardAction extends ActionModel {
     private RFCardReaderDevice device = null;
@@ -41,8 +47,11 @@ public class RFCardAction extends ActionModel {
      * */
     // mifare card : 2-63,012;
     //ultralight card : 0,4-63
-    int sectorIndex = 0;
-    int blockIndex = 1;
+    int sectorIndex = 5;
+    int blockIndex = 2;
+
+    int transferSectorIndex = 6;
+    int transferblockIndex = 2;
     private int pinType_level3 = 2;
     int cardType = -1;
 
@@ -53,6 +62,32 @@ public class RFCardAction extends ActionModel {
             device = (RFCardReaderDevice) POSTerminal.getInstance(mContext)
                     .getDevice("cloudpos.device.rfcardreader");
         }
+        sectorIndex = PreferenceHelper.getInstance(mContext).getIntValue("setSectorIndex");
+        transferSectorIndex = PreferenceHelper.getInstance(mContext).getIntValue("setTransferSectorIndex");
+        blockIndex = PreferenceHelper.getInstance(mContext).getIntValue("setBlockIndex");
+        transferblockIndex = PreferenceHelper.getInstance(mContext).getIntValue("setTransferBlockIndex");
+    }
+
+    public void setSectorIndex(Map<String, Object> param, ActionCallback callback) {
+        String[] spinners = (String[]) param.get(Constants.SPINNERS);
+        sectorIndex = (int) param.get(Constants.SELECTED_INDEX);
+
+    }
+
+    public void setTransferSectorIndex(Map<String, Object> param, ActionCallback callback) {
+        String[] spinners = (String[]) param.get(Constants.SPINNERS);
+        transferSectorIndex = (int) param.get(Constants.SELECTED_INDEX);
+    }
+
+    public void setBlockIndex(Map<String, Object> param, ActionCallback callback) {
+        String[] spinners = (String[]) param.get(Constants.SPINNERS);
+        blockIndex = (int) param.get(Constants.SELECTED_INDEX);
+
+    }
+
+    public void setTransferBlockIndex(Map<String, Object> param, ActionCallback callback) {
+        String[] spinners = (String[]) param.get(Constants.SPINNERS);
+        transferblockIndex = (int) param.get(Constants.SELECTED_INDEX);
     }
 
     public void open(Map<String, Object> param, ActionCallback callback) {
@@ -61,7 +96,7 @@ public class RFCardAction extends ActionModel {
             sendSuccessLog(mContext.getString(R.string.operation_succeed));
         } catch (DeviceException e) {
             e.printStackTrace();
-            sendFailedLog(mContext.getString(R.string.operation_failed) + ",sectorIndex=" + sectorIndex + ",blockIndex=" + blockIndex);
+            sendFailedLog(mContext.getString(R.string.operation_failed));
         }
     }
 
@@ -250,8 +285,10 @@ public class RFCardAction extends ActionModel {
         };
         try {
 
-            boolean verifyResult = ((MifareCard) rfCard).verifyKeyA(sectorIndex, key);
-            sendSuccessLog(mContext.getString(R.string.operation_succeed));
+            if(((MifareCard) rfCard).verifyKeyA(sectorIndex, key))
+                sendSuccessLog(mContext.getString(R.string.operation_succeed));
+            else
+                sendFailedLog(mContext.getString(R.string.operation_failed) + ",sectorIndex=" + sectorIndex + ",blockIndex=" + blockIndex);
         } catch (DeviceException e) {
             e.printStackTrace();
             sendFailedLog(mContext.getString(R.string.operation_failed) + ",sectorIndex=" + sectorIndex + ",blockIndex=" + blockIndex);
@@ -265,11 +302,75 @@ public class RFCardAction extends ActionModel {
         };
         try {
 
-            boolean verifyResult = ((MifareCard) rfCard).verifyKeyB(sectorIndex, key);
-            sendSuccessLog(mContext.getString(R.string.operation_succeed));
+            if(((MifareCard) rfCard).verifyKeyB(sectorIndex, key))
+                sendSuccessLog(mContext.getString(R.string.operation_succeed));
+            else
+                sendFailedLog(mContext.getString(R.string.operation_failed) + ",sectorIndex=" + sectorIndex + ",blockIndex=" + blockIndex);
         } catch (DeviceException e) {
             e.printStackTrace();
             sendFailedLog(mContext.getString(R.string.operation_failed) + ",sectorIndex=" + sectorIndex + ",blockIndex=" + blockIndex);
+        }
+    }
+
+    public void verifyKeyA_transfer(Map<String, Object> param, ActionCallback callback) {
+        byte[] key = new byte[]{
+                (byte) 0xFF, (byte) 0xFF, (byte) 0xFF, (byte) 0xFF, (byte) 0xFF,
+                (byte) 0xFF
+        };
+        try {
+
+            if(((MifareCard) rfCard).verifyKeyA(transferSectorIndex, key))
+                sendSuccessLog(mContext.getString(R.string.operation_succeed));
+            else
+                sendFailedLog(mContext.getString(R.string.operation_failed) + ",sectorIndex=" + transferSectorIndex + ",blockIndex=" + transferblockIndex);
+        } catch (DeviceException e) {
+            e.printStackTrace();
+            sendFailedLog(mContext.getString(R.string.operation_failed) + ",sectorIndex=" + transferSectorIndex + ",blockIndex=" + transferblockIndex);
+        }
+    }
+
+    public void verifyKeyB_transfer(Map<String, Object> param, ActionCallback callback) {
+        byte[] key = new byte[]{
+                (byte) 0xFF, (byte) 0xFF, (byte) 0xFF, (byte) 0xFF, (byte) 0xFF,
+                (byte) 0xFF
+        };
+        try {
+
+            if(((MifareCard) rfCard).verifyKeyB(transferSectorIndex, key))
+                sendSuccessLog(mContext.getString(R.string.operation_succeed));
+            else
+                sendFailedLog(mContext.getString(R.string.operation_failed) + ",sectorIndex=" + transferSectorIndex + ",blockIndex=" + transferblockIndex);
+        } catch (DeviceException e) {
+            e.printStackTrace();
+            sendFailedLog(mContext.getString(R.string.operation_failed) + ",sectorIndex=" + transferSectorIndex + ",blockIndex=" + transferblockIndex);
+        }
+    }
+
+    public void restoreValue(Map<String, Object> param, ActionCallback callback) {
+        byte[] key = new byte[]{
+                (byte) 0xFF, (byte) 0xFF, (byte) 0xFF, (byte) 0xFF, (byte) 0xFF,
+                (byte) 0xFF
+        };
+        try {
+            ((MifareCard) rfCard).restoreValue(sectorIndex,blockIndex);
+            sendSuccessLog(mContext.getString(R.string.operation_succeed));
+        } catch (DeviceException e) {
+            e.printStackTrace();
+            sendFailedLog(mContext.getString(R.string.operation_failed));
+        }
+    }
+
+    public void transferValue(Map<String, Object> param, ActionCallback callback) {
+        byte[] key = new byte[]{
+                (byte) 0xFF, (byte) 0xFF, (byte) 0xFF, (byte) 0xFF, (byte) 0xFF,
+                (byte) 0xFF
+        };
+        try {
+            ((MifareCard) rfCard).transferValue(sectorIndex,transferblockIndex);
+            sendSuccessLog(mContext.getString(R.string.operation_succeed));
+        } catch (DeviceException e) {
+            e.printStackTrace();
+            sendFailedLog(mContext.getString(R.string.operation_failed));
         }
     }
 
@@ -325,10 +426,15 @@ public class RFCardAction extends ActionModel {
     }
 
     public void readBlock(Map<String, Object> param, ActionCallback callback) {
+        byte[] key = new byte[]{
+                (byte) 0xFF, (byte) 0xFF, (byte) 0xFF, (byte) 0xFF, (byte) 0xFF,
+                (byte) 0xFF
+        };
         try {
             byte[] result = ((MifareCard) rfCard).readBlock(sectorIndex, blockIndex);
             sendSuccessLog(mContext.getString(R.string.operation_succeed) + " (" + sectorIndex
                     + ", " + blockIndex + ")Block data: " + StringUtility.byteArray2String(result));
+
         } catch (DeviceException e) {
             e.printStackTrace();
             sendFailedLog(mContext.getString(R.string.operation_failed) + ",sectorIndex=" + sectorIndex + ",blockIndex=" + blockIndex);
@@ -337,6 +443,10 @@ public class RFCardAction extends ActionModel {
 
 
     public void writeBlock(Map<String, Object> param, ActionCallback callback) {
+        byte[] key = new byte[]{
+                (byte) 0xFF, (byte) 0xFF, (byte) 0xFF, (byte) 0xFF, (byte) 0xFF,
+                (byte) 0xFF
+        };
         byte[] arryData = Common.createMasterKey(16);
         try {
             ((MifareCard) rfCard).writeBlock(sectorIndex, blockIndex, arryData);
@@ -348,11 +458,16 @@ public class RFCardAction extends ActionModel {
     }
 
     public void readValue(Map<String, Object> param, ActionCallback callback) {
+        byte[] key = new byte[]{
+                (byte) 0xFF, (byte) 0xFF, (byte) 0xFF, (byte) 0xFF, (byte) 0xFF,
+                (byte) 0xFF
+        };
         try {
             MoneyValue value = ((MifareCard) rfCard).readValue(sectorIndex, blockIndex);
             sendSuccessLog(mContext.getString(R.string.operation_succeed) + " value = "
                     + value.getMoney() + " user data: "
                     + StringUtility.byteArray2String(value.getUserData()));
+
         } catch (DeviceException e) {
             e.printStackTrace();
             sendFailedLog(mContext.getString(R.string.operation_failed) + ",sectorIndex=" + sectorIndex + ",blockIndex=" + blockIndex);
@@ -360,12 +475,17 @@ public class RFCardAction extends ActionModel {
     }
 
     public void writeValue(Map<String, Object> param, ActionCallback callback) {
+        byte[] key = new byte[]{
+                (byte) 0xFF, (byte) 0xFF, (byte) 0xFF, (byte) 0xFF, (byte) 0xFF,
+                (byte) 0xFF
+        };
         try {
             MoneyValue value = new MoneyValue(new byte[]{
                     (byte) 0x39
             }, 1024);
             ((MifareCard) rfCard).writeValue(sectorIndex, blockIndex, value);
             sendSuccessLog(mContext.getString(R.string.operation_succeed));
+
         } catch (DeviceException e) {
             e.printStackTrace();
             sendFailedLog(mContext.getString(R.string.operation_failed) + ",sectorIndex=" + sectorIndex + ",blockIndex=" + blockIndex);
@@ -373,6 +493,10 @@ public class RFCardAction extends ActionModel {
     }
 
     public void incrementValue(Map<String, Object> param, ActionCallback callback) {
+        byte[] key = new byte[]{
+                (byte) 0xFF, (byte) 0xFF, (byte) 0xFF, (byte) 0xFF, (byte) 0xFF,
+                (byte) 0xFF
+        };
         try {
             ((MifareCard) rfCard).increaseValue(sectorIndex, blockIndex, 10);
             sendSuccessLog(mContext.getString(R.string.operation_succeed));
@@ -383,9 +507,14 @@ public class RFCardAction extends ActionModel {
     }
 
     public void decrementValue(Map<String, Object> param, ActionCallback callback) {
+        byte[] key = new byte[]{
+                (byte) 0xFF, (byte) 0xFF, (byte) 0xFF, (byte) 0xFF, (byte) 0xFF,
+                (byte) 0xFF
+        };
         try {
             ((MifareCard) rfCard).decreaseValue(sectorIndex, blockIndex, 10);
             sendSuccessLog(mContext.getString(R.string.operation_succeed));
+
         } catch (DeviceException e) {
             e.printStackTrace();
             sendFailedLog(mContext.getString(R.string.operation_failed) + ",sectorIndex=" + sectorIndex + ",blockIndex=" + blockIndex);

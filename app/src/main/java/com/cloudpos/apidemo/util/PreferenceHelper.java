@@ -82,6 +82,10 @@ public class PreferenceHelper {
         return preferences.getString(key, "");
     }
 
+    public int getIntValue(String key){
+        return preferences.getInt(key, 0);
+    }
+
 	public boolean terminalCertExist (){
 		boolean exist = preferences.getBoolean(KEY_TERMINAL_IS_EXIST, false);
 		return exist ;
@@ -96,6 +100,12 @@ public class PreferenceHelper {
     public void setStringValue(String key, String value) {
         Editor edit = preferences.edit();
         edit.putString(key, value);
+        edit.commit();
+    }
+
+    public void setIntValue(String key, int value) {
+        Editor edit = preferences.edit();
+        edit.putInt(key, value);
         edit.commit();
     }
 }
