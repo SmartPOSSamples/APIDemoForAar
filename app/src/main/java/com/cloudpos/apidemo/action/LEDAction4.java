@@ -11,7 +11,6 @@ import com.cloudpos.mvc.base.ActionCallback;
 
 public class LEDAction4 extends ActionModel {
 
-//    private LEDDevice device = new LEDDeviceImpl();
     private LEDDevice device = null;
 
     private int logicalID = LEDDevice.ID_RED;

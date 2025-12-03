@@ -381,9 +381,19 @@ public class ISystemAction extends ActionModel {
         }
     }
 
-    public void setWifi(Map<String, Object> param, ActionCallback callback) {
+    public void enableWifi(Map<String, Object> param, ActionCallback callback) {
         try {
             boolean b = iDevice.setWifi(true);
+            sendSuccessLog("setWifi : " + b);
+        } catch (DeviceException e) {
+            e.printStackTrace();
+            sendFailedLog(mContext.getString(R.string.operation_failed));
+        }
+    }
+
+    public void disableWifi(Map<String, Object> param, ActionCallback callback) {
+        try {
+            boolean b = iDevice.setWifi(false);
             sendSuccessLog("setWifi : " + b);
         } catch (DeviceException e) {
             e.printStackTrace();

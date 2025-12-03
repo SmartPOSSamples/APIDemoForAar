@@ -60,7 +60,7 @@ public class IApnAction extends ActionModel {
 
     public void add(Map<String, Object> param, ActionCallback callback) {
         try {
-            String name = "APN add";
+            String name = "APN add2";
             String apn = "IMS";
             String result = iDevice.add(name, apn);
             sendSuccessLog(mContext.getString(R.string.operation_succeed) + " add : " + result);
@@ -99,7 +99,7 @@ public class IApnAction extends ActionModel {
 
     public void addByMCCAndMNC(Map<String, Object> param, ActionCallback callback) {
         try {
-            String apn = "IMS";
+            String apn = "MMS";
             String carrier = "APN addByMCCAndMNC";
             String mcc = "204";
             String mnc = "04";
@@ -127,7 +127,7 @@ public class IApnAction extends ActionModel {
 
     public void clearWithSlot(Map<String, Object> param, ActionCallback callback) {
         try {
-            int slot = 1;
+            int slot = 0;
             boolean b = iDevice.clearWithSlot(slot);
             if (b) {
                 sendSuccessLog("clearWithSlot : " + mContext.getString(R.string.operation_succeed));
@@ -152,7 +152,7 @@ public class IApnAction extends ActionModel {
 
     public void query(Map<String, Object> param, ActionCallback callback) {
         try {
-            String name = "name", value = "BeMobile";
+            String name = "name", value = "APN add2";
             List l = iDevice.query(name, value);
             sendSuccessLog("query : " + JSONObject.toJSONString(l));
         } catch (DeviceException e) {
@@ -174,7 +174,7 @@ public class IApnAction extends ActionModel {
 
     public void setSelected(Map<String, Object> param, ActionCallback callback) {
         try {
-            String name = "BeMobile";
+            String name = "APN add2";
             boolean b = iDevice.setSelected(name);
             if (b) {
                 sendSuccessLog("setSelected : " + mContext.getString(R.string.operation_succeed));

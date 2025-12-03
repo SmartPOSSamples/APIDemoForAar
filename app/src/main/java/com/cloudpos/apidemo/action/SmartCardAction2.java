@@ -15,9 +15,6 @@ import com.cloudpos.card.ATR;
 import com.cloudpos.card.CPUCard;
 import com.cloudpos.card.Card;
 import com.cloudpos.card.SLE4442Card;
-import com.cloudpos.jniinterface.SmartCardInterface;
-import com.cloudpos.sdk.smartcardreader.impl.SmartCardReaderDeviceImpl;
-import com.cloudpos.serialport.SerialPortDevice;
 import com.cloudpos.smartcardreader.SmartCardReaderDevice;
 import com.cloudpos.smartcardreader.SmartCardReaderOperationResult;
 import com.cloudpos.apidemo.util.StringUtility;
@@ -29,11 +26,11 @@ import com.cloudpos.mvc.base.ActionCallback;
  * */
 public class SmartCardAction2 extends ActionModel {
 
-    private SmartCardReaderDeviceImpl device1 =null;
-    private SmartCardReaderDeviceImpl device2 =null;
-    private SmartCardReaderDeviceImpl device3 =null;
-    private SmartCardReaderDeviceImpl device4 =null;
-    private SmartCardReaderDeviceImpl currentDevice =null;
+    private SmartCardReaderDevice device1 =null;
+    private SmartCardReaderDevice device2 =null;
+    private SmartCardReaderDevice device3 =null;
+    private SmartCardReaderDevice device4 =null;
+    private SmartCardReaderDevice currentDevice =null;
     private Card psamCard;
     int area = SLE4442Card.MEMORY_CARD_AREA_MAIN;
     int address = 0;
@@ -47,19 +44,19 @@ public class SmartCardAction2 extends ActionModel {
     protected void doBefore(Map<String, Object> param, ActionCallback callback) {
         super.doBefore(param, callback);
         if (device1 == null) {
-            device1 = (SmartCardReaderDeviceImpl) POSTerminal.getInstance(mContext)
+            device1 = (SmartCardReaderDevice) POSTerminal.getInstance(mContext)
                     .getDevice("cloudpos.device.smartcardreader",1);
         }
         if (device2 == null) {
-            device2 = (SmartCardReaderDeviceImpl) POSTerminal.getInstance(mContext)
+            device2 = (SmartCardReaderDevice) POSTerminal.getInstance(mContext)
                     .getDevice("cloudpos.device.smartcardreader",2);
         }
         if (device3 == null) {
-            device3 = (SmartCardReaderDeviceImpl) POSTerminal.getInstance(mContext)
+            device3 = (SmartCardReaderDevice) POSTerminal.getInstance(mContext)
                     .getDevice("cloudpos.device.smartcardreader",3);
         }
         if (device4 == null) {
-            device4 = (SmartCardReaderDeviceImpl) POSTerminal.getInstance(mContext)
+            device4 = (SmartCardReaderDevice) POSTerminal.getInstance(mContext)
                     .getDevice("cloudpos.device.smartcardreader",4);
         }
     }

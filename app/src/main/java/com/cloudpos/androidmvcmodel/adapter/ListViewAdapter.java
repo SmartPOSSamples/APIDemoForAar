@@ -170,6 +170,7 @@ public class ListViewAdapter extends BaseAdapter {
                 viewHloder.spinner.setAdapter(adapter);
                 mAdapterMap.put(item.getDisplayName(LanguageHelper.getLanguageType(context)), adapter);
                 viewHloder.spinner.setSelection(PreferenceHelper.getInstance(context).getIntValue(item.getCommand()));
+//                mOnItemEventListener.onSpinnerSelected(rootPosition, PreferenceHelper.getInstance(context).getIntValue(item.getCommand()), item.getSpinner());
                 viewHloder.spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
                     @Override
                     public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {

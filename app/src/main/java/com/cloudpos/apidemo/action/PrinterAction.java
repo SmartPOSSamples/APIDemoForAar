@@ -19,7 +19,6 @@ import com.cloudpos.POSTerminal;
 import com.cloudpos.mvc.common.Logger;
 import com.cloudpos.printer.Format;
 import com.cloudpos.printer.PrinterDevice;
-import com.cloudpos.sdk.printer.impl.PrinterCommand;
 import com.google.zxing.BarcodeFormat;
 import com.google.zxing.EncodeHintType;
 import com.google.zxing.WriterException;
@@ -118,7 +117,7 @@ public class PrinterAction extends ActionModel {
 //                (byte) 0x1B, (byte) 0x24, 10,1
         };
         try {
-            device.sendESCCommand(PrinterCommand.getCmdEscDN(10));
+            device.sendESCCommand(new byte[]{27, 100, (byte)10});
             sendSuccessLog(mContext.getString(R.string.operation_succeed));
         } catch (DeviceException e) {
             e.printStackTrace();

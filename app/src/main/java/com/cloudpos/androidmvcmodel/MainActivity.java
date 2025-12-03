@@ -40,7 +40,6 @@ import com.cloudpos.mvc.impl.ActionCallbackImpl;
 import com.cloudpos.apidemoforunionpaycloudpossdk.R;
 import com.cloudpos.mvc.base.ActionCallback;
 import com.cloudpos.mvc.base.ActionManager;
-import com.cloudpos.sdk.smartcardreader.impl.PSAMDeviceMgr;
 import com.cloudpos.serialport.SerialPortDevice;
 
 public class MainActivity extends Activity implements OnItemClickListener, OnItemEventListener {
@@ -368,6 +367,7 @@ public class MainActivity extends Activity implements OnItemClickListener, OnIte
                 testParameters.put(Constants.SPINNERS, spinners);
                 testParameters.put(Constants.SELECTED_INDEX, selectedIndex);
                 PreferenceHelper.getInstance(this).setIntValue(subItem.getCommand(), selectedIndex);
+                PreferenceHelper.getInstance(this).setStringValue(subItem.getCommand() + "_value", spinners[selectedIndex]);
                 ActionManager.doSubmit(MainApplication.testItems.get(currentMainIndex).getCommand()
                                 + "/" + subItem.getCommand(),
                         context,

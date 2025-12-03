@@ -133,7 +133,7 @@
             command="setSectorIndex"
             name_CN="setSectorIndex"
             name_EN="setSectorIndex"
-            spinner="0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15"
+            spinner="0,4,5,12,13,14"
             type='2'
             needTest="true" />
         <SubItem
@@ -154,6 +154,11 @@
             command="open"
             name_CN="Open"
             name_EN="Open"
+            needTest="true" />
+        <SubItem
+            command="skipRATS"
+            name_CN="skipRATS"
+            name_EN="skipRATS"
             needTest="true" />
         <SubItem
             command="getMode"
@@ -1769,9 +1774,14 @@
                 name_EN="setUnknownSources"
                 needTest="true" />
             <SubItem
-                command="setWifi"
-                name_CN="setWifi"
-                name_EN="setWifi"
+                command="enableWifi"
+                name_CN="enableWifi"
+                name_EN="enableWifi"
+                needTest="true" />
+            <SubItem
+                command="disableWifi"
+                name_CN="disableWifi"
+                name_EN="disableWifi"
                 needTest="true" />
             <SubItem
                 command="shutdown"

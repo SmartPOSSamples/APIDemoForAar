@@ -12,7 +12,6 @@ import com.cloudpos.fingerprint.FingerprintDevice;
 import com.cloudpos.fingerprint.FingerprintOperationResult;
 import com.cloudpos.apidemoforunionpaycloudpossdk.R;
 import com.cloudpos.mvc.base.ActionCallback;
-import com.cloudpos.sdk.impl.DeviceName;
 
 public class FingerPrintAction extends ActionModel {
 
@@ -28,7 +27,7 @@ public class FingerPrintAction extends ActionModel {
     }
 
     public void open(Map<String, Object> param, ActionCallback callback) {
-        boolean result = POSTerminal.getInstance(mContext).isDeviceExist(DeviceName.FINGERPRINT);
+        boolean result = POSTerminal.getInstance(mContext).isDeviceExist("cloudpos.device.fingerprint");
         try {
             if(result){
                 device.open(FingerprintDevice.FINGERPRINT);
@@ -118,7 +117,7 @@ public class FingerPrintAction extends ActionModel {
     }
 
     private Fingerprint getFingerprint() {
-        boolean result = POSTerminal.getInstance(mContext).isDeviceExist(DeviceName.FINGERPRINT);
+        boolean result = POSTerminal.getInstance(mContext).isDeviceExist("cloudpos.device.fingerprint");
         if(result){
             Fingerprint fingerprint = null;
             try {

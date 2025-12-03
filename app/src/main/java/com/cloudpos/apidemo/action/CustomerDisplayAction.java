@@ -11,7 +11,6 @@ import com.cloudpos.androidmvcmodel.MainApplication;
 import com.cloudpos.apidemoforunionpaycloudpossdk.R;
 import com.cloudpos.customerdisplay.CustomerDisplayDevice;
 import com.cloudpos.mvc.base.ActionCallback;
-import com.cloudpos.sdk.impl.DeviceName;
 
 import java.io.ByteArrayOutputStream;
 import java.io.InputStream;
@@ -33,7 +32,7 @@ public class CustomerDisplayAction extends ActionModel{
     public void open(Map<String, Object> param, ActionCallback callback){
         if(device != null){
             try {
-                boolean result = POSTerminal.getInstance(mContext).isDeviceExist(DeviceName.CUSTOMER_DISPLAY);
+                boolean result = POSTerminal.getInstance(mContext).isDeviceExist("cloudpos.device.customerdisplay");
                 if(result){
                     device.open();
                     sendSuccessLog(mContext.getString(R.string.operation_succeed));
@@ -50,7 +49,7 @@ public class CustomerDisplayAction extends ActionModel{
     public void close(Map<String, Object> param, ActionCallback callback){
         if(device != null){
             try {
-                boolean result = POSTerminal.getInstance(mContext).isDeviceExist(DeviceName.CUSTOMER_DISPLAY);
+                boolean result = POSTerminal.getInstance(mContext).isDeviceExist("cloudpos.device.customerdisplay");
                 if(result){
                     device.close();
                     sendSuccessLog(mContext.getString(R.string.operation_succeed));
@@ -66,7 +65,7 @@ public class CustomerDisplayAction extends ActionModel{
     public boolean displayImageOnCustomerScreenByBitmap(Map<String, Object> param, ActionCallback callback){
         if(device != null){
             try {
-                boolean result = POSTerminal.getInstance(mContext).isDeviceExist(DeviceName.CUSTOMER_DISPLAY);
+                boolean result = POSTerminal.getInstance(mContext).isDeviceExist("cloudpos.device.customerdisplay");
                 if(result){
                     if(device.displayImageOnCustomerScreen(BitmapFactory.decodeResource(MainApplication.getInstance().getResources(), R.drawable.img))){
                         sendSuccessLog(mContext.getString(R.string.operation_succeed));
@@ -89,7 +88,7 @@ public class CustomerDisplayAction extends ActionModel{
     public boolean displayImageOnCustomerScreenByImageData(Map<String, Object> param, ActionCallback callback){
         if(device != null){
             try {
-                boolean result = POSTerminal.getInstance(mContext).isDeviceExist(DeviceName.CUSTOMER_DISPLAY);
+                boolean result = POSTerminal.getInstance(mContext).isDeviceExist("cloudpos.device.customerdisplay");
                 if(result){
                     ByteArrayOutputStream baos = new ByteArrayOutputStream();
                     BitmapFactory.decodeResource(MainApplication.getInstance().getResources(), R.drawable.ic_launcher).compress(Bitmap.CompressFormat.JPEG, 100, baos);

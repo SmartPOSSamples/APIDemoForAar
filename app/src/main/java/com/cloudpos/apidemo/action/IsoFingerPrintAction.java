@@ -16,7 +16,6 @@ import com.cloudpos.fingerprint.FingerprintOperationResult;
 import com.cloudpos.fingerprint.FingerprintPressOperationResult;
 import com.cloudpos.fingerprint.FingerprintRemoveOperationResult;
 import com.cloudpos.fingerprint.FingerprintTimeoutOperationResult;
-import com.cloudpos.sdk.impl.DeviceName;
 import com.cloudpos.sdk.util.SystemUtil;
 import com.cloudpos.apidemoforunionpaycloudpossdk.R;
 import com.cloudpos.mvc.base.ActionCallback;
@@ -348,7 +347,7 @@ public class IsoFingerPrintAction extends ActionModel {
     }
 
     private Fingerprint getFingerprint() {
-        boolean result = POSTerminal.getInstance(mContext).isDeviceExist(DeviceName.FINGERPRINT);
+        boolean result = POSTerminal.getInstance(mContext).isDeviceExist("cloudpos.device.fingerprint");
         if(result){
             Fingerprint fingerprint = null;
             try {

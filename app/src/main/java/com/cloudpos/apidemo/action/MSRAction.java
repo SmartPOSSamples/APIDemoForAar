@@ -22,7 +22,6 @@ import com.cloudpos.sdk.util.Logger;
 
 public class MSRAction extends ActionModel {
 
-//    private MSRDevice device = new MSRDeviceImpl();
     private MSRDevice device = null;
 //    private PINPadDevice pinpadDevice = null;
 
