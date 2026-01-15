@@ -428,17 +428,17 @@ public class RFCardAction extends ActionModel {
     }
 
     public void sendControlCommand(Map<String, Object> param, ActionCallbackImpl callback) {
-//        int cmdID = 0x80;
-//        final byte[] command = new byte[]{
-//                (byte) 0x01
-//        };
-//        try {
-//            int result = device.sendControlCommand(cmdID,command);
-//            sendSuccessLog(mContext.getString(R.string.operation_succeed) + result);
-//        } catch (DeviceException e) {
-//            e.printStackTrace();
-//            sendFailedLog(mContext.getString(R.string.operation_failed) + ",sectorIndex=" + sectorIndex + ",blockIndex=" + blockIndex);
-//        }
+        int cmdID = 0x80;
+        final byte[] command = new byte[]{
+                (byte) 0x01
+        };
+        try {
+            int result = device.sendControlCommand(cmdID,command);
+            sendSuccessLog(mContext.getString(R.string.operation_succeed) + result);
+        } catch (DeviceException e) {
+            e.printStackTrace();
+            sendFailedLog(mContext.getString(R.string.operation_failed) + ",sectorIndex=" + sectorIndex + ",blockIndex=" + blockIndex);
+        }
     }
 
     public void readBlock(Map<String, Object> param, ActionCallback callback) {

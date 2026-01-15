@@ -2154,6 +2154,51 @@
                 name_EN="removeVPNKeyPair"
                 needTest="true" />
         </SubItem>
+        <SubItem
+            command="ILoginAction"
+            name_CN="Login(Advance)"
+            name_EN="Login(Advance)">
+            <SubItem
+                command="open"
+                name_CN="open"
+                name_EN="open"
+                needTest="true" />
+            <SubItem
+                command="isAdminLogin"
+                name_CN="isAdminLogin"
+                name_EN="isAdminLogin"
+                needTest="true" />
+            <SubItem
+                command="isUserLogin"
+                name_CN="isUserLogin"
+                name_EN="isUserLogin"
+                needTest="true" />
+            <SubItem
+                command="loginAdmin"
+                name_CN="loginAdmin"
+                name_EN="loginAdmin"
+                needTest="true" />
+            <SubItem
+                command="loginUser"
+                name_CN="loginUser"
+                name_EN="loginUser"
+                needTest="true" />
+            <SubItem
+                command="logoutAdmin"
+                name_CN="logoutAdmin"
+                name_EN="logoutAdmin"
+                needTest="true" />
+            <SubItem
+                command="logoutUser"
+                name_CN="logoutUser"
+                name_EN="logoutUser"
+                needTest="true" />
+            <SubItem
+                command="close"
+                name_CN="close"
+                name_EN="close"
+                needTest="true" />
+        </SubItem>
     </MainItem>
 
     <MainItem

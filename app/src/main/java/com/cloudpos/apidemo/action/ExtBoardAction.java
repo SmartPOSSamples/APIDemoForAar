@@ -140,11 +140,11 @@ public class ExtBoardAction extends ActionModel {
 
     public void triggerPulse(Map<String, Object> param, ActionCallback callback) {
         try {
-            device.triggerPulse(0, 0, 1000, 1000, 5);
+            device.triggerPulse(0, 0, 1000, 1000, 10);
             sendSuccessLog2(mContext.getString(R.string.hsm_succeed));
         }catch (DeviceException e){
             e.printStackTrace();
-            sendFailedOnlyLog(mContext.getString(R.string.hsm_falied));
+            sendFailedOnlyLog(mContext.getString(R.string.hsm_falied) + " " + e.getMessage());
         }
     }
 
@@ -154,7 +154,7 @@ public class ExtBoardAction extends ActionModel {
             sendSuccessLog2("resultCode = " + result.getResultCode());
         }catch (DeviceException e){
             e.printStackTrace();
-            sendFailedOnlyLog(mContext.getString(R.string.hsm_falied));
+            sendFailedOnlyLog(mContext.getString(R.string.hsm_falied) + " " + e.getMessage());
         }
     }
 

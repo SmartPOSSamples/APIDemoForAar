@@ -170,6 +170,9 @@
 
     <uses-permission android:name="android.permission.CLOUDPOS_USERCERTIFICATE" />
 
+    <uses-permission android:name="android.permission.USER_PWD" />
+    <uses-permission android:name="android.permission.ADMIN_PWD" />
+
     <application
         android:name="com.cloudpos.androidmvcmodel.MainApplication"
         android:allowBackup="true"
