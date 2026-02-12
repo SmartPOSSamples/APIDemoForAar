@@ -2,13 +2,14 @@ apply plugin: 'com.android.application'
 
 android {
     compileSdkVersion 29
+    namespace 'com.cloudpos.apidemoforunionpaycloudpossdk'
 
     defaultConfig {
         applicationId "com.cloudpos.apidemoforunionpaycloudpossdk"
         minSdkVersion 23
         targetSdkVersion 29
-        versionCode 129
-        versionName "1.2.9_V1.5.4.082"
+        versionCode 130
+        versionName "1.3.0_V1.5.4.082"
         setProperty("archivesBaseName", "ApiDemo_${releaseTime()}-$versionName")
     }
 
