@@ -2,7 +2,10 @@
 package com.cloudpos.androidmvcmodel.adapter;
 
 import android.content.Context;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.util.Log;
+import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,6 +13,7 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.BaseAdapter;
 import android.widget.CompoundButton;
+import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.Spinner;
@@ -145,9 +149,11 @@ public class ListViewAdapter extends BaseAdapter {
             convertView = inflater.inflate(R.layout.item_test, null);
             viewHloder.txtButton = (TextView) convertView.findViewById(R.id.txt_button);
             viewHloder.txtName = (TextView) convertView.findViewById(R.id.txt_name);
+            viewHloder.inputName = (TextView) convertView.findViewById(R.id.input_name);
             viewHloder.spinner = (Spinner) convertView.findViewById(R.id.myspinner);
             viewHloder.aSwitch = (Switch) convertView.findViewById(R.id.sw_btn);
             viewHloder.llSpinner = (LinearLayout) convertView.findViewById(R.id.ll_spinner);
+            viewHloder.llInput = (LinearLayout) convertView.findViewById(R.id.ll_input);
             viewHloder.rlItemTest = (RelativeLayout) convertView.findViewById(R.id.rl_item_test);
             convertView.setTag(viewHloder);
         }
@@ -182,6 +188,31 @@ public class ListViewAdapter extends BaseAdapter {
 
                     }
                 });
+            case TypeConstant.TYPE_CONSTANT_EDIT:
+                viewHloder.rlItemTest.setBackgroundResource(R.color.transparent);
+                viewHloder.llSpinner.setVisibility(View.GONE);
+                viewHloder.aSwitch.setVisibility(View.GONE);
+                viewHloder.txtButton.setVisibility(View.GONE);
+                viewHloder.llInput.setVisibility(View.VISIBLE);
+                viewHloder.inputName.setText(item.getDisplayName(LanguageHelper.getLanguageType(context)));
+                viewHloder.inputText.setText(PreferenceHelper.getInstance(context).getStringValue(item.getCommand()));
+//                mOnItemEventListener.onSpinnerSelected(rootPosition, PreferenceHelper.getInstance(context).getIntValue(item.getCommand()), item.getSpinner());
+                viewHloder.inputText.addTextChangedListener(new TextWatcher() {
+                    @Override
+                    public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+                    }
+
+                    @Override
+                    public void onTextChanged(CharSequence s, int start, int before, int count) {
+                        mOnItemEventListener.onInputText(rootPosition, s.toString());
+                    }
+
+                    @Override
+                    public void afterTextChanged(Editable s) {
+
+                    }
+                });
                 break;
             case TypeConstant.TYPE_CONSTANT_SWITCH:
                 viewHloder.rlItemTest.setBackgroundResource(R.color.transparent);
@@ -211,8 +242,11 @@ public class ListViewAdapter extends BaseAdapter {
         Switch aSwitch;
         Spinner spinner;
         TextView txtName;
+        TextView inputName;
         TextView txtButton;
         LinearLayout llSpinner;
+        LinearLayout llInput;
+        EditText inputText;
         RelativeLayout rlItemTest;
         int index = 0;
         boolean isChecked = false;

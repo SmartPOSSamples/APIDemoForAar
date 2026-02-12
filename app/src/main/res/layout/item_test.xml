@@ -49,6 +49,32 @@
             android:textSize="15sp" />
     </LinearLayout>
 
+    <LinearLayout
+        android:id="@+id/ll_input"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:orientation="horizontal">
+        <TextView
+            android:id="@+id/input_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:minHeight="40dp"
+            android:gravity="center"
+            android:textColor="@color/BLACK"
+            android:textSize="20sp" />
+
+        <EditText
+            android:id="@+id/myInput"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:minHeight="40dp"
+            android:layout_marginLeft="10dp"
+            android:paddingRight="10dp"
+            android:textColor="@color/RED"
+            android:textSize="15sp" />
+    </LinearLayout>
+
     <Switch
         android:id="@+id/sw_btn"
         android:layout_width="wrap_content"

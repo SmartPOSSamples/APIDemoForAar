@@ -13,4 +13,8 @@ public class TypeConstant {
      * this is a spinner
      */
     public static final int TYPE_CONSTANT_SPINNER = 2;
+    /**
+     * this is a editText
+     */
+    public static final int TYPE_CONSTANT_EDIT = 3;
 }

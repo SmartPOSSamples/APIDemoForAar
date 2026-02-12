@@ -10,6 +10,7 @@ import com.cloudpos.OperationResult;
 import com.cloudpos.POSTerminal;
 import com.cloudpos.TimeConstants;
 import com.cloudpos.apidemo.common.Common;
+import com.cloudpos.apidemo.util.PreferenceHelper;
 import com.cloudpos.jniinterface.PINPadInterface;
 import com.cloudpos.pinpad.KeyInfo;
 import com.cloudpos.pinpad.PINPadDevice;
@@ -150,18 +151,28 @@ public class PINPadAction extends ActionModel {
     }
 
     public void updateUserKey2(Map<String, Object> param, ActionCallback callback) {
-        String userKey = "09 FA 17 0B 03 11 22 76 09 FA 17 0B 03 11 22 76";//密文
-        byte[] arryCipherNewUserKey = new byte[16];
-        StringUtility.StringToByteArray(userKey, arryCipherNewUserKey);
-        String checkValue = "A5 17 3A D5";
-        byte[] arryCheckValue = new byte[4];
-        StringUtility.StringToByteArray(checkValue, arryCheckValue);
+//        String userKey = "09 FA 17 0B 03 11 22 76 09 FA 17 0B 03 11 22 76";//密文
+//        byte[] arryCipherNewUserKey = new byte[16];
+//        StringUtility.StringToByteArray(userKey, arryCipherNewUserKey);
+//        String checkValue = "A5 17 3A D5";
+//        byte[] arryCheckValue = new byte[4];
+//        StringUtility.StringToByteArray(checkValue, arryCheckValue);
+//        try {
+//            device.updateUserKey(masterKeyID, userKeyID, arryCipherNewUserKey,
+//                    PINPadDevice.CHECK_TYPE_CUP, arryCheckValue);
+//            sendSuccessLog(mContext.getString(R.string.operation_succeed));
+//        } catch (DeviceException e) {
+//            e.printStackTrace();
+//            sendFailedLog(mContext.getString(R.string.operation_failed));
+//        }
+
+
+        int masterKeyIndex = 0;
+
         try {
-            device.updateUserKey(masterKeyID, userKeyID, arryCipherNewUserKey,
-                    PINPadDevice.CHECK_TYPE_CUP, arryCheckValue);
-            sendSuccessLog(mContext.getString(R.string.operation_succeed));
+            device.updateUserKey(masterKeyIndex, 1, new byte[]{0x1A, 0x1A,0x1A,0x1A,0x1A,0x1A,0x1A,0x1A,0x1A,0x1A,0x1A,0x1A,0x1A,0x1A,0x1A,0x1A,0x1A,0x1A,0x1A,0x1A,0x1A,0x1A,0x1A,0x1A});
+            //pinPadDevice.updateUserKeyWithTR31Format(masterKeyIndex, 100, "B0096B0TX00E0000E3AEB634DF5B39A3DC757B424C33B26896EF2F1BECC4427C8921DAD93EAEF6E0521E3B5789FC7387".getBytes());
         } catch (DeviceException e) {
-            e.printStackTrace();
             sendFailedLog(mContext.getString(R.string.operation_failed));
         }
     }
@@ -183,25 +194,19 @@ public class PINPadAction extends ActionModel {
         }
     }
 
-//    public void updateUserKeyWithTR31Format(Map<String, Object> param, ActionCallback callback){
-//        //old masterKey plaintext: 36 37 38 38 38 38 38 38 38 38 40 41 42 42 42 42
-//        //new masterKey plaintext: 39 40 38 38 38 38 38 38 38 38 40 41 46 46 46 46
-//        String transportKey = "38 03 E3 9E 06 19 ED 8C F5 2D 78 5F B5 76 5D 49";
-//        String masterKeyorg = "11111111111111111111111111111111";
-//        String userKeyorg =  "22222222222222222222222222222222";
-//        String useKey = "950973182317F80B950973182317F80B";
-//        final byte[] arryCipherUserrKey = new byte[16];
-//        StringUtility.StringToByteArray(useKey, arryCipherUserrKey);
-//
-//        try {
-////            device.updateTransferKeyWithTransferKeyByTr31()
-//            device.updateUserKeyWithTR31Format(masterKeyID, userKeyID, arryCipherUserrKey);
-//            sendSuccessLog(mContext.getString(R.string.operation_succeed));
-//        } catch (DeviceException e) {
-//            e.printStackTrace();
-//            sendFailedLog(mContext.getString(R.string.operation_failed));
-//        }
-//    }
+    public void updateUserKeyWithTR31Format(Map<String, Object> param, ActionCallback callback){
+        String userKey = "B0096B0TX00E0000E3AEB634DF5B39A3DC757B424C33B26896EF2F1BECC4427C8921DAD93EAEF6E0521E3B5789FC7387";
+        final byte[] arryCipherUserrKey = new byte[48];
+        StringUtility.StringToByteArray(userKey, arryCipherUserrKey);
+
+        try {
+            device.updateUserKeyWithTR31Format(masterKeyID, userKeyID, userKey.getBytes());
+            sendSuccessLog(mContext.getString(R.string.operation_succeed));
+        } catch (DeviceException e) {
+            e.printStackTrace();
+            sendFailedLog(mContext.getString(R.string.operation_failed));
+        }
+    }
 
     public void updateMasterKey(Map<String, Object> param, ActionCallback callback){
         //old masterKey plaintext: 36 37 38 38 38 38 38 38 38 38 40 41 42 42 42 42
@@ -549,10 +554,26 @@ public class PINPadAction extends ActionModel {
         }
     }
 
-    public void getDukptStatus(Map<String, Object> param, ActionCallback callback) {
+    public void DukptIndex(Map<String, Object> param, ActionCallback callback) {
+
+    }
+
+    public void getDukptStatusMKID(Map<String, Object> param, ActionCallback callback) {
         try {
+            String index = PreferenceHelper.getInstance(mContext).getStringValue("DukptIndex");
+            if(index == null){
+                sendFailedLog("Please input DukptIndex, must 0~49");
+                return;
+            }
             int mkid = 0;
-            byte[] dukptData = new byte[32];
+            try{
+                mkid = Integer.parseInt(index);
+            }catch (NumberFormatException exception){
+                sendFailedLog("Error DukptIndex, must 0~49");
+                return;
+            }
+
+            byte[] dukptData = new byte[10];
 
             int result = device.getDukptStatus(mkid, dukptData);
             if (result == 0) {

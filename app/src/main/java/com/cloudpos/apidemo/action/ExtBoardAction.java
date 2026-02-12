@@ -130,7 +130,7 @@ public class ExtBoardAction extends ActionModel {
 
     public void triggerRelay(Map<String, Object> param, ActionCallback callback) {
         try {
-            device.triggerRelay(0, 1000, 1000, 5);
+            device.triggerRelay(0, 500, 500, 5);
             sendSuccessLog2(mContext.getString(R.string.hsm_succeed));
         }catch (DeviceException e){
             e.printStackTrace();

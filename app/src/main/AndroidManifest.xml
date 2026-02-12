@@ -117,6 +117,8 @@
     <uses-permission android:name="android.permission.CLOUDPOS_REBOOT" />
     <uses-permission android:name="android.permission.CLOSEPOS_SET_SCREEN_WAKEUP" />
     <uses-permission android:name="android.permission.CLOUDPOS_DISABLE_POWER_KEY" />
+    <uses-permission android:name="android.permission.CLOUDPOS_MANAGE_APP" />
+
     <uses-permission
         android:name="android.permission.ADMIN_PWD_MODIFY"
         android:permissionGroup="android.permission-group.SYSTEM_TOOLS"
@@ -169,13 +171,14 @@
     <uses-permission android:name="android.permission.CLOUDPOS_NAVIGATION_BUTTON" />
 
     <uses-permission android:name="android.permission.CLOUDPOS_USERCERTIFICATE" />
-
-    <uses-permission android:name="android.permission.USER_PWD" />
-    <uses-permission android:name="android.permission.ADMIN_PWD" />
+    <uses-permission android:name="android.permission.CLOUDPOS_INNER_GPIO"/>
+    <uses-permission android:name="android.permission.CLOUDPOS_VIRTUAL_SERIAL_PORT"/>
+    <uses-permission android:name="android.permission.CLOUDPOS_MANAGE_APP"/>
 
     <application
         android:name="com.cloudpos.androidmvcmodel.MainApplication"
         android:allowBackup="true"
+        android:requestLegacyExternalStorage="true"
         android:icon="@drawable/ic_launcher"
         android:label="@string/app_name"
         android:theme="@style/AppTheme">

@@ -560,6 +560,17 @@
             name_EN="Open"
             needTest="true" />
         <SubItem
+            command="DukptIndex"
+            name_CN="DukptIndex"
+            name_EN="DukptIndex"
+            type='3'
+            needTest="true" />
+        <SubItem
+            command="getDukptStatus"
+            name_CN="getDukptStatus"
+            name_EN="getDukptStatus"
+            needTest="true" />
+        <SubItem
             command="showText"
             name_CN="showText"
             name_EN="showText"
@@ -603,17 +614,17 @@
             command="updateMasterKeyCheckMK"
             name_CN="updateMasterKeyCheckMK"
             name_EN="updateMasterKeyCheckMK"
-            needTest="true" />
+            needTest="true" />00000000
         <SubItem
             command="getMasterKeyCheckValue"
             name_CN="getMasterKeyCheckValue"
             name_EN="getMasterKeyCheckValue"
             needTest="true" />
-<!--        <SubItem-->
-<!--            command="updateUserKeyWithTR31Format"-->
-<!--            name_CN="updateUserKeyWithTR31Format"-->
-<!--            name_EN="updateUserKeyWithTR31Format"-->
-<!--            needTest="true" />-->
+        <SubItem
+            command="updateUserKeyWithTR31Format"
+            name_CN="updateUserKeyWithTR31Format"
+            name_EN="updateUserKeyWithTR31Format"
+            needTest="true" />
 
         <SubItem
             command="updateMasterKey"
@@ -709,11 +720,6 @@
             command="getSkStatus"
             name_CN="getSkStatus"
             name_EN="getSkStatus"
-            needTest="true" />
-        <SubItem
-            command="getDukptStatus"
-            name_CN="getDukptStatus"
-            name_EN="getDukptStatus"
             needTest="true" />
         <SubItem
             command="listenForPinBlock"
@@ -2301,6 +2307,16 @@
             command="write"
             name_CN="write"
             name_EN="write"
+            needTest="true" />
+    </MainItem>
+    <MainItem
+        command="LogDeviceAction"
+        name_CN="LogDevice"
+        name_EN="LogDevice">
+        <SubItem
+            command="saveLogcatToFile"
+            name_CN="saveLogcatToFile"
+            name_EN="saveLogcatToFile"
             needTest="true" />
     </MainItem>
 </DriverTest>

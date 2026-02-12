@@ -468,6 +468,69 @@ public class MainActivity extends Activity implements OnItemClickListener, OnIte
         }
     }
 
+    @Override
+    public void onInputText(int rootPositon, String s) {
+        if (adapter.isAtMainLevel()) {
+            currentMainIndex = rootPositon;
+            currentSubIndex = ListViewAdapter.INDEX_NONE;
+            adapter.enterSubList(rootPositon);
+            displayIntroduction();
+            actionCallback.sendResponse(context.getString(R.string.welcome_to)
+                    + "\t" + MainApplication.testItems
+                    .get(currentMainIndex).getDisplayName(LanguageHelper.getLanguageType(context)));
+            lvwTestItems.setSelection(0);
+
+        } else if (adapter.isAtSubLevel()) {
+            currentSubIndex = rootPositon;
+
+            SubItem subItem = MainApplication.testItems
+                    .get(currentMainIndex)
+                    .getSubItem(currentSubIndex);
+
+            if (subItem.hasChildren()) {
+                adapter.enterItemList(currentSubIndex);
+                actionCallback.sendResponse(context.getString(R.string.welcome_to)
+                        + "\t" + subItem.getDisplayName(LanguageHelper.getLanguageType(context)));
+                lvwTestItems.setSelection(0);
+            } else {
+
+                testParameters.clear();
+                testParameters.put(Constants.MAIN_ITEM,
+                        MainApplication.testItems.get(currentMainIndex).getCommand());
+                testParameters.put(Constants.SUB_ITEM, subItem.getCommand());
+                PreferenceHelper.getInstance(this).setStringValue(subItem.getCommand(), s);
+                ActionManager.doSubmit(MainApplication.testItems.get(currentMainIndex).getCommand()
+                                + "/" + subItem.getCommand(),
+                        context,
+                        testParameters,
+                        actionCallback
+                );
+            }
+        } else if (adapter.isAtItemLevel()) {
+            TestItem item = MainApplication.testItems.get(currentMainIndex)
+                    .getSubItem(currentSubIndex)
+                    .getItems()
+                    .get(rootPositon);
+
+            testParameters.clear();
+            testParameters.put(Constants.MAIN_ITEM,
+                    MainApplication.testItems.get(currentMainIndex).getCommand());
+            testParameters.put(Constants.SUB_ITEM,
+                    MainApplication.testItems.get(currentMainIndex)
+                            .getSubItem(currentSubIndex).getCommand());
+            testParameters.put(Constants.ITEM, item.getCommand());
+            PreferenceHelper.getInstance(this).setStringValue(item.getCommand(), s);
+            ActionManager.doSubmit(
+                    MainApplication.testItems.get(currentMainIndex)
+                            .getSubItem(currentSubIndex).getCommand()
+                            + "/" + item.getCommand(),
+                    context,
+                    testParameters,
+                    actionCallback
+            );
+        }
+    }
+
     private void showSerialPortSpinner(){
         String[] logicIDs = MainApplication.getInstance().getApplicationContext().getResources().getStringArray(R.array.logicID);
         spinnerDialog = new AlertDialog.Builder(this).setItems(logicIDs, (dialog, which) -> {
