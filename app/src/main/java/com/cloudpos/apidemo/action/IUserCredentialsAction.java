@@ -69,7 +69,7 @@ public class IUserCredentialsAction extends ActionModel {
 
     public void deleteCaCert(Map<String, Object> param, ActionCallback callback) {
         try {
-            String alias = PreferenceHelper.getInstance(mContext).getStringValue("cert_alias");
+            String alias = PreferenceHelper.getInstance(mContext).getStringValue("cert_alias", "");
             device.deleteCaCert(alias);
             sendSuccessLog2(mContext.getString(R.string.hsm_succeed));
         }catch (DeviceException e){
@@ -80,7 +80,7 @@ public class IUserCredentialsAction extends ActionModel {
 
     public void existCaCert(Map<String, Object> param, ActionCallback callback) {
         try {
-            String alias = PreferenceHelper.getInstance(mContext).getStringValue("cert_alias");
+            String alias = PreferenceHelper.getInstance(mContext).getStringValue("cert_alias", "");
             boolean exist = device.existCaCert(alias);
             sendSuccessLog2("existCaCert = " + exist);
         }catch (DeviceException e){
@@ -111,7 +111,7 @@ public class IUserCredentialsAction extends ActionModel {
 
     public void getCaCert(Map<String, Object> param, ActionCallback callback) {
         try {
-            String alias = PreferenceHelper.getInstance(mContext).getStringValue("cert_alias");
+            String alias = PreferenceHelper.getInstance(mContext).getStringValue("cert_alias", "");
             byte[] data = device.getCaCert(alias);
             sendSuccessLog2("getCaCert = " + ByteConvertStringUtil.bytesToHexString(data));
         }catch (DeviceException e){

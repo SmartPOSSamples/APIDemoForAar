@@ -58,20 +58,6 @@ public class RFCardAction extends ActionModel {
 
     private byte[] test_pin = null;
 
-    private static  final byte[][] EV3_PIN = new byte[][]{{(byte) 0x41, (byte) 0xCA, (byte) 0x2A, (byte) 0x3F, (byte) 0xA0, (byte) 0xA0},
-            {(byte) 0x45, (byte) 0xCE, (byte) 0x2E, (byte) 0x3B, (byte) 0xA4, (byte) 0xA4},
-            {(byte) 0x44, (byte) 0xCF, (byte) 0x2F, (byte) 0x3A, (byte) 0xA5, (byte) 0xA5},
-            {(byte) 0x4D, (byte) 0xC6, (byte) 0x26, (byte) 0x33, (byte) 0xAC, (byte) 0xAC},
-            {(byte) 0x4C, (byte) 0xC7, (byte) 0x27, (byte) 0x32, (byte) 0xAD, (byte) 0xAD},
-            {(byte) 0x4F, (byte) 0xC4, (byte) 0x24, (byte) 0x31, (byte) 0xAE, (byte) 0xAE}};
-
-    private static  final byte[][] TNG_PIN = new byte[][]{{(byte) 0xF1, (byte) 0xE5, (byte) 0xF2, (byte) 0x6A, (byte) 0xA0, (byte) 0xA0},
-            {(byte) 0xF5, (byte) 0xE1, (byte) 0xF6, (byte) 0x6E, (byte) 0xA4, (byte) 0xA4},
-            {(byte) 0xF4, (byte) 0xE0, (byte) 0xF7, (byte) 0x6F, (byte) 0xA5, (byte) 0xA5},
-            {(byte) 0xFD, (byte) 0xE9, (byte) 0xFE, (byte) 0x66, (byte) 0xAC, (byte) 0xAC},
-            {(byte) 0xFC, (byte) 0xE8, (byte) 0xFF, (byte) 0x67, (byte) 0xAD, (byte) 0xAD},
-            {(byte) 0xFF, (byte) 0xEB, (byte) 0xFC, (byte) 0x64, (byte) 0xAE, (byte) 0xAE}};
-
     @Override
     protected void doBefore(Map<String, Object> param, ActionCallback callback) {
         super.doBefore(param, callback);
@@ -80,17 +66,15 @@ public class RFCardAction extends ActionModel {
                     .getDevice("cloudpos.device.rfcardreader");
         }
         int index = PreferenceHelper.getInstance(mContext).getIntValue("setSectorIndex");
-        sectorIndex = Integer.parseInt(PreferenceHelper.getInstance(mContext).getStringValue("setSectorIndex_value"));
-        blockIndex = Integer.parseInt(PreferenceHelper.getInstance(mContext).getStringValue("setBlockIndex_value"));
-        transferblockIndex = Integer.parseInt(PreferenceHelper.getInstance(mContext).getStringValue("setTransferBlockIndex_value"));
-        test_pin = EV3_PIN[index];
+        sectorIndex = Integer.parseInt(PreferenceHelper.getInstance(mContext).getStringValue("setSectorIndex_value", "0"));
+        blockIndex = Integer.parseInt(PreferenceHelper.getInstance(mContext).getStringValue("setBlockIndex_value", "0"));
+        transferblockIndex = Integer.parseInt(PreferenceHelper.getInstance(mContext).getStringValue("setTransferBlockIndex_value", "0"));
     }
 
     public void setSectorIndex(Map<String, Object> param, ActionCallback callback) {
         String[] spinners = (String[]) param.get(Constants.SPINNERS);
         int index = (int) param.get(Constants.SELECTED_INDEX);
         sectorIndex = Integer.parseInt(spinners[index]);
-        test_pin = EV3_PIN[index];
     }
 
     public void setBlockIndex(Map<String, Object> param, ActionCallback callback) {

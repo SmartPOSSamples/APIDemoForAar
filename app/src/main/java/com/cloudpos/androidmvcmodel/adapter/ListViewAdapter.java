@@ -154,6 +154,7 @@ public class ListViewAdapter extends BaseAdapter {
             viewHloder.aSwitch = (Switch) convertView.findViewById(R.id.sw_btn);
             viewHloder.llSpinner = (LinearLayout) convertView.findViewById(R.id.ll_spinner);
             viewHloder.llInput = (LinearLayout) convertView.findViewById(R.id.ll_input);
+            viewHloder.inputText = (EditText) convertView.findViewById(R.id.myInput);
             viewHloder.rlItemTest = (RelativeLayout) convertView.findViewById(R.id.rl_item_test);
             convertView.setTag(viewHloder);
         }
@@ -161,6 +162,7 @@ public class ListViewAdapter extends BaseAdapter {
         switch (item.getType()){
             case TypeConstant.TYPE_CONSTANT_BUTTON:
                 viewHloder.llSpinner.setVisibility(View.GONE);
+                viewHloder.llInput.setVisibility(View.GONE);
                 viewHloder.aSwitch.setVisibility(View.GONE);
                 viewHloder.txtButton.setVisibility(View.VISIBLE);
                 viewHloder.txtButton.setText(item.getDisplayName(LanguageHelper.getLanguageType(context)));
@@ -169,6 +171,7 @@ public class ListViewAdapter extends BaseAdapter {
             case TypeConstant.TYPE_CONSTANT_SPINNER:
                 viewHloder.rlItemTest.setBackgroundResource(R.color.transparent);
                 viewHloder.llSpinner.setVisibility(View.VISIBLE);
+                viewHloder.llInput.setVisibility(View.GONE);
                 viewHloder.aSwitch.setVisibility(View.GONE);
                 viewHloder.txtButton.setVisibility(View.GONE);
                 viewHloder.txtName.setText(item.getDisplayName(LanguageHelper.getLanguageType(context)));
@@ -188,6 +191,7 @@ public class ListViewAdapter extends BaseAdapter {
 
                     }
                 });
+                break;
             case TypeConstant.TYPE_CONSTANT_EDIT:
                 viewHloder.rlItemTest.setBackgroundResource(R.color.transparent);
                 viewHloder.llSpinner.setVisibility(View.GONE);
@@ -195,7 +199,7 @@ public class ListViewAdapter extends BaseAdapter {
                 viewHloder.txtButton.setVisibility(View.GONE);
                 viewHloder.llInput.setVisibility(View.VISIBLE);
                 viewHloder.inputName.setText(item.getDisplayName(LanguageHelper.getLanguageType(context)));
-                viewHloder.inputText.setText(PreferenceHelper.getInstance(context).getStringValue(item.getCommand()));
+                viewHloder.inputText.setText(PreferenceHelper.getInstance(context).getStringValue(item.getCommand(), ""));
 //                mOnItemEventListener.onSpinnerSelected(rootPosition, PreferenceHelper.getInstance(context).getIntValue(item.getCommand()), item.getSpinner());
                 viewHloder.inputText.addTextChangedListener(new TextWatcher() {
                     @Override
@@ -217,6 +221,7 @@ public class ListViewAdapter extends BaseAdapter {
             case TypeConstant.TYPE_CONSTANT_SWITCH:
                 viewHloder.rlItemTest.setBackgroundResource(R.color.transparent);
                 viewHloder.llSpinner.setVisibility(View.GONE);
+                viewHloder.llInput.setVisibility(View.GONE);
                 viewHloder.aSwitch.setVisibility(View.VISIBLE);
                 viewHloder.txtButton.setVisibility(View.GONE);
                 viewHloder = (ViewHloder) convertView.getTag();
@@ -231,6 +236,7 @@ public class ListViewAdapter extends BaseAdapter {
             default:
                 viewHloder.llSpinner.setVisibility(View.GONE);
                 viewHloder.aSwitch.setVisibility(View.GONE);
+                viewHloder.llInput.setVisibility(View.GONE);
                 viewHloder.txtButton.setVisibility(View.VISIBLE);
                 viewHloder.txtButton.setText(item.getDisplayName(LanguageHelper.getLanguageType(context)));
                 break;

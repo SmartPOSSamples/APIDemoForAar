@@ -560,7 +560,7 @@ public class PINPadAction extends ActionModel {
 
     public void getDukptStatusMKID(Map<String, Object> param, ActionCallback callback) {
         try {
-            String index = PreferenceHelper.getInstance(mContext).getStringValue("DukptIndex");
+            String index = PreferenceHelper.getInstance(mContext).getStringValue("DukptIndex", "0");
             if(index == null){
                 sendFailedLog("Please input DukptIndex, must 0~49");
                 return;

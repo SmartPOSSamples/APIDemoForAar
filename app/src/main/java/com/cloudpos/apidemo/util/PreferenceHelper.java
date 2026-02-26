@@ -78,8 +78,8 @@ public class PreferenceHelper {
         return preferences.getBoolean(key, false);
     }
     
-    public String getStringValue(String key){
-        return preferences.getString(key, "");
+    public String getStringValue(String key, String defaultValue){
+        return preferences.getString(key, defaultValue);
     }
 
     public int getIntValue(String key){

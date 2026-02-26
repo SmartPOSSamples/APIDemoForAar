@@ -2319,4 +2319,35 @@
             name_EN="saveLogcatToFile"
             needTest="true" />
     </MainItem>
+
+    <MainItem
+        command="AntennaAction"
+        name_CN="AntennaDevice"
+        name_EN="AntennaDevice">
+        <SubItem
+            command="open"
+            name_CN="open"
+            name_EN="open"
+            needTest="true" />
+        <SubItem
+            command="close"
+            name_CN="close"
+            name_EN="close"
+            needTest="true" />
+        <SubItem
+            command="getAntennaMode"
+            name_CN="getAntennaMode"
+            name_EN="getAntennaMode"
+            needTest="true" />
+        <SubItem
+            command="setAntennaMode2Internal"
+            name_CN="setAntennaMode2Internal"
+            name_EN="setAntennaMode2Internal"
+            needTest="true" />
+        <SubItem
+            command="setAntennaMode2External"
+            name_CN="setAntennaMode2External"
+            name_EN="setAntennaMode2External"
+            needTest="true" />
+    </MainItem>
 </DriverTest>
