@@ -105,6 +105,18 @@
     <string name="copy_db_summary">输出数据库</string>
     <string name="defalut_copy_db_path">/mnt/sdcard1</string>
 
+    <!-- MDBAction -->
+    <string name="plead_wave_your_card">Please wave your card</string>
+    <string name="startPollEvent">Start poll event</string>
+    <string name="vend_approved">Vend approved</string>
+    <string name="vend_denied">Vend denied</string>
+    <string name="vend_cancel">Vend cancel</string>
+    <string name="vend_success">Vend success</string>
+    <string name="vend_failure">Vend failure</string>
+
+    <!-- AntennaAction -->
+    <string name="current_antennamode">Current AntennaMode:</string>
+
     <string name="waiting">please wait.</string>
     <string-array name="baudrates">
         <item>9600</item>
