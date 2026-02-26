@@ -8,8 +8,8 @@ android {
         applicationId "com.cloudpos.apidemoforunionpaycloudpossdk"
         minSdkVersion 23
         targetSdkVersion 29
-        versionCode 130
-        versionName "1.3.0_V1.5.4.082"
+        versionCode 131
+        versionName "1.3.1_V1.5.4.082"
         setProperty("archivesBaseName", "ApiDemo_${releaseTime()}-$versionName")
     }
 
@@ -38,7 +38,7 @@ def releaseTime() {
 
 dependencies {
     implementation files('libs/allutils.jar')
-    implementation(name: 'cloudpossdkV1.7.7.18_Standard', ext: 'aar')
+    implementation(name: 'cloudpossdkV1.8.1.11_Standard', ext: 'aar')
     implementation(name: 'sdk_systemloglib-release', ext: 'aar')
     //create QR code
     implementation files('libs/zxing.jar')
