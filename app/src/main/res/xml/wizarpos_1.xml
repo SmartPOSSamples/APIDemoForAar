@@ -1805,6 +1805,17 @@
                 name_EN="disableNavigationButton"
                 needTest="true" />
             <SubItem
+                command="stopAppPkgName"
+                name_CN="stopAppPkgName"
+                name_EN="stopAppPkgName"
+                type='3'
+                needTest="true" />
+            <SubItem
+                command="stopApp"
+                name_CN="stopApp"
+                name_EN="stopApp"
+                needTest="true" />
+            <SubItem
                 command="close"
                 name_CN="close"
                 name_EN="close"
@@ -2246,6 +2257,11 @@
             command="getSIMCardSN"
             name_CN="getSIMCardSN"
             name_EN="getSIMCardSN"
+            needTest="true" />
+        <SubItem
+            command="getDeviceLastAccessTime"
+            name_CN="getDeviceLastAccessTime"
+            name_EN="getDeviceLastAccessTime"
             needTest="true" />
     </MainItem>
 

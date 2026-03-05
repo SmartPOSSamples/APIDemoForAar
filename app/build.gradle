@@ -8,8 +8,8 @@ android {
         applicationId "com.cloudpos.apidemoforunionpaycloudpossdk"
         minSdkVersion 23
         targetSdkVersion 29
-        versionCode 131
-        versionName "1.3.1_V1.5.4.082"
+        versionCode 132
+        versionName "1.3.2_V1.5.4.082"
         setProperty("archivesBaseName", "ApiDemo_${releaseTime()}-$versionName")
     }
 

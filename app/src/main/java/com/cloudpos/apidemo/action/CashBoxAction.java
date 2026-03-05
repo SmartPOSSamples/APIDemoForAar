@@ -17,7 +17,7 @@ public class CashBoxAction extends ActionModel {
         super.doBefore(param, callback);
         if(device == null){
             device =
-                    (CashDrawerDevice) POSTerminal.getInstance(mContext).getDevice("com.cloudpos.device.cashdrawer");
+                    (CashDrawerDevice) POSTerminal.getInstance(mContext).getDevice(POSTerminal.DEVICE_NAME_CASH_DRAWER);
         }
     }
     public void open(Map<String, Object> param, ActionCallback callback) {

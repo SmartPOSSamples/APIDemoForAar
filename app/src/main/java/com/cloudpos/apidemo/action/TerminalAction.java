@@ -9,6 +9,9 @@ import com.cloudpos.cashdrawer.CashDrawerDevice;
 import com.cloudpos.mvc.base.ActionCallback;
 import com.cloudpos.serialport.SerialPortDevice;
 
+import java.sql.Date;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Map;
 
 public class TerminalAction extends ActionModel{
@@ -51,5 +54,15 @@ public class TerminalAction extends ActionModel{
             device.getSerialNumber();
         }
 
+    }
+
+    public void getDeviceLastAccessTime(Map<String, Object> param, ActionCallback callback) {
+        try {
+            long result = POSTerminal.getInstance(mContext).getDeviceLastAccessTime(POSTerminal.DEVICE_NAME_RF_CARD_READER);
+            sendSuccessLog("LastAccessTime:" + new SimpleDateFormat("yyMMdd HH:mm:ss").format(new Date(result)));
+        } catch (DeviceException e) {
+            sendFailedLog(mContext.getString(R.string.operation_failed));
+            e.printStackTrace();
+        }
     }
 }

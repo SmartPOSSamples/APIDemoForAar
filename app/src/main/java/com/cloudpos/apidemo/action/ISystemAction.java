@@ -5,6 +5,8 @@ import com.cloudpos.DeviceException;
 import com.cloudpos.advance.ext.POSTerminalAdvance;
 import com.cloudpos.advance.ext.sdk.system.constants.SystemAdvanceConstants;
 import com.cloudpos.advance.ext.system.ISystemDevice;
+import com.cloudpos.apidemo.util.AppUtils;
+import com.cloudpos.apidemo.util.PreferenceHelper;
 import com.cloudpos.apidemoforunionpaycloudpossdk.R;
 import com.cloudpos.mvc.base.ActionCallback;
 
@@ -470,6 +472,25 @@ public class ISystemAction extends ActionModel {
             iDevice.disableNavigationBarButton(SystemAdvanceConstants.BTN_ID_BACK, false);
             iDevice.disableNavigationBarButton(SystemAdvanceConstants.BTN_ID_RESENT, false);
             sendSuccessLog(mContext.getString(R.string.operation_succeed));
+        } catch (DeviceException e) {
+            e.printStackTrace();
+            sendFailedLog(mContext.getString(R.string.operation_failed));
+        }
+    }
+
+    public void stopAppPkgName(Map<String, Object> param, ActionCallback callback) {
+
+    }
+
+    public void stopApp(Map<String, Object> param, ActionCallback callback) {
+        try {
+            String pkgName = PreferenceHelper.getInstance(mContext).getStringValue("stopAppPkgName", null);
+            if(pkgName != null && AppUtils.isAppInstalled(mContext, pkgName)){
+                iDevice.stopApp(pkgName);
+                sendSuccessLog(mContext.getString(R.string.operation_succeed));
+            }else{
+                sendFailedLog(mContext.getString(R.string.operation_failed) + ", can't find app");
+            }
         } catch (DeviceException e) {
             e.printStackTrace();
             sendFailedLog(mContext.getString(R.string.operation_failed));

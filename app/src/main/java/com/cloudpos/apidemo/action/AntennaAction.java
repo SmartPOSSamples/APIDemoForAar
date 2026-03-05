@@ -19,7 +19,7 @@ public class AntennaAction extends ActionModel{
         super.doBefore(param, callback);
         if(device == null){
             device =
-                    (AntennaDevice) POSTerminal.getInstance(mContext).getDevice("com.cloudpos.device.antenna");
+                    (AntennaDevice) POSTerminal.getInstance(mContext).getDevice(POSTerminal.DEVICE_NAME_ANTENNA);
         }
     }
 
