@@ -35,4 +35,15 @@ public class ByteConvertStringUtil {
 		System.out.println(":"+byteToHexString(input));
 	}
 
+	public static boolean isValidBigDecimalFormat(String input) {
+		if (input == null || input.isEmpty()) {
+			return false; // Invalid if null or empty
+		}
+		// Regex explanation:
+		// ^[+-]? - Optional '+' or '-' at the start
+		// \\d*   - Zero or more digits
+		// (\\.\\d+)? - Optional decimal point followed by one or more digits
+		// $       - End of the string
+		return input.matches("^[+-]?\\d*(\\.\\d+)?$");
+	}
 }

@@ -46,10 +46,10 @@ public class IUpdateAppAction extends ActionModel {
 
     public void installAndLaunchApkFile(Map<String, Object> param, ActionCallback callback) {
         try {
-            String apkFilePath = "sdcard/apk/PayWizard_Demo_V2.0.0_2508081.apk";
-            int type = 1;
-            String packageName = "com.wizarpos.paywizard.demo";
-            String classNameOrAction = "";
+            String apkFilePath = "sdcard/apk/ApiDemo_2026.03.12-1.3.2_V1.5.4.082-release.apk";
+            int type = 2;
+            String packageName = "com.cloudpos.apidemoforunionpaycloudpossdk";
+            String classNameOrAction = "com.cloudpos.androidmvcmodel.MainActivity";
             boolean b = iDevice.installAndLaunchApkFile(apkFilePath, type, packageName, classNameOrAction);
             if (b) {
                 sendSuccessLog("installAndLaunchApkFile : " + mContext.getString(R.string.operation_succeed));
@@ -64,7 +64,7 @@ public class IUpdateAppAction extends ActionModel {
 
     public void installApkFile(Map<String, Object> param, ActionCallback callback) {
         try {
-            String apkFilePath = "";
+            String apkFilePath = "sdcard/apk/ApiDemo_2026.03.12-1.3.2_V1.5.4.082-release.apk";
             int result = iDevice.installApkFile(apkFilePath);
             if (result == 1) {
                 sendSuccessLog("forceModifyUserPwd : " + mContext.getString(R.string.operation_succeed));
@@ -79,7 +79,7 @@ public class IUpdateAppAction extends ActionModel {
 
     public void uninstall(Map<String, Object> param, ActionCallback callback) {
         try {
-            String packageName = "";
+            String packageName = "com.cloudpos.apidemoforunionpaycloudpossdk";
             boolean b = iDevice.uninstall(packageName);
             if (b) {
                 sendSuccessLog("uninstall : " + mContext.getString(R.string.operation_succeed));

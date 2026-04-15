@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="white_demon">
+        <item>0014</item>
+        <item>0015</item>
+        <item>0017</item>
+        <item>0018</item>
+        <item>0018_debug</item>
+        <item>0019</item>
+        <item>0020</item>
+        <item>0021</item>
+        <item>0022</item>
+    </string-array>
+    <string-array name="trigger_pulse">
+        <item>1</item>
+        <item>2</item>
+        <item>3</item>
+        <item>4</item>
+        <item>6</item>
+        <item>7</item>
+        <item>8</item>
+        <item>9</item>
+        <item>10</item>
+    </string-array>
+    <string-array name="spn_voltage">
+        <item>0</item>
+        <item>1</item>
+    </string-array>
+    <string-array name="spn_mdb_level">
+        <item>level 2</item>
+        <item>level 3</item>
+    </string-array>
+    <string-array name="spn_device_type">
+        <item>device 1</item>
+        <item>device 2</item>
+    </string-array>
+</resources>

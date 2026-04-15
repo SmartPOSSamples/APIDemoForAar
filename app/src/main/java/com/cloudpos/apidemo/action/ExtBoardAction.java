@@ -49,7 +49,7 @@ public class ExtBoardAction extends ActionModel {
         super.doBefore(param, callback);
         if (device == null) {
             device = (ExtBoardDevice) POSTerminal.getInstance(mContext)
-                    .getDevice("cloudpos.device.extboard");
+                    .getDevice(POSTerminal.DEVICE_NAME_EXT_BOARD);
         }
     }
 
