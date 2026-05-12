@@ -506,7 +506,7 @@ public class PINPadAction extends ActionModel {
 
     public void setGUIStyle(Map<String, Object> param, ActionCallback callback) {
         try {
-            boolean b = device.setGUIConfiguration("style", "dejavoozcredit");
+            boolean b = device.setGUIConfiguration("style", "system");
             if (b) {
                 sendSuccessLog(mContext.getString(R.string.operation_succeed));
             } else {
