@@ -845,6 +845,38 @@
             needTest="true" />
     </MainItem>
     <MainItem
+        command="LEDGroupAction"
+        name_EN="LEDGroup">
+        <SubItem
+            command="open"
+            name_EN="open"
+            needTest="true" />
+        <SubItem
+            command="turnOn"
+            name_EN="turnOn"
+            needTest="true" />
+        <SubItem
+            command="turnOff"
+            name_EN="turnOff"
+            needTest="true" />
+        <SubItem
+            command="startBlink"
+            name_EN="startBlink"
+            needTest="true" />
+        <SubItem
+            command="cancelBlink"
+            name_EN="cancelBlink"
+            needTest="true" />
+        <SubItem
+            command="getStatus"
+            name_EN="getStatus"
+            needTest="true" />
+        <SubItem
+            command="close"
+            name_EN="close"
+            needTest="true" />
+    </MainItem>
+    <MainItem
         command="PrinterAction"
         isActivity="false"
         name_CN="打印机"
@@ -1178,8 +1210,11 @@
                 needTest="true" />
             <SubItem
                 command="setDeviceOwner"
-                name_CN="setDeviceOwner"
                 name_EN="setDeviceOwner"
+                needTest="true" />
+            <SubItem
+                command="disableDeviceOwner"
+                name_EN="disableDeviceOwner"
                 needTest="true" />
             <SubItem
                 command="setLanguage"

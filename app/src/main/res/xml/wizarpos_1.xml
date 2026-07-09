@@ -991,7 +991,38 @@
             name_EN="Close"
             needTest="true" />
     </MainItem>
-
+    <MainItem
+        command="LEDGroupAction"
+        name_EN="LEDGroup">
+        <SubItem
+            command="open"
+            name_EN="open"
+            needTest="true" />
+        <SubItem
+            command="turnOn"
+            name_EN="turnOn"
+            needTest="true" />
+        <SubItem
+            command="turnOff"
+            name_EN="turnOff"
+            needTest="true" />
+        <SubItem
+            command="startBlink"
+            name_EN="startBlink"
+            needTest="true" />
+        <SubItem
+            command="cancelBlink"
+            name_EN="cancelBlink"
+            needTest="true" />
+        <SubItem
+            command="getStatus"
+            name_EN="getStatus"
+            needTest="true" />
+        <SubItem
+            command="close"
+            name_EN="close"
+            needTest="true" />
+    </MainItem>
 
     <MainItem
         command="SerialPortAction"
@@ -1699,13 +1730,18 @@
                 name_CN="setCustomAttribute"
                 name_EN="setCustomAttribute"
                 needTest="true" />
-            <SubItem
-                command="setDeviceOwner"
-                name_CN="setDeviceOwner"
-                name_EN="setDeviceOwner"
-                needTest="true" />
-            <SubItem
-                command="setLanguage"
+        <SubItem
+            command="setDeviceOwner"
+            name_CN="setDeviceOwner"
+            name_EN="setDeviceOwner"
+            needTest="true" />
+        <SubItem
+            command="disableDeviceOwner"
+            name_CN="disableDeviceOwner"
+            name_EN="disableDeviceOwner"
+            needTest="true" />
+        <SubItem
+            command="setLanguage"
                 name_CN="setLanguage"
                 name_EN="setLanguage"
                 needTest="true" />
@@ -2323,6 +2359,30 @@
             command="write"
             name_CN="write"
             name_EN="write"
+            needTest="true" />
+        <SubItem
+            command="detectMDBOffline"
+            name_EN="detectMDBOffline"
+            needTest="true" />
+        <SubItem
+            command="getMDBConnStatus"
+            name_EN="getMDBConnStatus"
+            needTest="true" />
+        <SubItem
+            command="cancelDetectMDB"
+            name_EN="cancelDetectMDB"
+            needTest="true" />
+        <SubItem
+            command="wiegandConfig"
+            name_EN="wiegandConfig"
+            needTest="true" />
+        <SubItem
+            command="wiegandTransmit"
+            name_EN="wiegandTransmit"
+            needTest="true" />
+        <SubItem
+            command="wiegandTransmitWithParity"
+            name_EN="wiegandTransmitWithParity"
             needTest="true" />
     </MainItem>
     <MainItem

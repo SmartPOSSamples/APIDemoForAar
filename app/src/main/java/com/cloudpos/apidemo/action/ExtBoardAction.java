@@ -168,4 +168,65 @@ public class ExtBoardAction extends ActionModel {
             sendFailedOnlyLog(mContext.getString(R.string.hsm_falied));
         }
     }
+
+    public void detectMDBOffline(Map<String, Object> param, ActionCallback callback) {
+        try {
+            int status = device.detectMDBOffline(5000);
+            sendSuccessLog2("detectMDBOffline status: " + (status == 1 ? "online" : "offline"));
+        } catch (DeviceException e) {
+            e.printStackTrace();
+            sendFailedOnlyLog(mContext.getString(R.string.hsm_falied));
+        }
+    }
+
+    public void getMDBConnStatus(Map<String, Object> param, ActionCallback callback) {
+        try {
+            int status = device.getMDBConnStatus();
+            sendSuccessLog2("getMDBConnStatus: " + (status == 1 ? "online" : "offline"));
+        } catch (DeviceException e) {
+            e.printStackTrace();
+            sendFailedOnlyLog(mContext.getString(R.string.hsm_falied));
+        }
+    }
+
+    public void cancelDetectMDB(Map<String, Object> param, ActionCallback callback) {
+        try {
+            device.cancelDetectMDB();
+            sendSuccessLog2(mContext.getString(R.string.hsm_succeed));
+        } catch (DeviceException e) {
+            e.printStackTrace();
+            sendFailedOnlyLog(mContext.getString(R.string.hsm_falied));
+        }
+    }
+
+    public void wiegandConfig(Map<String, Object> param, ActionCallback callback) {
+        try {
+            device.wiegandConfig(50, 2000);
+            sendSuccessLog2(mContext.getString(R.string.hsm_succeed));
+        } catch (DeviceException e) {
+            e.printStackTrace();
+            sendFailedOnlyLog(mContext.getString(R.string.hsm_falied));
+        }
+    }
+
+    public void wiegandTransmit(Map<String, Object> param, ActionCallback callback) {
+        try {
+            byte[] data = {0x01, 0x02, 0x03};
+            device.wiegandTransmit(data, data.length, 24);
+            sendSuccessLog2(mContext.getString(R.string.hsm_succeed));
+        } catch (DeviceException e) {
+            e.printStackTrace();
+            sendFailedOnlyLog(mContext.getString(R.string.hsm_falied));
+        }
+    }
+
+    public void wiegandTransmitWithParity(Map<String, Object> param, ActionCallback callback) {
+        try {
+            device.wiegandTransmitWithParity(100, 5000);
+            sendSuccessLog2(mContext.getString(R.string.hsm_succeed));
+        } catch (DeviceException e) {
+            e.printStackTrace();
+            sendFailedOnlyLog(mContext.getString(R.string.hsm_falied));
+        }
+    }
 }

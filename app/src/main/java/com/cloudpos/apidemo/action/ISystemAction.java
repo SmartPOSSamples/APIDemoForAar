@@ -244,6 +244,18 @@ public class ISystemAction extends ActionModel {
         }
     }
 
+    public void disableDeviceOwner(Map<String, Object> param, ActionCallback callback) {
+        try {
+            String pkg = "";
+            String deviceCls = "";
+            boolean b = iDevice.disableDeviceOwner(pkg, deviceCls);
+            sendSuccessLog("disableDeviceOwner : " + b);
+        } catch (DeviceException e) {
+            e.printStackTrace();
+            sendFailedLog(mContext.getString(R.string.operation_failed));
+        }
+    }
+
     public void setLanguage(Map<String, Object> param, ActionCallback callback) {
         try {
             boolean b = iDevice.setLanguage("", "", "");
