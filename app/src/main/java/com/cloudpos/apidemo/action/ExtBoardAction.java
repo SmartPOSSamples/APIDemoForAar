@@ -33,6 +33,7 @@ import java.security.PublicKey;
 import java.security.SecureRandom;
 import java.util.Arrays;
 import java.util.Map;
+import java.util.concurrent.atomic.AtomicBoolean;
 
 import javax.security.auth.x500.X500Principal;
 
@@ -40,6 +41,8 @@ import javax.security.auth.x500.X500Principal;
 public class ExtBoardAction extends ActionModel {
 
     private ExtBoardDevice device = null;
+    private AtomicBoolean mDetectRunning = new AtomicBoolean(false);
+    private Thread mDetectThread = null;
     private byte[] CSR_buffer;
     String message = null;
     public byte[] certificate = null;
@@ -57,7 +60,7 @@ public class ExtBoardAction extends ActionModel {
         try {
             device.open();
             sendSuccessLog2(mContext.getString(R.string.hsm_succeed));
-        }catch (DeviceException e){
+        } catch (DeviceException e) {
             e.printStackTrace();
             sendFailedOnlyLog(mContext.getString(R.string.hsm_falied));
         }
@@ -67,7 +70,7 @@ public class ExtBoardAction extends ActionModel {
         try {
             device.close();
             sendSuccessLog2(mContext.getString(R.string.hsm_succeed));
-        }catch (DeviceException e){
+        } catch (DeviceException e) {
             e.printStackTrace();
             sendFailedOnlyLog(mContext.getString(R.string.hsm_falied));
         }
@@ -77,7 +80,7 @@ public class ExtBoardAction extends ActionModel {
         try {
             int version = device.getBoardVersion();
             sendSuccessLog2("BoardVersion = " + version);
-        }catch (DeviceException e){
+        } catch (DeviceException e) {
             e.printStackTrace();
             sendFailedOnlyLog(mContext.getString(R.string.hsm_falied));
         }
@@ -92,7 +95,7 @@ public class ExtBoardAction extends ActionModel {
                 }
             }, 30);
 
-        }catch (DeviceException e){
+        } catch (DeviceException e) {
             e.printStackTrace();
             sendFailedOnlyLog(mContext.getString(R.string.hsm_falied));
         }
@@ -102,7 +105,7 @@ public class ExtBoardAction extends ActionModel {
         try {
             int din = device.readDIN(0);
             sendSuccessLog2("Din = " + din);
-        }catch (DeviceException e){
+        } catch (DeviceException e) {
             e.printStackTrace();
             sendFailedOnlyLog(mContext.getString(R.string.hsm_falied));
         }
@@ -112,7 +115,7 @@ public class ExtBoardAction extends ActionModel {
         try {
             device.setPulseVoltage(0);
             sendSuccessLog2(mContext.getString(R.string.hsm_succeed));
-        }catch (DeviceException e){
+        } catch (DeviceException e) {
             e.printStackTrace();
             sendFailedOnlyLog(mContext.getString(R.string.hsm_falied));
         }
@@ -122,7 +125,7 @@ public class ExtBoardAction extends ActionModel {
         try {
             device.setPulseVoltage(1);
             sendSuccessLog2(mContext.getString(R.string.hsm_succeed));
-        }catch (DeviceException e){
+        } catch (DeviceException e) {
             e.printStackTrace();
             sendFailedOnlyLog(mContext.getString(R.string.hsm_falied));
         }
@@ -132,7 +135,7 @@ public class ExtBoardAction extends ActionModel {
         try {
             device.triggerRelay(0, 500, 500, 5);
             sendSuccessLog2(mContext.getString(R.string.hsm_succeed));
-        }catch (DeviceException e){
+        } catch (DeviceException e) {
             e.printStackTrace();
             sendFailedOnlyLog(mContext.getString(R.string.hsm_falied));
         }
@@ -142,7 +145,7 @@ public class ExtBoardAction extends ActionModel {
         try {
             device.triggerPulse(0, 0, 1000, 1000, 10);
             sendSuccessLog2(mContext.getString(R.string.hsm_succeed));
-        }catch (DeviceException e){
+        } catch (DeviceException e) {
             e.printStackTrace();
             sendFailedOnlyLog(mContext.getString(R.string.hsm_falied) + " " + e.getMessage());
         }
@@ -152,7 +155,7 @@ public class ExtBoardAction extends ActionModel {
         try {
             ExtBoardOperationResult result = device.waitForRead(100, 30);
             sendSuccessLog2("resultCode = " + result.getResultCode());
-        }catch (DeviceException e){
+        } catch (DeviceException e) {
             e.printStackTrace();
             sendFailedOnlyLog(mContext.getString(R.string.hsm_falied) + " " + e.getMessage());
         }
@@ -160,23 +163,48 @@ public class ExtBoardAction extends ActionModel {
 
     public void write(Map<String, Object> param, ActionCallback callback) {
         try {
-            byte[] data = {1,2,3,4,5,6,7,8};
+            byte[] data = {1, 2, 3, 4, 5, 6, 7, 8};
             device.write(data, data.length);
             sendSuccessLog2(mContext.getString(R.string.hsm_succeed));
-        }catch (DeviceException e){
+        } catch (DeviceException e) {
             e.printStackTrace();
             sendFailedOnlyLog(mContext.getString(R.string.hsm_falied));
         }
     }
 
     public void detectMDBOffline(Map<String, Object> param, ActionCallback callback) {
-        try {
-            int status = device.detectMDBOffline(5000);
-            sendSuccessLog2("detectMDBOffline status: " + (status == 1 ? "online" : "offline"));
-        } catch (DeviceException e) {
-            e.printStackTrace();
-            sendFailedOnlyLog(mContext.getString(R.string.hsm_falied));
+        if (mDetectRunning.get()) {
+            return;
         }
+        synchronized (ExtBoardAction.class) {
+            if (mDetectRunning.get()) {
+                return;
+            }
+            mDetectRunning.set(true);
+            mDetectThread = new Thread(() -> {
+                while (mDetectRunning.get()) {
+                    try {
+                        int status = device.detectMDBOffline(1000);
+                        String msg = "detectMDBOffline status: " + (status == 1 ? "online" : "offline");
+                        sendSuccessLog2(msg);
+                        Thread.sleep(10000);// sleep 10s
+                    } catch (DeviceException e) {
+                        e.printStackTrace();
+                        sendFailedOnlyLog(mContext.getString(R.string.hsm_falied) + " " + e.getMessage());
+                        break;
+                    } catch (InterruptedException e) {
+                        Thread.currentThread().interrupt();
+                        sendNormalLog("detectMDBOffline stopped");
+                        break;
+                    }
+                }
+                mDetectRunning.set(false);
+            });
+            mDetectThread.start();
+            sendNormalLog("detectMDBOffline started");
+        }
+
+
     }
 
     public void getMDBConnStatus(Map<String, Object> param, ActionCallback callback) {
@@ -190,6 +218,12 @@ public class ExtBoardAction extends ActionModel {
     }
 
     public void cancelDetectMDB(Map<String, Object> param, ActionCallback callback) {
+        mDetectRunning.set(false);
+
+        if (mDetectThread != null) {
+            mDetectThread.interrupt();
+        }
+
         try {
             device.cancelDetectMDB();
             sendSuccessLog2(mContext.getString(R.string.hsm_succeed));
