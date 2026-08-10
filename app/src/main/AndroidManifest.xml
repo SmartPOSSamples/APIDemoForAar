@@ -114,7 +114,6 @@
     <uses-permission android:name="android.permission.BLUETOOTH" />
     <uses-permission android:name="android.permission.USER_PWD" />
     <uses-permission android:name="android.permission.USER_PWD_MODIFY" />
-    <uses-permission android:name="android.permission.CLOUDPOS_REBOOT" />
     <uses-permission android:name="android.permission.CLOSEPOS_SET_SCREEN_WAKEUP" />
     <uses-permission android:name="android.permission.CLOUDPOS_DISABLE_POWER_KEY" />
     <uses-permission android:name="android.permission.CLOUDPOS_MANAGE_APP" />
@@ -175,6 +174,7 @@
     <uses-permission android:name="android.permission.CLOUDPOS_VIRTUAL_SERIAL_PORT"/>
     <uses-permission android:name="android.permission.CLOUDPOS_MANAGE_APP"/>
     <uses-permission android:name="android.permission.CLOUDPOS_MCUCTL"/>
+    <uses-permission android:name="android.permission.CONTROL_DEVICE_LIGHTS"/>
 
     <application
         android:name="com.cloudpos.androidmvcmodel.MainApplication"
@@ -183,9 +183,10 @@
         android:icon="@drawable/ic_launcher"
         android:label="@string/app_name"
         android:theme="@style/AppTheme">
-        <activity android:name="com.cloudpos.androidmvcmodel.MainActivity"
-            android:label="@string/app_name"
-            android:exported="true">
+        <activity
+            android:name="com.cloudpos.androidmvcmodel.MainActivity"
+            android:exported="true"
+            android:label="@string/app_name">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

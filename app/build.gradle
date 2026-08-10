@@ -38,7 +38,7 @@ def releaseTime() {
 
 dependencies {
     implementation files('libs/allutils.jar')
-    implementation(name: 'cloudpossdkV1.8.2.24_Standard', ext: 'aar')
+    implementation(name: 'cloudpossdkV1.8.2.33_Standard', ext: 'aar')
     implementation(name: 'sdk_systemloglib-release', ext: 'aar')
     //create QR code
     implementation files('libs/zxing.jar')

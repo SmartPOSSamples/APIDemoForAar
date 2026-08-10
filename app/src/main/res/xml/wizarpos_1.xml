@@ -991,38 +991,7 @@
             name_EN="Close"
             needTest="true" />
     </MainItem>
-    <MainItem
-        command="LEDGroupAction"
-        name_EN="LEDGroup">
-        <SubItem
-            command="open"
-            name_EN="open"
-            needTest="true" />
-        <SubItem
-            command="turnOn"
-            name_EN="turnOn"
-            needTest="true" />
-        <SubItem
-            command="turnOff"
-            name_EN="turnOff"
-            needTest="true" />
-        <SubItem
-            command="startBlink"
-            name_EN="startBlink"
-            needTest="true" />
-        <SubItem
-            command="cancelBlink"
-            name_EN="cancelBlink"
-            needTest="true" />
-        <SubItem
-            command="getStatus"
-            name_EN="getStatus"
-            needTest="true" />
-        <SubItem
-            command="close"
-            name_EN="close"
-            needTest="true" />
-    </MainItem>
+
 
     <MainItem
         command="SerialPortAction"
@@ -1730,18 +1699,13 @@
                 name_CN="setCustomAttribute"
                 name_EN="setCustomAttribute"
                 needTest="true" />
-        <SubItem
-            command="setDeviceOwner"
-            name_CN="setDeviceOwner"
-            name_EN="setDeviceOwner"
-            needTest="true" />
-        <SubItem
-            command="disableDeviceOwner"
-            name_CN="disableDeviceOwner"
-            name_EN="disableDeviceOwner"
-            needTest="true" />
-        <SubItem
-            command="setLanguage"
+            <SubItem
+                command="setDeviceOwner"
+                name_CN="setDeviceOwner"
+                name_EN="setDeviceOwner"
+                needTest="true" />
+            <SubItem
+                command="setLanguage"
                 name_CN="setLanguage"
                 name_EN="setLanguage"
                 needTest="true" />
@@ -1811,6 +1775,11 @@
                 name_EN="setTouchScreenWakeupValue"
                 needTest="true" />
             <SubItem
+                command="setSystemOrientation"
+                name_CN="setSystemOrientation"
+                name_EN="setSystemOrientation"
+                needTest="true" />
+            <SubItem
                 command="setUnknownSources"
                 name_CN="setUnknownSources"
                 name_EN="setUnknownSources"
@@ -1841,17 +1810,6 @@
                 name_EN="disableNavigationButton"
                 needTest="true" />
             <SubItem
-                command="stopAppPkgName"
-                name_CN="stopAppPkgName"
-                name_EN="stopAppPkgName"
-                type='3'
-                needTest="true" />
-            <SubItem
-                command="stopApp"
-                name_CN="stopApp"
-                name_EN="stopApp"
-                needTest="true" />
-            <SubItem
                 command="close"
                 name_CN="close"
                 name_EN="close"
@@ -1875,6 +1833,16 @@
                 command="installApkFile"
                 name_CN="installApkFile"
                 name_EN="installApkFile"
+                needTest="true" />
+            <SubItem
+                command="installApkFileForRollbackRC19"
+                name_CN="installApkFileForRollbackRC19"
+                name_EN="installApkFileForRollbackRC19"
+                needTest="true" />
+            <SubItem
+                command="installApkFileForRollbackRC19CRASHTEST19"
+                name_CN="installApkFileForRollbackRC19CRASHTEST19"
+                name_EN="installApkFileForRollbackRC19CRASHTEST19"
                 needTest="true" />
             <SubItem
                 command="uninstall"
@@ -2281,6 +2249,37 @@
     </MainItem>
 
     <MainItem
+        command="PresentationDeviceAction"
+        name_CN="PresentationDevice"
+        name_EN="PresentationDevice">
+        <SubItem
+            command="open"
+            name_CN="open"
+            name_EN="open"
+            needTest="true" />
+        <SubItem
+            command="setScreenOn"
+            name_CN="setScreenOn"
+            name_EN="setScreenOn"
+            needTest="true" />
+        <SubItem
+            command="setScreenOff"
+            name_CN="setScreenOff"
+            name_EN="setScreenOff"
+            needTest="true" />
+        <SubItem
+            command="isScreenOn"
+            name_CN="isScreenOn"
+            name_EN="isScreenOn"
+            needTest="true" />
+        <SubItem
+            command="close"
+            name_CN="close"
+            name_EN="close"
+            needTest="true" />
+    </MainItem>
+
+    <MainItem
         command="TerminalAction"
         name_CN="Terminal"
         name_EN="Terminal">
@@ -2295,9 +2294,9 @@
             name_EN="getSIMCardSN"
             needTest="true" />
         <SubItem
-            command="getDeviceLastAccessTime"
-            name_CN="getDeviceLastAccessTime"
-            name_EN="getDeviceLastAccessTime"
+            command="getSN"
+            name_CN="getSN"
+            name_EN="getSN"
             needTest="true" />
     </MainItem>
 
@@ -2359,30 +2358,6 @@
             command="write"
             name_CN="write"
             name_EN="write"
-            needTest="true" />
-        <SubItem
-            command="detectMDBOffline"
-            name_EN="detectMDBOffline"
-            needTest="true" />
-        <SubItem
-            command="getMDBConnStatus"
-            name_EN="getMDBConnStatus"
-            needTest="true" />
-        <SubItem
-            command="cancelDetectMDB"
-            name_EN="cancelDetectMDB"
-            needTest="true" />
-        <SubItem
-            command="wiegandConfig"
-            name_EN="wiegandConfig"
-            needTest="true" />
-        <SubItem
-            command="wiegandTransmit"
-            name_EN="wiegandTransmit"
-            needTest="true" />
-        <SubItem
-            command="wiegandTransmitWithParity"
-            name_EN="wiegandTransmitWithParity"
             needTest="true" />
     </MainItem>
     <MainItem
